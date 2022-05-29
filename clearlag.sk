@@ -1,0 +1,15 @@
+every 1.5 minutes in world "World":
+	broadcast "<##0cf22el>PaperBlok: <##00e2ec>All dropped items will be cleared in <##00f78e>30 <##00e2ec>seconds"
+	wait 20 seconds
+	broadcast "<##0cf22el>PaperBlok: <##00e2ec>All dropped items will be cleared in <##00f78e>10 <##00e2ec>seconds"
+	wait 7 seconds
+	broadcast "<##0cf22el>PaperBlok: <##00e2ec>All dropped items will be cleared in <##00f78e>3 <##00e2ec>seconds"
+	wait 1 second
+	broadcast "<##0cf22el>PaperBlok: <##00e2ec>All dropped items will be cleared in <##00f78e>2 <##00e2ec>seconds"
+	wait 1 second
+	broadcast "<##0cf22el>PaperBlok: <##00e2ec>All dropped items will be cleared in <##00f78e>1 <##00e2ec>seconds"
+	wait 1 second
+	loop all dropped items:
+		add 1 to {_item}
+	clear all dropped items
+	broadcast "<##0cf22el>PaperBlok: <##f52336>%{_item}% dropped items have been cleared from the ground."

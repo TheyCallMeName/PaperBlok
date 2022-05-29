@@ -1,0 +1,795 @@
+command /shop:
+  trigger:
+    open virtual chest inventory named "&f&lLucky&6&lLava &8» &eShop" with size 6 to player
+    format gui slot integers between 0 and 100 of player with gray stained glass pane named " "
+    format gui slot 10 of player with grass block named "&eDirt Shop" with lore "" and "&cClick To Open" to run:
+      execute player command "/dirtshop"
+    format gui slot 11 of player with stone named "&eStone Shop" with lore "" and "&cClick To Open" to run:
+      execute player command "/stoneshop"
+    format gui slot 12 of player with oak log named "&eWood Shop" with lore "" and "&cClick To Open" to run:
+      execute player command "/woodshop"
+    format gui slot 13 of player with white terracotta named "&eTerracotta Shop" with lore "" and "&cClick To Open" to run:
+      execute player command "/terracottashop"
+    format gui slot 14 of player with white concrete named "&eConcrete Shop" with lore "" and "&cClick To Open" to run:
+      execute player command "/concreteshop"
+    format gui slot 15 of player with white wool named "&eWool Shop" with lore "" and "&cClick To Open" to run:
+      execute player command "/woolshop"
+    format gui slot 16 of player with iron ingot named "&eOre Shop" with lore "" and "&cClick To Open" to run:
+      execute player command "/oreshop"
+    format gui slot 28 of player with Sponge named "&eLucky Block Shop" with lore "" and "&cClick To Open" to run:
+      execute player command "/luckyblockshop"
+    format gui slot 29 of player with Flint named "&eMisc Shop" with lore "" and "&cClick To Open" to run:
+      execute player command "/miscshop"
+    format gui slot 30 of player with cooked porkchop named "&eFood Shop" with lore "" and "&cClick To Open" to run:
+      execute player command "/foodshop"
+    format gui slot 31 of player with tripwire hook named "&eKeys Shop" with lore "" and "&cClick To Open" to run:
+      execute player command "/keyshop"
+    format gui slot 32 of player with barrier named " "
+    format gui slot 33 of player with barrier named " "
+    format gui slot 34 of player with barrier named " "
+    format gui slot 49 of player with feather named "&c&lClose" to run:
+      close player's inventory
+    
+
+command /dirtshop:
+  trigger:
+    open virtual chest inventory named "&f&lLucky&6&lLava &8» &eDirt" with size 4 to player
+    format gui slot integers between 0 and 100 of player with gray stained glass pane named " "
+    format gui slot 10 of player with grass block named "&eGrass Block &7x16" with lore "" and "&aCosts: $50" to run:
+      if player's balance >= 50:
+        remove 50 from player's balance
+        give 16 of Grass block to player
+        play sound "ENTITY_EXPERIENCE_ORB_PICKUP" with volume 25 and pitch 50 to player at player
+        message "&f&lLucky&6&lLava &8» &aYou Bought This Item!"
+      else:
+        message "&f&lLucky&6&lLava &8» &cYou Dont Have Enough Money For That!"
+        play sound "ENTITY_EXPERIENCE_ORB_PICKUP" with volume 25 and pitch 0 to player at player
+    format gui slot 11 of player with dirt named "&eDirt &7x16" with lore "" and "&aCosts: $50" to run:
+      if player's balance >= 50:
+        remove 50 from player's balance
+        give 16 of dirt to player
+        play sound "ENTITY_EXPERIENCE_ORB_PICKUP" with volume 25 and pitch 50 to player at player
+        message "&f&lLucky&6&lLava &8» &aYou Bought This Item!"
+      else:
+        message "&f&lLucky&6&lLava &8» &cYou Dont Have Enough Money For That!"
+        play sound "ENTITY_EXPERIENCE_ORB_PICKUP" with volume 25 and pitch 0 to player at player
+    format gui slot 12 of player with Coarse Dirt named "&eCoarse Dirt &7x16" with lore "" and "&aCosts: $50" to run:
+      if player's balance >= 50:
+        remove 50 from player's balance
+        give 16 of Coarse Dirt to player
+        play sound "ENTITY_EXPERIENCE_ORB_PICKUP" with volume 25 and pitch 50 to player at player
+        message "&f&lLucky&6&lLava &8» &aYou Bought This Item!"
+      else:
+        message "&f&lLucky&6&lLava &8» &cYou Dont Have Enough Money For That!"
+        play sound "ENTITY_EXPERIENCE_ORB_PICKUP" with volume 25 and pitch 0 to player at player
+    format gui slot 13 of player with Podzol named "&ePodzol &7x16" with lore "" and "&aCosts: $50" to run:
+      if player's balance >= 50:
+        remove 50 from player's balance
+        give 16 of Podzol to player
+        play sound "ENTITY_EXPERIENCE_ORB_PICKUP" with volume 25 and pitch 50 to player at player
+        message "&f&lLucky&6&lLava &8» &aYou Bought This Item!"
+      else:
+        message "&f&lLucky&6&lLava &8» &cYou Dont Have Enough Money For That!"
+        play sound "ENTITY_EXPERIENCE_ORB_PICKUP" with volume 25 and pitch 0 to player at player
+    format gui slot 14 of player with sand named "&eSand &7x16" with lore "" and "&aCosts: $50" to run:
+      if player's balance >= 50:
+        remove 50 from player's balance
+        give 16 of Sand to player
+        play sound "ENTITY_EXPERIENCE_ORB_PICKUP" with volume 25 and pitch 50 to player at player
+        message "&f&lLucky&6&lLava &8» &aYou Bought This Item!"
+      else:
+        message "&f&lLucky&6&lLava &8» &cYou Dont Have Enough Money For That!"
+        play sound "ENTITY_EXPERIENCE_ORB_PICKUP" with volume 25 and pitch 0 to player at player
+    format gui slot 15 of player with Gravel named "&eGravel &7x16" with lore "" and "&aCosts: $50" to run:
+      if player's balance >= 50:
+        remove 50 from player's balance
+        give 16 of Gravel to player
+        play sound "ENTITY_EXPERIENCE_ORB_PICKUP" with volume 25 and pitch 50 to player at player
+        message "&f&lLucky&6&lLava &8» &aYou Bought This Item!"
+      else:
+        message "&f&lLucky&6&lLava &8» &cYou Dont Have Enough Money For That!"
+        play sound "ENTITY_EXPERIENCE_ORB_PICKUP" with volume 25 and pitch 0 to player at player
+    format gui slot 31 of player with feather named "&c&lClose" to run:
+      execute player command "/shop"
+    format gui slot 16 of player with red sand named "&eRed Sand &7x16" with lore "" and "&aCosts: $50" to run:
+      if player's balance >= 50:
+        remove 50 from player's balance
+        give 16 of red sand to player
+        play sound "ENTITY_EXPERIENCE_ORB_PICKUP" with volume 25 and pitch 50 to player at player
+        message "&f&lLucky&6&lLava &8» &aYou Bought This Item!"
+      else:
+        message "&f&lLucky&6&lLava &8» &cYou Dont Have Enough Money For That!"
+        play sound "ENTITY_EXPERIENCE_ORB_PICKUP" with volume 25 and pitch 0 to player at player
+    format gui slot 31 of player with feather named "&c&lClose" to run:
+      execute player command "/shop"
+    
+
+command /stoneshop:
+  trigger:
+    open virtual chest inventory named "&f&lLucky&6&lLava &8» &eStone" with size 5 to player
+    format gui slot integers between 0 and 100 of player with gray stained glass pane named " "
+    format gui slot 10 of player with stone named "&eStone &7x16" with lore "" and "&aCosts: $50" to run:
+      if player's balance >= 50:
+        remove 50 from player's balance
+        give 16 of stone to player
+        play sound "ENTITY_EXPERIENCE_ORB_PICKUP" with volume 25 and pitch 50 to player at player
+        message "&f&lLucky&6&lLava &8» &aYou Bought This Item!"
+      else:
+        message "&f&lLucky&6&lLava &8» &cYou Dont Have Enough Money For That!"
+        play sound "ENTITY_EXPERIENCE_ORB_PICKUP" with volume 25 and pitch 0 to player at player
+    format gui slot 11 of player with cobblestone named "&eCobblestone &7x16" with lore "" and "&aCosts: $50" to run:
+      if player's balance >= 50:
+        remove 50 from player's balance
+        give 16 of cobblestone to player
+        play sound "ENTITY_EXPERIENCE_ORB_PICKUP" with volume 25 and pitch 50 to player at player
+        message "&f&lLucky&6&lLava &8» &aYou Bought This Item!"
+      else:
+        message "&f&lLucky&6&lLava &8» &cYou Dont Have Enough Money For That!"
+        play sound "ENTITY_EXPERIENCE_ORB_PICKUP" with volume 25 and pitch 0 to player at player
+    format gui slot 12 of player with Granite named "&eGranite &7x16" with lore "" and "&aCosts: $50" to run:
+      if player's balance >= 50:
+        remove 50 from player's balance
+        give 16 of Granite to player
+        play sound "ENTITY_EXPERIENCE_ORB_PICKUP" with volume 25 and pitch 50 to player at player
+        message "&f&lLucky&6&lLava &8» &aYou Bought This Item!"
+      else:
+        message "&f&lLucky&6&lLava &8» &cYou Dont Have Enough Money For That!"
+        play sound "ENTITY_EXPERIENCE_ORB_PICKUP" with volume 25 and pitch 0 to player at player
+    format gui slot 13 of player with Polished Granite named "&ePolished Granite &7x16" with lore "" and "&aCosts: $50" to run:
+      if player's balance >= 50:
+        remove 50 from player's balance
+        give 16 of Polished Granite to player
+        play sound "ENTITY_EXPERIENCE_ORB_PICKUP" with volume 25 and pitch 50 to player at player
+        message "&f&lLucky&6&lLava &8» &aYou Bought This Item!"
+      else:
+        message "&f&lLucky&6&lLava &8» &cYou Dont Have Enough Money For That!"
+        play sound "ENTITY_EXPERIENCE_ORB_PICKUP" with volume 25 and pitch 0 to player at player
+    format gui slot 14 of player with Diorite named "&eDiorite &7x16" with lore "" and "&aCosts: $50" to run:
+      if player's balance >= 50:
+        remove 50 from player's balance
+        give 16 of Diorite to player
+        play sound "ENTITY_EXPERIENCE_ORB_PICKUP" with volume 25 and pitch 50 to player at player
+        message "&f&lLucky&6&lLava &8» &aYou Bought This Item!"
+      else:
+        message "&f&lLucky&6&lLava &8» &cYou Dont Have Enough Money For That!"
+        play sound "ENTITY_EXPERIENCE_ORB_PICKUP" with volume 25 and pitch 0 to player at player
+    format gui slot 15 of player with Polished Diorite named "&ePolished Diorite &7x16" with lore "" and "&aCosts: $50" to run:
+      if player's balance >= 50:
+        remove 50 from player's balance
+        give 16 of Polished Diorite to player
+        play sound "ENTITY_EXPERIENCE_ORB_PICKUP" with volume 25 and pitch 50 to player at player
+        message "&f&lLucky&6&lLava &8» &aYou Bought This Item!"
+      else:
+        message "&f&lLucky&6&lLava &8» &cYou Dont Have Enough Money For That!"
+        play sound "ENTITY_EXPERIENCE_ORB_PICKUP" with volume 25 and pitch 0 to player at player
+    format gui slot 16 of player with Andesite named "&eAndesite &7x16" with lore "" and "&aCosts: $50" to run:
+      if player's balance >= 50:
+        remove 50 from player's balance
+        give 16 of Andesite to player
+        play sound "ENTITY_EXPERIENCE_ORB_PICKUP" with volume 25 and pitch 50 to player at player
+        message "&f&lLucky&6&lLava &8» &aYou Bought This Item!"
+      else:
+        message "&f&lLucky&6&lLava &8» &cYou Dont Have Enough Money For That!"
+        play sound "ENTITY_EXPERIENCE_ORB_PICKUP" with volume 25 and pitch 0 to player at player
+    format gui slot 19 of player with Polished Andesite named "&ePolished Andesite &7x16" with lore "" and "&aCosts: $50" to run:
+      if player's balance >= 50:
+        remove 50 from player's balance
+        give 16 of Polished Andesite to player
+        play sound "ENTITY_EXPERIENCE_ORB_PICKUP" with volume 25 and pitch 50 to player at player
+        message "&f&lLucky&6&lLava &8» &aYou Bought This Item!"
+      else:
+        message "&fc&lLucky&6&lLava &8» &cYou Dont Have Enough Money For That!"
+        play sound "ENTITY_EXPERIENCE_ORB_PICKUP" with volume 25 and pitch 0 to player at player
+    format gui slot 20 of player with Mossy Cobblestone named "&eMossy Cobblestone &7x16" with lore "" and "&aCosts: $50" to run:
+      if player's balance >= 50:
+        remove 50 from player's balance
+        give 16 of Mossy Cobblestone to player
+        play sound "ENTITY_EXPERIENCE_ORB_PICKUP" with volume 25 and pitch 50 to player at player
+        message "&f&lLucky&6&lLava &8» &aYou Bought This Item!"
+      else:
+        message "&f&lLucky&6&lLava &8» &cYou Dont Have Enough Money For That!"
+        play sound "ENTITY_EXPERIENCE_ORB_PICKUP" with volume 25 and pitch 0 to player at player
+    format gui slot 21 of player with Stone Bricks named "&eStone Bricks &7x16" with lore "" and "&aCosts: $50" to run:
+      if player's balance >= 50:
+        remove 50 from player's balance
+        give 16 of Stone Bricks to player
+        play sound "ENTITY_EXPERIENCE_ORB_PICKUP" with volume 25 and pitch 50 to player at player
+        message "&f&lLucky&6&lLava &8» &aYou Bought This Item!"
+      else:
+        message "&f&lLucky&6&lLava &8» &cYou Dont Have Enough Money For That!"
+        play sound "ENTITY_EXPERIENCE_ORB_PICKUP" with volume 25 and pitch 0 to player at player
+    format gui slot 22 of player with Mossy Stone Bricks named "&eMossy Stone Bricks &7x16" with lore "" and "&aCosts: $50" to run:
+      if player's balance >= 50:
+        remove 50 from player's balance
+        give 16 of Mossy Stone Bricks to player
+        play sound "ENTITY_EXPERIENCE_ORB_PICKUP" with volume 25 and pitch 50 to player at player
+        message "&f&lLucky&6&lLava &8» &aYou Bought This Item!"
+      else:
+        message "&f&lLucky&6&lLava &8» &cYou Dont Have Enough Money For That!"
+        play sound "ENTITY_EXPERIENCE_ORB_PICKUP" with volume 25 and pitch 0 to player at player
+    format gui slot 23 of player with Cracked Stone Bricks named "&eCracked Stone Bricks &7x16" with lore "" and "&aCosts: $50" to run:
+      if player's balance >= 50:
+        remove 50 from player's balance
+        give 16 of Cracked Stone Bricks to player
+        play sound "ENTITY_EXPERIENCE_ORB_PICKUP" with volume 25 and pitch 50 to player at player
+        message "&f&lLucky&6&lLava &8» &aYou Bought This Item!"
+      else:
+        message "&f&lLucky&6&lLava &8» &cYou Dont Have Enough Money For That!"
+        play sound "ENTITY_EXPERIENCE_ORB_PICKUP" with volume 25 and pitch 0 to player at player
+    format gui slot 24 of player with barrier named " "
+    format gui slot 25 of player with barrier named " "
+    format gui slot 40 of player with feather named "&c&lBack" to run:
+      execute player command "/shop"
+
+
+command /woodshop:
+  trigger:
+    open virtual chest inventory named "&f&lLucky&6&lLava &8» &eWood" with size 5 to player
+    format gui slot integers between 0 and 100 of player with gray stained glass pane named " "
+    format gui slot 10 of player with Oak Log named "&eOak Log &7x16" with lore "" and "&aCosts: $50" to run:
+      if player's balance >= 50:
+        remove 50 from player's balance
+        give 16 of Oak Log to player
+        play sound "ENTITY_EXPERIENCE_ORB_PICKUP" with volume 25 and pitch 50 to player at player
+        message "&f&lLucky&6&lLava &8» &aYou Bought This Item!"
+      else:
+        message "&f&lLucky&6&lLava &8» &cYou Dont Have Enough Money For That!"
+        play sound "ENTITY_EXPERIENCE_ORB_PICKUP" with volume 25 and pitch 0 to player at player
+    format gui slot 11 of player with Spruce Log named "&eSpruce Log &7x16" with lore "" and "&aCosts: $50" to run:
+      if player's balance >= 50:
+        remove 50 from player's balance
+        give 16 of Spruce Log to player
+        play sound "ENTITY_EXPERIENCE_ORB_PICKUP" with volume 25 and pitch 50 to player at player
+        message "&f&lLucky&6&lLava &8» &aYou Bought This Item!"
+      else:
+        message "&f&lLucky&6&lLava &8» &cYou Dont Have Enough Money For That!"
+        play sound "ENTITY_EXPERIENCE_ORB_PICKUP" with volume 25 and pitch 0 to player at player
+    format gui slot 12 of player with Birch Log named "&eBirch Log &7x16" with lore "" and "&aCosts: $50" to run:
+      if player's balance >= 50:
+        remove 50 from player's balance
+        give 16 of Birch Log to player
+        play sound "ENTITY_EXPERIENCE_ORB_PICKUP" with volume 25 and pitch 50 to player at player
+        message "&f&lLucky&6&lLava &8» &aYou Bought This Item!"
+      else:
+        message "&f&lLucky&6&lLava &8» &cYou Dont Have Enough Money For That!"
+        play sound "ENTITY_EXPERIENCE_ORB_PICKUP" with volume 25 and pitch 0 to player at player
+    format gui slot 13 of player with Jungle Log named "&eJungle Log &7x16" with lore "" and "&aCosts: $50" to run:
+      if player's balance >= 50:
+        remove 50 from player's balance
+        give 16 of Jungle Log to player
+        play sound "ENTITY_EXPERIENCE_ORB_PICKUP" with volume 25 and pitch 50 to player at player
+        message "&f&lLucky&6&lLava &8» &aYou Bought This Item!"
+      else:
+        message "&f&lLucky&6&lLava &8» &cYou Dont Have Enough Money For That!"
+        play sound "ENTITY_EXPERIENCE_ORB_PICKUP" with volume 25 and pitch 0 to player at player
+    format gui slot 14 of player with Acacia Log named "&eAcacia Log &7x16" with lore "" and "&aCosts: $50" to run:
+      if player's balance >= 50:
+        remove 50 from player's balance
+        give 16 of Acacia Log to player
+        play sound "ENTITY_EXPERIENCE_ORB_PICKUP" with volume 25 and pitch 50 to player at player
+        message "&f&lLucky&6&lLava &8» &aYou Bought This Item!"
+      else:
+        message "&f&lLucky&6&lLava &8» &cYou Dont Have Enough Money For That!"
+        play sound "ENTITY_EXPERIENCE_ORB_PICKUP" with volume 25 and pitch 0 to player at player
+    format gui slot 15 of player with Dark Oak Log named "&eDark Oak Log &7x16" with lore "" and "&aCosts: $50" to run:
+      if player's balance >= 50:
+        remove 50 from player's balance
+        give 16 of Dark Oak Log to player
+        play sound "ENTITY_EXPERIENCE_ORB_PICKUP" with volume 25 and pitch 50 to player at player
+        message "&f&lLucky&6&lLava &8» &aYou Bought This Item!"
+      else:
+        message "&f&lLucky&6&lLava &8» &cYou Dont Have Enough Money For That!"
+        play sound "ENTITY_EXPERIENCE_ORB_PICKUP" with volume 25 and pitch 0 to player at player
+    format gui slot 16 of player with Crimson Stem named "&eCrimson Stem &7x16" with lore "" and "&aCosts: $50" to run:
+      if player's balance >= 50:
+        remove 50 from player's balance
+        give 16 of Crimson Stem to player
+        play sound "ENTITY_EXPERIENCE_ORB_PICKUP" with volume 25 and pitch 50 to player at player
+        message "&f&lLucky&6&lLava &8» &aYou Bought This Item!"
+      else:
+        message "&f&lLucky&6&lLava &8» &cYou Dont Have Enough Money For That!"
+        play sound "ENTITY_EXPERIENCE_ORB_PICKUP" with volume 25 and pitch 0 to player at player
+    format gui slot 19 of player with Warped Stem named "&eWarped Stem &7x16" with lore "" and "&aCosts: $50" to run:
+      if player's balance >= 50:
+        remove 50 from player's balance
+        give 16 of Warped Stem to player
+        play sound "ENTITY_EXPERIENCE_ORB_PICKUP" with volume 25 and pitch 50 to player at player
+        message "&f&lLucky&6&lLava &8» &aYou Bought This Item!"
+      else:
+        message "&f&lLucky&6&lLava &8» &cYou Dont Have Enough Money For That!"
+        play sound "ENTITY_EXPERIENCE_ORB_PICKUP" with volume 25 and pitch 0 to player at player
+    format gui slot 20 of player with Stripped Oak Log named "&eStripped Oak Log &7x16" with lore "" and "&aCosts: $50" to run:
+      if player's balance >= 50:
+        remove 50 from player's balance
+        give 16 of Stripped Oak Log to player
+        play sound "ENTITY_EXPERIENCE_ORB_PICKUP" with volume 25 and pitch 50 to player at player
+        message "&f&lLucky&6&lLava &8» &aYou Bought This Item!"
+      else:
+        message "&f&lLucky&6&lLava &8» &cYou Dont Have Enough Money For That!"
+        play sound "ENTITY_EXPERIENCE_ORB_PICKUP" with volume 25 and pitch 0 to player at player
+    format gui slot 21 of player with Stripped Spruce Log named "&eStripped Spruce Log &7x16" with lore "" and "&aCosts: $50" to run:
+      if player's balance >= 50:
+        remove 50 from player's balance
+        give 16 of Stripped Spruce Log to player
+        play sound "ENTITY_EXPERIENCE_ORB_PICKUP" with volume 25 and pitch 50 to player at player
+        message "&f&lLucky&6&lLava &8» &aYou Bought This Item!"
+      else:
+        message "&f&lLucky&6&lLava &8» &cYou Dont Have Enough Money For That!"
+        play sound "ENTITY_EXPERIENCE_ORB_PICKUP" with volume 25 and pitch 0 to player at player
+    format gui slot 22 of player with Stripped Birch Log named "&eStripped Birch Log &7x16" with lore "" and "&aCosts: $50" to run:
+      if player's balance >= 50:
+        remove 50 from player's balance
+        give 16 of Stripped Birch Log to player
+        play sound "ENTITY_EXPERIENCE_ORB_PICKUP" with volume 25 and pitch 50 to player at player
+        message "&f&lLucky&6&lLava &8» &aYou Bought This Item!"
+      else:
+        message "&f&lLucky&6&lLava &8» &cYou Dont Have Enough Money For That!"
+        play sound "ENTITY_EXPERIENCE_ORB_PICKUP" with volume 25 and pitch 0 to player at player
+    format gui slot 23 of player with Stripped Jungle Log named "&eStripped Jungle Log &7x16" with lore "" and "&aCosts: $50" to run:
+      if player's balance >= 50:
+        remove 50 from player's balance
+        give 16 of Stripped Jungle Log to player
+        play sound "ENTITY_EXPERIENCE_ORB_PICKUP" with volume 25 and pitch 50 to player at player
+        message "&f&lLucky&6&lLava &8» &aYou Bought This Item!"
+      else:
+        message "&f&lLucky&6&lLava &8» &cYou Dont Have Enough Money For That!"
+        play sound "ENTITY_EXPERIENCE_ORB_PICKUP" with volume 25 and pitch 0 to player at player
+    format gui slot 24 of player with Stripped Acacia Log named "&eStripped Acacia Log &7x16" with lore "" and "&aCosts: $50" to run:
+      if player's balance >= 50:
+        remove 50 from player's balance
+        give 16 of Stripped Acacia Log to player
+        play sound "ENTITY_EXPERIENCE_ORB_PICKUP" with volume 25 and pitch 50 to player at player
+        message "&f&lLucky&6&lLava &8» &aYou Bought This Item!"
+      else:
+        message "&f&lLucky&6&lLava &8» &cYou Dont Have Enough Money For That!"
+        play sound "ENTITY_EXPERIENCE_ORB_PICKUP" with volume 25 and pitch 0 to player at player
+    format gui slot 25 of player with Stripped Dark Oak Log named "&eStripped Dark Oak Log &7x16" with lore "" and "&aCosts: $50" to run:
+      if player's balance >= 50:
+        remove 50 from player's balance
+        give 16 of Stripped Dark Oak Log to player
+        play sound "ENTITY_EXPERIENCE_ORB_PICKUP" with volume 25 and pitch 50 to player at player
+        message "&f&lLucky&6&lLava &8» &aYou Bought This Item!"
+      else:
+        message "&f&lLucky&6&lLava &8» &cYou Dont Have Enough Money For That!"
+        play sound "ENTITY_EXPERIENCE_ORB_PICKUP" with volume 25 and pitch 0 to player at player
+    format gui slot 40 of player with feather named "&c&lBack" to run:
+      execute player command "/shop"
+
+
+
+
+command /luckyblockshop:
+  trigger:
+    open virtual chest inventory named "&f&lLucky&6&lLava &8» &eLucky" with size 4 to player
+    format gui slot integers between 0 and 100 of player with gray stained glass pane named " "
+    format gui slot 13 of player with sponge named "&e&lNormal &6Lucky Block &7x1" with lore "" and "&aCosts: $250 " to run:
+      if player's balance >= 250 :
+        remove 250 from player's balance
+        give 1 of Sponge named "&e&lNormal &6Lucky Block" to player
+        play sound "ENTITY_EXPERIENCE_ORB_PICKUP" with volume 25 and pitch 50 to player at player
+        message "&f&lLucky&6&lLava &8» &aYou Bought This Item!"
+      else:
+        message "&f&lLucky&6&lLava &8» &cYou Dont Have Enough Money For That!"
+        play sound "ENTITY_EXPERIENCE_ORB_PICKUP" with volume 25 and pitch 0 to player at player
+    format gui slot 31 of player with feather named "&c&lClose" to run:
+      execute player command "/shop"
+
+
+command /miscshop:
+  trigger:
+    open virtual chest inventory named "&f&lLucky&6&lLava &8» &eMisc" with size 4 to player
+    format gui slot integers between 0 and 100 of player with gray stained glass pane named " "
+    format gui slot 10 of player with Obsidian named "&eObsidian &7x16" with lore "" and "&aCosts: $5000" to run:
+      if player's balance >= 5000:
+        remove 5000 from player's balance
+        give 16 of Obsidian to player
+        play sound "ENTITY_EXPERIENCE_ORB_PICKUP" with volume 25 and pitch 50 to player at player
+        message "&f&lLucky&6&lLava &8» &aYou Bought This Item!"
+      else:
+        message "&f&lLucky&6&lLava &8» &cYou Dont Have Enough Money For That!"
+        play sound "ENTITY_EXPERIENCE_ORB_PICKUP" with volume 25 and pitch 0 to player at player
+    format gui slot 11 of player with Water Bucket named "&eWater Bucket &7x1" with lore "" and "&aCosts: $250" to run:
+      if player's balance >= 250:
+        remove 250 from player's balance
+        give 1 of Water Bucket to player
+        play sound "ENTITY_EXPERIENCE_ORB_PICKUP" with volume 25 and pitch 50 to player at player
+        message "&f&lLucky&6&lLava &8» &aYou Bought This Item!"
+      else:
+        message "&f&lLucky&6&lLava &8» &cYou Dont Have Enough Money For That!"
+        play sound "ENTITY_EXPERIENCE_ORB_PICKUP" with volume 25 and pitch 0 to player at player
+    format gui slot 12 of player with bottle o' enchanting named "&eBottle O' Enchanting&7x16" with lore "" and "&aCosts: $10000" to run:
+      if player's balance >= 10000:
+        remove 10000 from player's balance
+        give 16 of bottle o' enchanting to player
+        play sound "ENTITY_EXPERIENCE_ORB_PICKUP" with volume 25 and pitch 50 to player at player
+        message "&f&lLucky&6&lLava &8» &aYou Bought This Item!"
+      else:
+        message "&f&lLucky&6&lLava &8» &cYou Dont Have Enough Money For That!"
+        play sound "ENTITY_EXPERIENCE_ORB_PICKUP" with volume 25 and pitch 0 to player at player
+    format gui slot 13 of player with Bookshelf named "&eBookshelf &7x1" with lore "" and "&aCosts: $500" to run:
+      if player's balance >= 500:
+        remove 500 from player's balance
+        give 1 of Bookshelf to player
+        play sound "ENTITY_EXPERIENCE_ORB_PICKUP" with volume 25 and pitch 50 to player at player
+        message "&f&lLucky&6&lLava &8» &aYou Bought This Item!"
+      else:
+        message "&f&lLucky&6&lLava &8» &cYou Dont Have Enough Money For That!"
+        play sound "ENTITY_EXPERIENCE_ORB_PICKUP" with volume 25 and pitch 0 to player at player
+    format gui slot 14 of player with Enchanting Table named "&eEnchanting Table &7x1" with lore "" and "&aCosts: $10000" to run:
+      if player's balance >= 10000:
+        remove 10000 from player's balance
+        give 1 of Enchanting Table to player
+        play sound "ENTITY_EXPERIENCE_ORB_PICKUP" with volume 25 and pitch 50 to player at player
+        message "&f&lLucky&6&lLava &8» &aYou Bought This Item!"
+      else:
+        message "&f&lLucky&6&lLava &8» &cYou Dont Have Enough Money For That!"
+        play sound "ENTITY_EXPERIENCE_ORB_PICKUP" with volume 25 and pitch 0 to player at player
+    format gui slot 15 of player with Elytra named "&eElytra &7x1" with lore "" and "&aCosts: $1M" to run:
+      if player's balance >= 1000000:
+        remove 1000000 from player's balance
+        give 1 of Elytra to player
+        play sound "ENTITY_EXPERIENCE_ORB_PICKUP" with volume 25 and pitch 50 to player at player
+        message "&f&lLucky&6&lLava &8» &aYou Bought This Item!"
+      else:
+        message "&f&lLucky&6&lLava &8» &cYou Dont Have Enough Money For That!"
+        play sound "ENTITY_EXPERIENCE_ORB_PICKUP" with volume 25 and pitch 0 to player at player
+    format gui slot 16 of player with Firework Rocket named "&eFirework Rocket &7x16" with lore "" and "&aCosts: $1000" to run:
+      if player's balance >= 1000:
+        remove 1000 from player's balance
+        give 16 of Firework Rocket to player
+        play sound "ENTITY_EXPERIENCE_ORB_PICKUP" with volume 25 and pitch 50 to player at player
+        message "&f&lLucky&6&lLava &8» &aYou Bought This Item!"
+      else:
+        message "&f&lLucky&6&lLava &8» &cYou Dont Have Enough Money For That!"
+        play sound "ENTITY_EXPERIENCE_ORB_PICKUP" with volume 25 and pitch 0 to player at player
+    format gui slot 31 of player with feather named "&c&lClose" to run:
+      execute player command "/shop"
+    format gui slot 22 of player with Ender Chest named "&eEnder Chest &7x1" with lore "" and "&aCosts: $50000" to run:
+      if player's balance >= 50000:
+        remove 50000 from player's balance
+        give 1 of Ender Chest to player
+        play sound "ENTITY_EXPERIENCE_ORB_PICKUP" with volume 25 and pitch 50 to player at player
+        message "&f&lLucky&6&lLava &8» &aYou Bought This Item!"
+      else:
+        message "&f&lLucky&6&lLava &8» &cYou Dont Have Enough Money For That!"
+        play sound "ENTITY_EXPERIENCE_ORB_PICKUP" with volume 25 and pitch 0 to player at player
+    format gui slot 31 of player with feather named "&c&lClose" to run:
+      execute player command "/shop"
+    
+    
+
+command /oreshop:
+  trigger:
+    open virtual chest inventory named "&f&lLucky&6&lLava &8» &eMisc" with size 4 to player
+    format gui slot integers between 0 and 100 of player with gray stained glass pane named " "
+    format gui slot 10 of player with Coal named "&eCoal &7x16" with lore "" and "&aCosts: $50" to run:
+      if player's balance >= 50:
+        remove 50 from player's balance
+        give 16 of Coal to player
+        play sound "ENTITY_EXPERIENCE_ORB_PICKUP" with volume 25 and pitch 50 to player at player
+        message "&f&lLucky&6&lLava &8» &aYou Bought This Item!"
+      else:
+        message "&f&lLucky&6&lLava &8» &cYou Dont Have Enough Money For That!"
+        play sound "ENTITY_EXPERIENCE_ORB_PICKUP" with volume 25 and pitch 0 to player at player
+    format gui slot 11 of player with Iron Ingot named "&eIron Ingot &7x16" with lore "" and "&aCosts: $250" to run:
+      if player's balance >= 250:
+        remove 250 from player's balance
+        give 16 of Iron Ingot to player
+        play sound "ENTITY_EXPERIENCE_ORB_PICKUP" with volume 25 and pitch 50 to player at player
+        message "&f&lLucky&6&lLava &8» &aYou Bought This Item!"
+      else:
+        message "&f&lLucky&6&lLava &8» &cYou Dont Have Enough Money For That!"
+        play sound "ENTITY_EXPERIENCE_ORB_PICKUP" with volume 25 and pitch 0 to player at player
+    format gui slot 12 of player with Gold Ingot named "&eGold Ingot &7x16" with lore "" and "&aCosts: $500" to run:
+      if player's balance >= 50:
+        remove 50 from player's balance
+        give 16 of Gold Ingot to player
+        play sound "ENTITY_EXPERIENCE_ORB_PICKUP" with volume 25 and pitch 50 to player at player
+        message "&f&lLucky&6&lLava &8» &aYou Bought This Item!"
+      else:
+        message "&f&lLucky&6&lLava &8» &cYou Dont Have Enough Money For That!"
+        play sound "ENTITY_EXPERIENCE_ORB_PICKUP" with volume 25 and pitch 0 to player at player
+    format gui slot 13 of player with Lapis Lazuli named "&eLapis Lazuli &7x16" with lore "" and "&aCosts: $750" to run:
+      if player's balance >= 50:
+        remove 50 from player's balance
+        give 16 of Lapis Lazuli to player
+        play sound "ENTITY_EXPERIENCE_ORB_PICKUP" with volume 25 and pitch 50 to player at player
+        message "&f&lLucky&6&lLava &8» &aYou Bought This Item!"
+      else:
+        message "&f&lLucky&6&lLava &8» &cYou Dont Have Enough Money For That!"
+        play sound "ENTITY_EXPERIENCE_ORB_PICKUP" with volume 25 and pitch 0 to player at player
+    format gui slot 14 of player with Diamond named "&eDiamond &7x16" with lore "" and "&aCosts: $2500" to run:
+      if player's balance >= 2500:
+        remove 2500 from player's balance
+        give 16 of Diamond to player
+        play sound "ENTITY_EXPERIENCE_ORB_PICKUP" with volume 25 and pitch 50 to player at player
+        message "&f&lLucky&6&lLava &8» &aYou Bought This Item!"
+      else:
+        message "&f&lLucky&6&lLava &8» &cYou Dont Have Enough Money For That!"
+        play sound "ENTITY_EXPERIENCE_ORB_PICKUP" with volume 25 and pitch 0 to player at player
+    format gui slot 15 of player with Emerald named "&eEmerald &7x16" with lore "" and "&aCosts: $2500" to run:
+      if player's balance >= 2500:
+        remove 2500 from player's balance
+        give 16 of Emerald to player
+        play sound "ENTITY_EXPERIENCE_ORB_PICKUP" with volume 25 and pitch 50 to player at player
+        message "&f&lLucky&6&lLava &8» &aYou Bought This Item!"
+      else:
+        message "&f&lLucky&6&lLava &8» &cYou Dont Have Enough Money For That!"
+        play sound "ENTITY_EXPERIENCE_ORB_PICKUP" with volume 25 and pitch 0 to player at player
+    format gui slot 16 of player with Netherite Ingot named "&eNetherite Ingot &7x1" with lore "" and "&aCosts: $25000" to run:
+      if player's balance >= 25000:
+        remove 25000 from player's balance
+        give 1 of Netherite Ingot to player
+        play sound "ENTITY_EXPERIENCE_ORB_PICKUP" with volume 25 and pitch 50 to player at player
+        message "&f&lLucky&6&lLava &8» &aYou Bought This Item!"
+      else:
+        message "&f&lLucky&6&lLava &8» &cYou Dont Have Enough Money For That!"
+        play sound "ENTITY_EXPERIENCE_ORB_PICKUP" with volume 25 and pitch 0 to player at player
+    format gui slot 31 of player with feather named "&c&lClose" to run:
+      execute player command "/shop"
+
+
+command /foodshop:
+  trigger:
+    open virtual chest inventory named "&f&lLucky&6&lLava &8» &eWood" with size 4 to player
+    format gui slot integers between 0 and 100 of player with gray stained glass pane named " "
+    format gui slot 10 of player with Cooked Porkchop named "&eCooked Porkchop &7x16" with lore "" and "&aCosts: $500" to run:
+      if player's balance >= 500:
+        remove 500 from player's balance
+        give 16 of Cooked Porkchop to player
+        play sound "ENTITY_EXPERIENCE_ORB_PICKUP" with volume 25 and pitch 50 to player at player
+        message "&f&lLucky&6&lLava &8» &aYou Bought This Item!"
+      else:
+        message "&f&lLucky&6&lLava &8» &cYou Dont Have Enough Money For That!"
+        play sound "ENTITY_EXPERIENCE_ORB_PICKUP" with volume 25 and pitch 0 to player at player
+    format gui slot 11 of player with Cooked Cod named "&eCooked Cod &7x16" with lore "" and "&aCosts: $500" to run:
+      if player's balance >= 500:
+        remove 500 from player's balance
+        give 16 of Cooked Cod to player
+        play sound "ENTITY_EXPERIENCE_ORB_PICKUP" with volume 25 and pitch 50 to player at player
+        message "&f&lLucky&6&lLava &8» &aYou Bought This Item!"
+      else:
+        message "&f&lLucky&6&lLava &8» &cYou Dont Have Enough Money For That!"
+        play sound "ENTITY_EXPERIENCE_ORB_PICKUP" with volume 25 and pitch 0 to player at player
+    format gui slot 12 of player with Cooked Salmon named "&eCooked Salmon &7x16" with lore "" and "&aCosts: $500" to run:
+      if player's balance >= 500:
+        remove 500 from player's balance
+        give 16 of Cooked Salmon to player
+        play sound "ENTITY_EXPERIENCE_ORB_PICKUP" with volume 25 and pitch 50 to player at player
+        message "&f&lLucky&6&lLava &8» &aYou Bought This Item!"
+      else:
+        message "&f&lLucky&6&lLava &8» &cYou Dont Have Enough Money For That!"
+        play sound "ENTITY_EXPERIENCE_ORB_PICKUP" with volume 25 and pitch 0 to player at player
+    format gui slot 13 of player with Cooked Chicken named "&eCooked Chicken &7x16" with lore "" and "&aCosts: $500" to run:
+      if player's balance >= 500:
+        remove 500 from player's balance
+        give 16 of Cooked Chicken to player
+        play sound "ENTITY_EXPERIENCE_ORB_PICKUP" with volume 25 and pitch 50 to player at player
+        message "&f&lLucky&6&lLava &8» &aYou Bought This Item!"
+      else:
+        message "&f&lLucky&6&lLava &8» &cYou Dont Have Enough Money For That!"
+        play sound "ENTITY_EXPERIENCE_ORB_PICKUP" with volume 25 and pitch 0 to player at player
+    format gui slot 14 of player with Cooked Rabbit named "&eCooked Rabbit &7x16" with lore "" and "&aCosts: $500" to run:
+      if player's balance >= 500:
+        remove 500 from player's balance
+        give 16 of Cooked Rabbit to player
+        play sound "ENTITY_EXPERIENCE_ORB_PICKUP" with volume 25 and pitch 50 to player at player
+        message "&f&lLucky&6&lLava &8» &aYou Bought This Item!"
+      else:
+        message "&f&lLucky&6&lLava &8» &cYou Dont Have Enough Money For That!"
+        play sound "ENTITY_EXPERIENCE_ORB_PICKUP" with volume 25 and pitch 0 to player at player
+    format gui slot 15 of player with Steak named "&eSteak &7x16" with lore "" and "&aCosts: $500" to run:
+      if player's balance >= 500:
+        remove 500 from player's balance
+        give 16 of Steak to player
+        play sound "ENTITY_EXPERIENCE_ORB_PICKUP" with volume 25 and pitch 50 to player at player
+        message "&f&lLucky&6&lLava &8» &aYou Bought This Item!"
+      else:
+        message "&f&lLucky&6&lLava &8» &cYou Dont Have Enough Money For That!"
+        play sound "ENTITY_EXPERIENCE_ORB_PICKUP" with volume 25 and pitch 0 to player at player
+    format gui slot 16 of player with Golden Carrot named "&eGolden Carrot &7x16" with lore "" and "&aCosts: $2500" to run:
+      if player's balance >= 2500:
+        remove 2500 from player's balance
+        give 16 of Golden Carrot to player
+        play sound "ENTITY_EXPERIENCE_ORB_PICKUP" with volume 25 and pitch 50 to player at player
+        message "&f&lLucky&6&lLava &8» &aYou Bought This Item!"
+      else:
+        message "&f&lLucky&6&lLava &8» &cYou Dont Have Enough Money For That!"
+        play sound "ENTITY_EXPERIENCE_ORB_PICKUP" with volume 25 and pitch 0 to player at player
+    format gui slot 31 of player with feather named "&c&lBack" to run:
+      execute player command "/shop"
+
+command /keyshop:
+  trigger:
+    open virtual chest inventory named "&f&lLucky&6&lLava &8» &eLucky" with size 4 to player
+    format gui slot integers between 0 and 100 of player with gray stained glass pane named " "
+    format gui slot 11 of player with tripwire hook named "&7Common Crate key &8x1" with lore "" and "&aCosts: $10000" to run:
+      if player's balance >= 10000:
+        remove 10000 from player's balance
+        give 1 tripwire hook named "&7Common Crate Key" to player
+        play sound "ENTITY_EXPERIENCE_ORB_PICKUP" with volume 25 and pitch 50 to player at player
+        message "&f&lLucky&6&lLava &8» &aYou Bought This Item!"
+      else:
+        message "&f&lLucky&6&lLava &8» &cYou Dont Have Enough Money For That!"
+        play sound "ENTITY_EXPERIENCE_ORB_PICKUP" with volume 25 and pitch 0 to player at player
+    format gui slot 15 of player with tripwire hook named "&5Epic Crate key &7x1" with lore "" and "&aCosts: $100000" to run:
+      if player's balance >= 100000:
+        remove 100000 from player's balance
+        give 1 tripwire hook named "&5Epic Crate Key" to player
+        play sound "ENTITY_EXPERIENCE_ORB_PICKUP" with volume 25 and pitch 50 to player at player
+        message "&f&lLucky&6&lLava &8» &aYou Bought This Item!"
+      else:
+        message "&f&lLucky&6&lLava &8» &cYou Dont Have Enough Money For That!"
+        play sound "ENTITY_EXPERIENCE_ORB_PICKUP" with volume 25 and pitch 0 to player at player
+    format gui slot 31 of player with feather named "&c&lClose" to run:
+      execute player command "/shop"
+
+
+command /terracottashop:
+  trigger:
+    message "&f&lLucky&6&lLava &8» &cComing Soon!"
+
+command /concreteshop:
+  trigger:
+    message "&f&lLucky&6&lLava &8» &cComing Soon!"
+
+command /woolshop:
+  trigger:
+    open virtual chest inventory named "&f&lLucky&6&lLava &8» &eLucky" with size 5 to player
+    format gui slot integers between 0 and 100 of player with gray stained glass pane named " "
+    format gui slot 10 of player with white wool named "&eWhite Wool &7x16" with lore "" and "&aCosts: $50" to run:
+      if player's balance >= 50:
+        remove 50 from player's balance
+        give 1 white wool named "&fWhite Wool" to player
+        play sound "ENTITY_EXPERIENCE_ORB_PICKUP" with volume 25 and pitch 50 to player at player
+        message "&f&lLucky&6&lLava &8» &aYou Bought This Item!"
+      else:
+        message "&f&lLucky&6&lLava &8» &cYou Dont Have Enough Money For That!"
+        play sound "ENTITY_EXPERIENCE_ORB_PICKUP" with volume 25 and pitch 0 to player at player
+    format gui slot 11 of player with Orange Wool named "&eOrange Wool &7x16" with lore "" and "&aCosts: $50" to run:
+      if player's balance >= 50:
+        remove 50 from player's balance
+        give 16 of Orange Wool to player
+        play sound "ENTITY_EXPERIENCE_ORB_PICKUP" with volume 25 and pitch 50 to player at player
+        message "&f&lLucky&6&lLava &8» &aYou Bought This Item!"
+      else:
+        message "&f&lLucky&6&lLava &8» &cYou Dont Have Enough Money For That!"
+        play sound "ENTITY_EXPERIENCE_ORB_PICKUP" with volume 25 and pitch 0 to player at player
+    format gui slot 12 of player with Magenta Wool named "&eMagenta Wool &7x16" with lore "" and "&aCosts: $50" to run:
+      if player's balance >= 50:
+        remove 50 from player's balance
+        give 16 of Magenta Wool to player
+        play sound "ENTITY_EXPERIENCE_ORB_PICKUP" with volume 25 and pitch 50 to player at player
+        message "&f&lLucky&6&lLava &8» &aYou Bought This Item!"
+      else:
+        message "&f&lLucky&6&lLava &8» &cYou Dont Have Enough Money For That!"
+        play sound "ENTITY_EXPERIENCE_ORB_PICKUP" with volume 25 and pitch 0 to player at player
+    format gui slot 13 of player with Light Blue Wool named "&eLight Blue Wool &7x16" with lore "" and "&aCosts: $50" to run:
+      if player's balance >= 50:
+        remove 50 from player's balance
+        give 16 of Light Blue Wool to player
+        play sound "ENTITY_EXPERIENCE_ORB_PICKUP" with volume 25 and pitch 50 to player at player
+        message "&f&lLucky&6&lLava &8» &aYou Bought This Item!"
+      else:
+        message "&f&lLucky&6&lLava &8» &cYou Dont Have Enough Money For That!"
+        play sound "ENTITY_EXPERIENCE_ORB_PICKUP" with volume 25 and pitch 0 to player at player
+    format gui slot 14 of player with Yellow Wool named "&eYellow Wool &7x16" with lore "" and "&aCosts: $50" to run:
+      if player's balance >= 50:
+        remove 50 from player's balance
+        give 16 of Yellow Wool to player
+        play sound "ENTITY_EXPERIENCE_ORB_PICKUP" with volume 25 and pitch 50 to player at player
+        message "&f&lLucky&6&lLava &8» &aYou Bought This Item!"
+      else:
+        message "&f&lLucky&6&lLava &8» &cYou Dont Have Enough Money For That!"
+        play sound "ENTITY_EXPERIENCE_ORB_PICKUP" with volume 25 and pitch 0 to player at player
+    format gui slot 15 of player with Lime Wool named "&eLime Wool &7x16" with lore "" and "&aCosts: $50" to run:
+      if player's balance >= 50:
+        remove 50 from player's balance
+        give 16 of Lime Wool to player
+        play sound "ENTITY_EXPERIENCE_ORB_PICKUP" with volume 25 and pitch 50 to player at player
+        message "&f&lLucky&6&lLava &8» &aYou Bought This Item!"
+      else:
+        message "&f&lLucky&6&lLava &8» &cYou Dont Have Enough Money For That!"
+        play sound "ENTITY_EXPERIENCE_ORB_PICKUP" with volume 25 and pitch 0 to player at player
+    format gui slot 16 of player with Pink Wool named "&ePink Wool &7x16" with lore "" and "&aCosts: $50" to run:
+      if player's balance >= 50:
+        remove 50 from player's balance
+        give 16 of Pink Wool to player
+        play sound "ENTITY_EXPERIENCE_ORB_PICKUP" with volume 25 and pitch 50 to player at player
+        message "&f&lLucky&6&lLava &8» &aYou Bought This Item!"
+      else:
+        message "&f&lLucky&6&lLava &8» &cYou Dont Have Enough Money For That!"
+        play sound "ENTITY_EXPERIENCE_ORB_PICKUP" with volume 25 and pitch 0 to player at player
+    format gui slot 19 of player with Gray Wool named "&eGray Wool &7x16" with lore "" and "&aCosts: $50" to run:
+      if player's balance >= 50:
+        remove 50 from player's balance
+        give 16 of Gray Wool to player
+        play sound "ENTITY_EXPERIENCE_ORB_PICKUP" with volume 25 and pitch 50 to player at player
+        message "&f&lLucky&6&lLava &8» &aYou Bought This Item!"
+      else:
+        message "&f&lLucky&6&lLava &8» &cYou Dont Have Enough Money For That!"
+        play sound "ENTITY_EXPERIENCE_ORB_PICKUP" with volume 25 and pitch 0 to player at player
+    format gui slot 20 of player with Light Gray Wool named "&eLight Gray Wool &7x16" with lore "" and "&aCosts: $50" to run:
+      if player's balance >= 50:
+        remove 50 from player's balance
+        give 16 of Light Gray Wool to player
+        play sound "ENTITY_EXPERIENCE_ORB_PICKUP" with volume 25 and pitch 50 to player at player
+        message "&f&lLucky&6&lLava &8» &aYou Bought This Item!"
+      else:
+        message "&f&lLucky&6&lLava &8» &cYou Dont Have Enough Money For That!"
+        play sound "ENTITY_EXPERIENCE_ORB_PICKUP" with volume 25 and pitch 0 to player at player
+    format gui slot 21 of player with Cyan Wool named "&eCyan Wool &7x16" with lore "" and "&aCosts: $50" to run:
+      if player's balance >= 50:
+        remove 50 from player's balance
+        give 16 of Cyan Wool to player
+        play sound "ENTITY_EXPERIENCE_ORB_PICKUP" with volume 25 and pitch 50 to player at player
+        message "&f&lLucky&6&lLava &8» &aYou Bought This Item!"
+      else:
+        message "&f&lLucky&6&lLava &8» &cYou Dont Have Enough Money For That!"
+        play sound "ENTITY_EXPERIENCE_ORB_PICKUP" with volume 25 and pitch 0 to player at player
+    format gui slot 22 of player with Purple Wool named "&ePurple Wool &7x16" with lore "" and "&aCosts: $50" to run:
+      if player's balance >= 50:
+        remove 50 from player's balance
+        give 16 of Purple Wool to player
+        play sound "ENTITY_EXPERIENCE_ORB_PICKUP" with volume 25 and pitch 50 to player at player
+        message "&f&lLucky&6&lLava &8» &aYou Bought This Item!"
+      else:
+        message "&f&lLucky&6&lLava &8» &cYou Dont Have Enough Money For That!"
+        play sound "ENTITY_EXPERIENCE_ORB_PICKUP" with volume 25 and pitch 0 to player at player
+    format gui slot 23 of player with Blue Wool named "&eBlue Wool &7x16" with lore "" and "&aCosts: $50" to run:
+      if player's balance >= 50:
+        remove 50 from player's balance
+        give 16 of Blue Wool to player
+        play sound "ENTITY_EXPERIENCE_ORB_PICKUP" with volume 25 and pitch 50 to player at player
+        message "&f&lLucky&6&lLava &8» &aYou Bought This Item!"
+      else:
+        message "&f&lLucky&6&lLava &8» &cYou Dont Have Enough Money For That!"
+        play sound "ENTITY_EXPERIENCE_ORB_PICKUP" with volume 25 and pitch 0 to player at player
+    format gui slot 24 of player with Brown Wool named "&eBrown Wool &7x16" with lore "" and "&aCosts: $50" to run:
+      if player's balance >= 50:
+        remove 50 from player's balance
+        give 16 of Brown Wool to player
+        play sound "ENTITY_EXPERIENCE_ORB_PICKUP" with volume 25 and pitch 50 to player at player
+        message "&f&lLucky&6&lLava &8» &aYou Bought This Item!"
+      else:
+        message "&f&lLucky&6&lLava &8» &cYou Dont Have Enough Money For That!"
+        play sound "ENTITY_EXPERIENCE_ORB_PICKUP" with volume 25 and pitch 0 to player at player
+    format gui slot 25 of player with Green Wool named "&eGreen Wool &7x16" with lore "" and "&aCosts: $50" to run:
+      if player's balance >= 50:
+        remove 50 from player's balance
+        give 16 of Green Wool to player
+        play sound "ENTITY_EXPERIENCE_ORB_PICKUP" with volume 25 and pitch 50 to player at player
+        message "&f&lLucky&6&lLava &8» &aYou Bought This Item!"
+      else:
+        message "&f&lLucky&6&lLava &8» &cYou Dont Have Enough Money For That!"
+        play sound "ENTITY_EXPERIENCE_ORB_PICKUP" with volume 25 and pitch 0 to player at player
+    format gui slot 30 of player with Red Wool named "&eRed Wool &7x16" with lore "" and "&aCosts: $50" to run:
+      if player's balance >= 50:
+        remove 50 from player's balance
+        give 16 of Red Wool to player
+        play sound "ENTITY_EXPERIENCE_ORB_PICKUP" with volume 25 and pitch 50 to player at player
+        message "&f&lLucky&6&lLava &8» &aYou Bought This Item!"
+      else:
+        message "&f&lLucky&6&lLava &8» &cYou Dont Have Enough Money For That!"
+        play sound "ENTITY_EXPERIENCE_ORB_PICKUP" with volume 25 and pitch 0 to player at player
+    format gui slot 31 of player with Shears named "&eShears &7x1" with lore "" and "&aCosts: $100" to run:
+      if player's balance >= 100:
+        remove 100 from player's balance
+        give 1 of Shears to player
+        play sound "ENTITY_EXPERIENCE_ORB_PICKUP" with volume 25 and pitch 50 to player at player
+        message "&f&lLucky&6&lLava &8» &aYou Bought This Item!"
+      else:
+        message "&f&lLucky&6&lLava &8» &cYou Dont Have Enough Money For That!"
+        play sound "ENTITY_EXPERIENCE_ORB_PICKUP" with volume 25 and pitch 0 to player at player
+    format gui slot 32 of player with Black Wool named "&eBlack Wool &7x16" with lore "" and "&aCosts: $50" to run:
+      if player's balance >= 50:
+        remove 50 from player's balance
+        give 16 of Black Wool to player
+        play sound "ENTITY_EXPERIENCE_ORB_PICKUP" with volume 25 and pitch 50 to player at player
+        message "&f&lLucky&6&lLava &8» &aYou Bought This Item!"
+      else:
+        message "&f&lLucky&6&lLava &8» &cYou Dont Have Enough Money For That!"
+        play sound "ENTITY_EXPERIENCE_ORB_PICKUP" with volume 25 and pitch 0 to player at player
+    format gui slot 40 of player with feather named "&c&lClose" to run:
+      execute player command "/shop"
+

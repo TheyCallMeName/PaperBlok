@@ -1,0 +1,328 @@
+options:
+	prefix: &8[&3SINGLED ISLANDS&8] &3-&f
+
+on spawn of phantom:
+	cancel event
+
+on craft of white concrete:
+	cancel event
+	send "{@prefix} That recipe has been disabled."
+
+command /island [<text>] [<text>]:
+	aliases: /is
+	trigger:
+		if arg-1 is not set:
+			send "{@prefix} That command does not exist, do /island help for a list of commands."
+			stop
+		if arg-1 is set:
+			if arg-1 is "help" or "warp" or "visit" or "create" or "home" or "invite" or "accept" or "reject" or "delete" or "setwarp" or "delwarp" or "kick":
+				if arg-1 is "help":
+					send "&8----- &3SINGLED ISLANDS &8-----"
+					send "&3/is help &b- Brings up this list of commands."
+					send "&3/is warp &b- Warps you to a player's island if there warp exists."
+					send "&3/is create &b- Create your own personal island."
+					send "&3/is home &b- Teleport to your own personal island."
+					send "&3/is invite &b- Invite your friends to your island."
+					send "&3/is accept &b- Accept an incoming invite from an island."
+					send "&3/is reject &b- Reject an incoming invite from an island."
+					send "&3/is delete &b- Delete your island, there is a confirmation."
+					send "&3/is setwarp &b- Set warps to your island so people can visit!"
+					send "&3/is delwarp &b- Deletes the warp that you have made."
+					send "&3/is kick &b- Kick a player from your island."
+					stop
+				if arg-1 is "warp":
+					if arg-2 is not set:
+						send "{@prefix} Whose island would you like to warp to? /is warp <island name>"
+						stop
+					if arg-2 is set:
+						if {IslandExist::*} contains arg-2:
+							if {warp::%arg-2%::island} is set:
+								if block below {warp::%arg-2%::island} is air:
+									send "{@prefix} That island has an unsafe warp, ask them to put the warp on ground."
+									stop
+								if block below {warp::%arg-2%::island} is not air:
+									teleport player to {warp::%arg-2%::island}
+									play sound "entity.experience_orb.pickup" with volume 0.5 to the player
+									send title "&d&lTeleported" with subtitle "to %arg-2%'s island!" to player for 1 second
+									stop
+							else:
+								send "{@prefix} That island does not have a warp setup."
+						if {IslandExist::*} does not contain arg-2:
+							send "{@prefix} That island does not exist."
+							stop
+				if arg-1 is "visit":
+					if arg-2 is not set:
+						send "{@prefix} Whose island would you like to warp to? /is warp <island name>"
+						stop
+					if arg-2 is set:
+						if {IslandExist::*} contains arg-2:
+							if {warp::%arg-2%::island} is set:
+								if block below {warp::%arg-2%::island} is air:
+									send "{@prefix} That island has an unsafe warp, ask them to put the warp on ground."
+									stop
+								if block below {warp::%arg-2%::island} is not air:
+									teleport player to {warp::%arg-2%::island}
+									play sound "entity.experience_orb.pickup" with volume 0.5 to the player
+									send title "&d&lTeleported" with subtitle "to %arg-2%'s island!" to player for 1 second
+									stop
+							else:
+								send "{@prefix} That island does not have a warp setup."
+						if {IslandExist::*} does not contain arg-2:
+							send "{@prefix} That island does not exist."
+							stop
+				if arg-1 is "create":
+					if arg-2 contains "gai" or "gay" or "gae" or "bitch" or "shit" or "fuck" or "daddy" or "stepsis" or "stepbro" or "cunt" or "nigga" or "nigger" or "fat":
+						send "{@prefix} That name is not allowed on this server!"
+						stop
+					else:
+						set {_arg2} to arg-2
+						set {_arg2} to "%{_arg2}%"
+						replace all " " with "" in {_arg2}
+						if {hasIsland::%player's uuid%} is true:
+							send "{@prefix} You already have an island."
+							stop
+						if {hasIsland::%player's uuid%} is not set:
+							if arg-2 is not set:
+								send "{@prefix} /is create <name>"
+								stop
+							if arg-2 is set:
+								if {IslandExist::*} contains {_arg2}:
+									send "{@prefix} &fThat name is already taken."
+									stop
+								if {IslandExist::*} does not contain {_arg2}:
+									set {_checknamelength} to {_arg2}
+									if length of "%{_checknamelength}%" is less than 9:
+										add {_arg2} to {IslandExist::*}
+										send title "{@prefix}" with subtitle "Creating your island" to player for 1 second
+										wait 10 ticks
+										execute console command "mv clone template is%{_arg2}%"
+										wait 20 ticks
+										send title "{@prefix}" with subtitle "Your island has been made!"
+										set {hasIsland::%player's uuid%} to true
+										set {islandName::%player's uuid%} to {_arg2}
+										set {owner::%{islandName::%player's uuid%}%} to player
+										add player to {members::%{islandName::%player's uuid%}%::*}
+										teleport player to location(0.5, 64, 0.5, world("is%{_arg2}%"))
+										stop
+									else:
+										send "{@prefix} That name is too long! We have a maximum of 8 characters."
+										stop
+				if arg-1 is "home":
+					if {hasIsland::%player's uuid%} is not set:
+						send "{@prefix} You do not have an island."
+						stop
+					else:
+						teleport player to location(0.5, 64, 0.5, world("is%{islandName::%player's uuid%}%"))
+						send title "&d&lTeleported" with subtitle "to your island!" to player for 1 second
+						stop
+				if arg-1 is "invite":
+					if {owner::%{islandName::%player's uuid%}%} is not player:
+						send "{@prefix} You do not own this island."
+						stop
+					else:
+						if arg-2 is not set:
+							send "{@prefix} Usage: /is invite <player>"
+							stop
+						else:
+							set {_temp2} to arg-2 parsed as a player
+							set {_temp} to {_temp2}'s uuid
+							if {hasIsland::%{_temp}%} is set:
+								send "{@prefix} %arg-2% already has an island!" to player
+								stop
+							if {hasIsland::%{_temp}%} is not set:
+								if {invited::%{_temp}%::%{islandName::%player's uuid%}%} is set:
+									send "{@prefix} You have already invited that user." to player
+									stop
+								if {invited::%{_temp}%::%{islandName::%player's uuid%}%} is not set:
+									set {invited::%{_temp}%::%{islandName::%player's uuid%}%} to true
+									send "{@prefix} Invited %arg-2% to your island." to player
+									send "{@prefix} %player% has invited you to join their island! To join type /is accept %{islandName::%player's uuid%}%" to {_temp2}
+									wait 5 minutes
+									if {invited::%{_temp}%::%{islandName::%player's uuid%}%} is set:
+										delete {invited::%{_temp}%::%{islandName::%player's uuid%}%}
+										send "{@prefix} Your invite from %player% has expired." to {_temp2}
+										send "{@prefix} Your invite to %arg-2% has expired." to player
+										stop
+				if arg-1 is "accept":
+					if arg-2 is not set:
+						send "{@prefix} /is accept <island>"
+						stop
+					else:
+						if {invited::%player's uuid%::%arg-2%} is set:
+							delete {invited::%player's uuid%::%arg-2%}
+							set {hasIsland::%player's uuid%} to true
+							set {islandName::%player's uuid%} to arg-2
+							send "{@prefix} You have joined the '%arg-2%' island." to player
+							add player to {members::%{islandName::%player's uuid%}%}
+							stop
+						else:
+							send "{@prefix} That island has not invited you."
+							stop
+				if arg-1 is "reject":
+					if arg-2 is not set:
+						send "{@prefix} /is reject <island>"
+						stop
+					else:
+						if {invited::%player's uuid%::%arg-2%} is set:
+							delete {invited::%player's uuid%::%arg-2%}
+							send "{@prefix} You have denied the request to the '%arg-2%' island." to player
+							stop
+						else:
+							send "{@prefix} That island has not invited you."
+							stop
+				if arg-1 is "delete":
+					if {hasIsland::%player's uuid%} is not set:
+						send "{@prefix} You do not have an island"
+						stop
+					else:
+						if {owner::%{islandName::%player's uuid%}%} is not set:
+							send "Err.... DM JacobSB0410 fast. This is a massive error."
+							stop
+						else:
+							if {owner::%{islandName::%player's uuid%}%} is not player:
+								send "{@prefix} You are not owner of this island, %{owner::%{islandName::%player's uuid%}%}% is!"
+								stop
+							else:
+								if {confirmationCheckDelete::%player's uuid%} is not set:
+									set {confirmationCheckDelete::%player's uuid%} to true
+									send "{@prefix} Run the same command within 10 seconds to confirm you want to delete your island. We do not restore islands."
+									wait 10 seconds
+									delete {confirmationCheckDelete::%player's uuid%}
+									stop
+								else:
+									set {_tempUUID} to player's uuid
+									delete {confirmationCheckDelete::%player's uuid%}
+									delete {owner::%{islandName::%player's uuid%}%}
+									delete {hasIsland::%player's uuid%}
+									send "{@prefix} Deleted your island."
+									execute console command "mv delete is%{islandName::%player's uuid%}%"
+									wait 5 ticks
+									execute console command "mv confirm"
+									teleport player to {spawn}
+									wait 15 ticks
+									execute console command "mv remove is%{islandName::%player's uuid%}%"
+									remove "%{islandName::%player's uuid%}%" from {IslandExist::*}
+									delete {Blevel::%{islandName::%player's uuid%}%}
+									delete {BxpNeed::%{islandName::%player's uuid%}%}
+									delete {Bxp::%{islandName::%player's uuid%}%}
+									remove player from {members::%{islandName::%player's uuid%}%::*}
+									loop {members::%{islandName::%player's uuid%}%::*}:
+										delete {hasIsland::%loop-value's uuid%}
+										delete {islandName::%loop-value's uuid%}
+										remove loop-value from {members::%{islandName::%player's uuid%}%::*}
+									delete {members::%{islandName::%{_tempUUID}%}%::*}
+									stop
+				if arg-1 is "setwarp":
+					if {hasIsland::%player's uuid%} is not set:
+						send "{@prefix} You do not have an island."
+						stop
+					else:
+						if {owner::%{islandName::%player's uuid%}%} is not player:
+							send "{@prefix} You do not own the island."
+							stop
+						else:
+							set {warp::%{islandName::%player's uuid%}%::island} to player's location
+							send "{@prefix} Set your island warp to your location (%player's location%)."
+							stop
+				if arg-1 is "delwarp":
+					if {hasIsland::%player's uuid%} is not set:
+						send "{@prefix} You do not have an island."
+						stop
+					else:
+						if {owner::%{islandName::%player's uuid%}%} is not player:
+							send "{@prefix} You do not own this island."
+							stop
+						else:
+							send "{@prefix} Deleted your island's warp!"
+							delete {warp::%{islandName::%player's uuid%}%::island}
+							stop
+				if arg-1 is "kick":
+					if arg-2 is not set:
+						send "{@prefix} Usage: /is kick <player>"
+						stop
+					else:
+						if {hasIsland::%player's uuid%} is not set:
+							send "{@prefix} You do not have an island."
+							stop
+						else:
+							if {owner::%{islandName::%player's uuid%}%} is not player:
+								send "{@prefix} You do not own this island."
+								stop
+							else:
+								set {_temp2} to arg-2 parsed as a player
+								set {_temp} to uuid of {_temp2}
+								if {members::%{islandName::%player's uuid%}%::*} does not contain arg-2:
+									send "{@prefix} You do not have %arg-2% on your island!"
+									stop
+								else:
+									if arg-2 is player:
+										send "{@prefix} You cannot kick yourself, you may delete your island with /is delete."
+										stop
+									else:
+										delete {hasIsland::%{_temp}%}
+										delete {islandName::%{_temp}%}
+										remove {_temp2} from {members::%{islandName::%player's uuid%}%::*}
+										send "{@prefix} Kicked %arg-2%" to player
+										send "{@prefix} You were kicked from your island by %player%" to {_temp2}
+										stop
+			else:
+				send "{@prefix} That command does not exist, do /island help for a list of commands."
+				stop
+
+on damage:
+	if attacker is player:
+		if victim is player:
+			cancel event
+
+on right click:
+	if event-block is chest:
+		if world of player is not "is%{islandName::%player's uuid%}%":
+			if world of player is "ul_spawn":
+				stop
+			else:
+				if player is not op:
+					cancel event 
+
+on death:
+	if victim is player:
+		cancel event
+		wait 2 ticks
+		if {hasIsland::%player's uuid%} is set:
+			teleport player to location(0.5, 64, 0.5, world("is%{islandName::%player's uuid%}%"))
+		else:
+			teleport player to {spawn}
+
+on place:
+	if name of player's tool contains "Lootbox" or "Key":
+		cancel event
+	else:
+		if world of player is not "is%{islandName::%player's uuid%}%":
+			if player is not op:
+				cancel event
+
+on break:
+	if event-block is white concrete:
+		cancel event
+	else:
+		if world of player is not "is%{islandName::%player's uuid%}%":
+			if player is not op:
+				cancel event
+
+on block damage:
+	if event-block is chest:
+		if world of player is not "is%{islandName::%player's uuid%}%":
+			if player is not op:
+				cancel event
+				teleport player to {spawn}
+				send "{@prefix} Due to a glitch, you may not damage chests."
+				stop
+	else:
+		if world of player is not "is%{islandName::%player's uuid%}%":
+			if player is not op:
+				cancel event
+
+on any movement:
+	if player's world is "template":
+		if player is not op:
+			teleport player to {spawn}
+			

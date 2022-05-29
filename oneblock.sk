@@ -1,0 +1,1980 @@
+options:
+	prefix: &8[&3&lSINGLED ONE BLOCK&8] &3- 
+
+on block break:
+	if event-block is white concrete:
+		cancel event
+	else:
+		if block below event-block is white concrete:
+			if {Blevel::%{islandName::%player's uuid%}%} is not set:
+				set {BxpNeed::%{islandName::%player's uuid%}%} to 100
+				if {Bxp::%{islandName::%player's uuid%}%} is 99:
+					set {Bxp::%{islandName::%player's uuid%}%} to 0
+					set {Blevel::%{islandName::%player's uuid%}%} to 0
+					send title "&d&lLEVELED UP" with subtitle "You have leveled up to Level 1!" to player for 1 second
+					set {realLevel::%{islandName::%player's uuid%}%} to 0
+					set {_temp} to setblock(1)
+					if {_temp} is "chest":
+						set {_temp2} to event-block's location
+						set block at {_temp2} to chest
+						wait 3 ticks
+						set {_chest} to block at {_temp2}
+						set {_loopAmount} to a random integer between 1 and 3
+						loop {_loopAmount} times:
+							set {_addItem} to ItemGeneration(1)
+							set {_rngAmount} to random integer between 1 and 2
+							add {_rngAmount} of {_addItem} to {_chest}'s inventory
+					else:
+						set event-block to {_temp}
+					stop
+				else:
+					add 1 to {Bxp::%{islandName::%player's uuid%}%}
+					send action bar "&3Level Up XP: &e%{Bxp::%{islandName::%player's uuid%}%}%&f/&e%{BxpNeed::%{islandName::%player's uuid%}%}%" to player
+					set {BxpNeed::%{islandName::%player's uuid%}%} to 100
+					set {_temp} to setblock(0)
+					set event-block to {_temp}
+					stop
+			if {Blevel::%{islandName::%player's uuid%}%} is 0:
+				if {Bxp::%{islandName::%player's uuid%}%} is 249:
+					set {Bxp::%{islandName::%player's uuid%}%} to 0
+					set {Blevel::%{islandName::%player's uuid%}%} to 1
+					set {realLevel::%{islandName::%player's uuid%}%} to 1
+					send title "&d&lLEVELED UP" with subtitle "You have leveled up to Level 2!" to player for 1 second
+					set {_temp} to setblock(2)
+					if {_temp} is chest:
+						set {_temp2} to event-block's location
+						set block at {_temp2} to chest
+						wait 3 ticks
+						set {_chest} to block at {_temp2}
+						set {_loopAmount} to a random integer between 1 and 4
+						loop {_loopAmount} times:
+							set {_addItem} to ItemGeneration(2)
+							set {_rngAmount} to random integer between 1 and 3
+							add {_rngAmount} of {_addItem} to {_chest}'s inventory
+					else:
+						set event-block to {_temp}
+					stop
+				else:
+					add 1 to {Bxp::%{islandName::%player's uuid%}%}
+					send action bar "&3Level Up XP: &e%{Bxp::%{islandName::%player's uuid%}%}%&f/&e%{BxpNeed::%{islandName::%player's uuid%}%}%" to player
+					set {BxpNeed::%{islandName::%player's uuid%}%} to 250
+					set {_temp} to setblock(1)
+					if {_temp} is chest:
+						set {_temp2} to event-block's location
+						set event-block to chest
+						wait 3 ticks
+						set {_chest} to block at {_temp2}
+						set {_loopAmount} to a random integer between 1 and 3
+						loop {_loopAmount} times:
+							set {_addItem} to ItemGeneration(1)
+							set {_RandomSlot} to a random integer between 0 and 26
+							set {_rngAmount} to random integer between 1 and 2
+							if {_addItem} is chicken spawn egg:
+								set slot {_RandomSlot} of {_chest}'s inventory to 1 of {_addItem}
+							else:
+								set slot {_RandomSlot} of {_chest}'s inventory to {_rngAmount} of {_addItem}
+						stop
+					else:
+						set event-block to {_temp}
+						stop
+			if {Blevel::%{islandName::%player's uuid%}%} is 1:
+				if {Bxp::%{islandName::%player's uuid%}%} is 499:
+					set {Bxp::%{islandName::%player's uuid%}%} to 0
+					set {Blevel::%{islandName::%player's uuid%}%} to 2
+					set {realLevel::%{islandName::%player's uuid%}%} to 2
+					send title "&d&lLEVELED UP" with subtitle "You have leveled up to Level 3!" to player for 1 second
+					set {_temp} to setblock(3)
+					if {_temp} is chest:
+						set {_temp2} to event-block's location
+						set block at {_temp2} to chest
+						wait 3 ticks
+						set {_chest} to block at {_temp2}
+						set {_loopAmount} to a random integer between 1 and 5
+						loop {_loopAmount} times:
+							set {_addItem} to ItemGeneration(3)
+							set {_rngAmount} to random integer between 1 and 4
+							add {_rngAmount} of {_addItem} to {_chest}'s inventory
+					else:
+						set event-block to {_temp}
+					stop
+				else:
+					add 1 to {Bxp::%{islandName::%player's uuid%}%}
+					send action bar "&3Level Up XP: &e%{Bxp::%{islandName::%player's uuid%}%}%&f/&e%{BxpNeed::%{islandName::%player's uuid%}%}%" to player
+					set {BxpNeed::%{islandName::%player's uuid%}%} to 500
+					set {_temp} to setblock(2)
+					if {_temp} is chest:
+						set {_temp2} to event-block's location
+						set event-block to chest
+						wait 3 ticks
+						set {_chest} to block at {_temp2}
+						set {_loopAmount} to a random integer between 1 and 4
+						loop {_loopAmount} times:
+							set {_addItem} to ItemGeneration(2)
+							set {_RandomSlot} to a random integer between 0 and 26
+							set {_rngAmount} to random integer between 1 and 3
+							if {_addItem} is chicken spawn egg or cow spawn egg:
+								set slot {_RandomSlot} of {_chest}'s inventory to 1 of {_addItem}
+							else:
+								set slot {_RandomSlot} of {_chest}'s inventory to {_rngAmount} of {_addItem}
+						stop
+					else:
+						set event-block to {_temp}
+						stop
+			if {Blevel::%{islandName::%player's uuid%}%} is 2:
+				if {Bxp::%{islandName::%player's uuid%}%} is 749:
+					set {Bxp::%{islandName::%player's uuid%}%} to 0
+					set {Blevel::%{islandName::%player's uuid%}%} to 3
+					set {realLevel::%{islandName::%player's uuid%}%} to 3
+					send title "&d&lLEVELED UP" with subtitle "You have leveled up to Level 4!" to player for 1 second
+					set {_temp} to setblock(4)
+					if {_temp} is chest:
+						set {_temp2} to event-block's location
+						set block at {_temp2} to chest
+						wait 3 ticks
+						set {_chest} to block at {_temp2}
+						set {_loopAmount} to a random integer between 1 and 5
+						loop {_loopAmount} times:
+							set {_addItem} to ItemGeneration(4)
+							set {_rngAmount} to random integer between 1 and 4
+							add {_rngAmount} of {_addItem} to {_chest}'s inventory
+					else:
+						set event-block to {_temp}
+					stop
+				else:
+					add 1 to {Bxp::%{islandName::%player's uuid%}%}
+					send action bar "&3Level Up XP: &e%{Bxp::%{islandName::%player's uuid%}%}%&f/&e%{BxpNeed::%{islandName::%player's uuid%}%}%" to player
+					set {BxpNeed::%{islandName::%player's uuid%}%} to 750
+					set {_temp} to setblock(3)
+					if {_temp} is chest:
+						set {_temp2} to event-block's location
+						set event-block to chest
+						wait 3 ticks
+						set {_chest} to block at {_temp2}
+						set {_loopAmount} to a random integer between 1 and 6
+						loop {_loopAmount} times:
+							set {_addItem} to ItemGeneration(3)
+							set {_RandomSlot} to a random integer between 0 and 26
+							set {_rngAmount} to random integer between 1 and 5
+							if {_addItem} is chicken spawn egg or cow spawn egg or sheep spawn egg:
+								set slot {_RandomSlot} of {_chest}'s inventory to 1 of {_addItem}
+							else:
+								set slot {_RandomSlot} of {_chest}'s inventory to {_rngAmount} of {_addItem}
+						stop
+					else:
+						set event-block to {_temp}
+						stop
+			if {Blevel::%{islandName::%player's uuid%}%} is 3:
+				if {Bxp::%{islandName::%player's uuid%}%} is 999:
+					set {Bxp::%{islandName::%player's uuid%}%} to 0
+					set {Blevel::%{islandName::%player's uuid%}%} to 4
+					set {realLevel::%{islandName::%player's uuid%}%} to 4
+					send title "&d&lLEVELED UP" with subtitle "You have leveled up to Level 5!" to player for 1 second
+					set {_temp} to setblock(5)
+					if {_temp} is chest:
+						set {_temp2} to event-block's location
+						set block at {_temp2} to chest
+						wait 3 ticks
+						set {_chest} to block at {_temp2}
+						set {_loopAmount} to a random integer between 1 and 6
+						loop {_loopAmount} times:
+							set {_addItem} to ItemGeneration(5)
+							set {_rngAmount} to random integer between 1 and 5
+							add {_rngAmount} of {_addItem} to {_chest}'s inventory
+					else:
+						set event-block to {_temp}
+					stop
+				else:
+					add 1 to {Bxp::%{islandName::%player's uuid%}%}
+					send action bar "&3Level Up XP: &e%{Bxp::%{islandName::%player's uuid%}%}%&f/&e%{BxpNeed::%{islandName::%player's uuid%}%}%" to player
+					set {BxpNeed::%{islandName::%player's uuid%}%} to 1000
+					set {_temp} to setblock(4)
+					if {_temp} is chest:
+						set {_temp2} to event-block's location
+						set event-block to chest
+						wait 3 ticks
+						set {_chest} to block at {_temp2}
+						set {_loopAmount} to a random integer between 1 and 6
+						loop {_loopAmount} times:
+							set {_addItem} to ItemGeneration(4)
+							set {_RandomSlot} to a random integer between 0 and 26
+							set {_rngAmount} to random integer between 1 and 5
+							if {_addItem} is chicken spawn egg or cow spawn egg or sheep spawn egg or zombie spawn egg:
+								set slot {_RandomSlot} of {_chest}'s inventory to 1 of {_addItem}
+							else:
+								set slot {_RandomSlot} of {_chest}'s inventory to {_rngAmount} of {_addItem}
+						stop
+					else:
+						set event-block to {_temp}
+						stop
+			if {Blevel::%{islandName::%player's uuid%}%} is 4:
+				if {Bxp::%{islandName::%player's uuid%}%} is 1249:
+					set {Bxp::%{islandName::%player's uuid%}%} to 0
+					set {Blevel::%{islandName::%player's uuid%}%} to 5
+					set {realLevel::%{islandName::%player's uuid%}%} to 5
+					send title "&d&lLEVELED UP" with subtitle "You have leveled up to Level 6!" to player for 1 second
+					set {_temp} to setblock(6)
+					if {_temp} is chest:
+						set {_temp2} to event-block's location
+						set block at {_temp2} to chest
+						wait 3 ticks
+						set {_chest} to block at {_temp2}
+						set {_loopAmount} to a random integer between 1 and 6
+						loop {_loopAmount} times:
+							set {_addItem} to ItemGeneration(6)
+							set {_rngAmount} to random integer between 1 and 5
+							add {_rngAmount} of {_addItem} to {_chest}'s inventory
+					else:
+						set event-block to {_temp}
+					stop
+				else:
+					add 1 to {Bxp::%{islandName::%player's uuid%}%}
+					send action bar "&3Level Up XP: &e%{Bxp::%{islandName::%player's uuid%}%}%&f/&e%{BxpNeed::%{islandName::%player's uuid%}%}%" to player
+					set {BxpNeed::%{islandName::%player's uuid%}%} to 1250
+					set {_temp} to setblock(5)
+					if {_temp} is chest:
+						set {_temp2} to event-block's location
+						set event-block to chest
+						wait 3 ticks
+						set {_chest} to block at {_temp2}
+						set {_loopAmount} to a random integer between 1 and 6
+						loop {_loopAmount} times:
+							set {_addItem} to ItemGeneration(5)
+							set {_RandomSlot} to a random integer between 0 and 26
+							set {_rngAmount} to random integer between 1 and 5
+							if {_addItem} is chicken spawn egg or cow spawn egg or sheep spawn egg or zombie spawn egg:
+								set slot {_RandomSlot} of {_chest}'s inventory to 1 of {_addItem}
+							else:
+								set slot {_RandomSlot} of {_chest}'s inventory to {_rngAmount} of {_addItem}
+						stop
+					else:
+						set event-block to {_temp}
+						stop
+			if {Blevel::%{islandName::%player's uuid%}%} is 5:
+				if {Bxp::%{islandName::%player's uuid%}%} is 1499:
+					set {Bxp::%{islandName::%player's uuid%}%} to 0
+					set {Blevel::%{islandName::%player's uuid%}%} to 6
+					set {realLevel::%{islandName::%player's uuid%}%} to 6
+					send title "&d&lLEVELED UP" with subtitle "You have leveled up to Level 7!" to player for 1 second
+					set {_temp} to setblock(7)
+					if {_temp} is chest:
+						set {_temp2} to event-block's location
+						set block at {_temp2} to chest
+						wait 3 ticks
+						set {_chest} to block at {_temp2}
+						set {_loopAmount} to a random integer between 1 and 6
+						loop {_loopAmount} times:
+							set {_addItem} to ItemGeneration(7)
+							set {_rngAmount} to random integer between 1 and 5
+							add {_rngAmount} of {_addItem} to {_chest}'s inventory
+					else:
+						set event-block to {_temp}
+					stop
+				else:
+					add 1 to {Bxp::%{islandName::%player's uuid%}%}
+					send action bar "&3Level Up XP: &e%{Bxp::%{islandName::%player's uuid%}%}%&f/&e%{BxpNeed::%{islandName::%player's uuid%}%}%" to player
+					set {BxpNeed::%{islandName::%player's uuid%}%} to 1500
+					set {_temp} to setblock(6)
+					if {_temp} is chest:
+						set {_temp2} to event-block's location
+						set event-block to chest
+						wait 3 ticks
+						set {_chest} to block at {_temp2}
+						set {_loopAmount} to a random integer between 1 and 6
+						loop {_loopAmount} times:
+							set {_addItem} to ItemGeneration(6)
+							set {_RandomSlot} to a random integer between 0 and 26
+							set {_rngAmount} to random integer between 1 and 5
+							if {_addItem} is chicken spawn egg or cow spawn egg or sheep spawn egg or zombie spawn egg or skeleton egg:
+								set slot {_RandomSlot} of {_chest}'s inventory to 1 of {_addItem}
+							else:
+								set slot {_RandomSlot} of {_chest}'s inventory to {_rngAmount} of {_addItem}
+						stop
+					else:
+						set event-block to {_temp}
+						stop
+			if {Blevel::%{islandName::%player's uuid%}%} is 6:
+				if {Bxp::%{islandName::%player's uuid%}%} is 1749:
+					set {Bxp::%{islandName::%player's uuid%}%} to 0
+					set {Blevel::%{islandName::%player's uuid%}%} to 7
+					set {realLevel::%{islandName::%player's uuid%}%} to 7
+					send title "&d&lLEVELED UP" with subtitle "You have leveled up to Level 8!" to player for 1 second
+					set {_temp} to setblock(8)
+					if {_temp} is chest:
+						set {_temp2} to event-block's location
+						set block at {_temp2} to chest
+						wait 3 ticks
+						set {_chest} to block at {_temp2}
+						set {_loopAmount} to a random integer between 1 and 6
+						loop {_loopAmount} times:
+							set {_addItem} to ItemGeneration(8)
+							set {_rngAmount} to random integer between 1 and 5
+							add {_rngAmount} of {_addItem} to {_chest}'s inventory
+					else:
+						set event-block to {_temp}
+					stop
+				else:
+					add 1 to {Bxp::%{islandName::%player's uuid%}%}
+					send action bar "&3Level Up XP: &e%{Bxp::%{islandName::%player's uuid%}%}%&f/&e%{BxpNeed::%{islandName::%player's uuid%}%}%" to player
+					set {BxpNeed::%{islandName::%player's uuid%}%} to 1750
+					set {_temp} to setblock(7)
+					if {_temp} is chest:
+						set {_temp2} to event-block's location
+						set event-block to chest
+						wait 3 ticks
+						set {_chest} to block at {_temp2}
+						set {_loopAmount} to a random integer between 1 and 6
+						loop {_loopAmount} times:
+							set {_addItem} to ItemGeneration(7)
+							set {_RandomSlot} to a random integer between 0 and 26
+							set {_rngAmount} to random integer between 1 and 5
+							if {_addItem} is chicken spawn egg or cow spawn egg or sheep spawn egg or zombie spawn egg or skeleton spawn egg or slime spawn egg:
+								set slot {_RandomSlot} of {_chest}'s inventory to 1 of {_addItem}
+							else:
+								set slot {_RandomSlot} of {_chest}'s inventory to {_rngAmount} of {_addItem}
+						stop
+					else:
+						set event-block to {_temp}
+						stop
+			if {Blevel::%{islandName::%player's uuid%}%} is 7:
+				if {Bxp::%{islandName::%player's uuid%}%} is 1999:
+					set {Bxp::%{islandName::%player's uuid%}%} to 0
+					set {Blevel::%{islandName::%player's uuid%}%} to 8
+					set {realLevel::%{islandName::%player's uuid%}%} to 8
+					send title "&d&lLEVELED UP" with subtitle "You have leveled up to Level 9!" to player for 1 second
+					set {_temp} to setblock(8)
+					if {_temp} is chest:
+						set {_temp2} to event-block's location
+						set block at {_temp2} to chest
+						wait 3 ticks
+						set {_chest} to block at {_temp2}
+						set {_loopAmount} to a random integer between 1 and 6
+						loop {_loopAmount} times:
+							set {_addItem} to ItemGeneration(8)
+							set {_rngAmount} to random integer between 1 and 5
+							if {_addItem} is chicken spawn egg or cow spawn egg or sheep spawn egg or zombie spawn egg or skeleton spawn egg or slime spawn egg or tripwire hook:
+								if {_addItem} is chicken spawn egg or cow spawn egg or sheep spawn egg or zombie spawn egg or skeleton spawn egg or slime spawn egg:
+									set slot {_RandomSlot} of {_chest}'s inventory to 1 of {_addItem}
+								else:
+									set {_rng} to a random integer between 0 and 64
+									if {_rng} is between 0 and 39:
+										set slot {_randomSlot} of {_chest}'s inventory to 1 of tripwire hook named "&f&lCommon &7Crate Key"
+									if {_rng} is between 40 and 64:
+										set slot {_randomSlot} of {_chest}'s inventory to 1 of tripwire hook named "&a&lUncommon &7Crate Key"
+							else:
+								set slot {_RandomSlot} of {_chest}'s inventory to {_rngAmount} of {_addItem}
+					else:
+						set event-block to {_temp}
+					stop
+				else:
+					add 1 to {Bxp::%{islandName::%player's uuid%}%}
+					send action bar "&3Level Up XP: &e%{Bxp::%{islandName::%player's uuid%}%}%&f/&e%{BxpNeed::%{islandName::%player's uuid%}%}%" to player
+					set {BxpNeed::%{islandName::%player's uuid%}%} to 2000
+					set {_temp} to setblock(8)
+					if {_temp} is chest:
+						set {_temp2} to event-block's location
+						set event-block to chest
+						wait 3 ticks
+						set {_chest} to block at {_temp2}
+						set {_loopAmount} to a random integer between 1 and 6
+						loop {_loopAmount} times:
+							set {_addItem} to ItemGeneration(8)
+							set {_RandomSlot} to a random integer between 0 and 26
+							set {_rngAmount} to random integer between 1 and 5
+							if {_addItem} is chicken spawn egg or cow spawn egg or sheep spawn egg or zombie spawn egg or skeleton spawn egg or slime spawn egg or tripwire hook:
+								if {_addItem} is chicken spawn egg or cow spawn egg or sheep spawn egg or zombie spawn egg or skeleton spawn egg or slime spawn egg:
+									set slot {_RandomSlot} of {_chest}'s inventory to 1 of {_addItem}
+								else:
+									set slot {_randomSlot} of {_chest}'s inventory to 1 of tripwire hook named "&f&lCommon &7Crate Key"
+							else:
+								set slot {_RandomSlot} of {_chest}'s inventory to {_rngAmount} of {_addItem}
+						stop
+					else:
+						set event-block to {_temp}
+						stop
+			if {Blevel::%{islandName::%player's uuid%}%} is 8:
+				if {Bxp::%{islandName::%player's uuid%}%} is 2249:
+					set {Bxp::%{islandName::%player's uuid%}%} to 0
+					set {Blevel::%{islandName::%player's uuid%}%} to 9
+					set {realLevel::%{islandName::%player's uuid%}%} to 9
+					send title "&d&lLEVELED UP" with subtitle "You have leveled up to Level 10!" to player for 1 second
+					set {_temp} to setblock(8)
+					if {_temp} is chest:
+						set {_temp2} to event-block's location
+						set block at {_temp2} to chest
+						wait 3 ticks
+						set {_chest} to block at {_temp2}
+						set {_loopAmount} to a random integer between 1 and 7
+						loop {_loopAmount} times:
+							set {_addItem} to ItemGeneration(8)
+							set {_rngAmount} to random integer between 1 and 5
+							add {_rngAmount} of {_addItem} to {_chest}'s inventory
+							if {_addItem} is chicken spawn egg or cow spawn egg or sheep spawn egg or zombie spawn egg or skeleton spawn egg or slime spawn egg or tripwire hook:
+								if {_addItem} is chicken spawn egg or cow spawn egg or sheep spawn egg or zombie spawn egg or skeleton spawn egg or slime spawn egg:
+									set slot {_RandomSlot} of {_chest}'s inventory to 1 of {_addItem}
+								else:
+									set {_rng} to a random integer between 0 and 79
+									if {_rng} is between 0 and 39:
+										set slot {_randomSlot} of {_chest}'s inventory to 1 of tripwire hook named "&f&lCommon &7Crate Key"
+									if {_rng} is between 40 and 64:
+										set slot {_randomSlot} of {_chest}'s inventory to 1 of tripwire hook named "&a&lUncommon &7Crate Key"
+									if {_rng} is between 65 and 79:
+										set slot {randomSlot} of {_chest}'s inventory to 1 of tripwire hook named "&b&lRare &7Crate Key"
+							else:
+								set slot {_RandomSlot} of {_chest}'s inventory to {_rngAmount} of {_addItem}
+					else:
+						set event-block to {_temp}
+					stop
+				else:
+					add 1 to {Bxp::%{islandName::%player's uuid%}%}
+					send action bar "&3Level Up XP: &e%{Bxp::%{islandName::%player's uuid%}%}%&f/&e%{BxpNeed::%{islandName::%player's uuid%}%}%" to player
+					set {BxpNeed::%{islandName::%player's uuid%}%} to 2250
+					set {_temp} to setblock(8)
+					if {_temp} is chest:
+						set {_temp2} to event-block's location
+						set event-block to chest
+						wait 3 ticks
+						set {_chest} to block at {_temp2}
+						set {_loopAmount} to a random integer between 1 and 6
+						loop {_loopAmount} times:
+							set {_addItem} to ItemGeneration(8)
+							set {_RandomSlot} to a random integer between 0 and 26
+							set {_rngAmount} to random integer between 1 and 5
+							if {_addItem} is chicken spawn egg or cow spawn egg or sheep spawn egg or zombie spawn egg or skeleton spawn egg or slime spawn egg or tripwire hook:
+								if {_addItem} is chicken spawn egg or cow spawn egg or sheep spawn egg or zombie spawn egg or skeleton spawn egg or slime spawn egg:
+									set slot {_RandomSlot} of {_chest}'s inventory to 1 of {_addItem}
+								else:
+									set {_rng} to a random integer between 0 and 64
+									if {_rng} is between 0 and 39:
+										set slot {_randomSlot} of {_chest}'s inventory to 1 of tripwire hook named "&f&lCommon &7Crate Key"
+									if {_rng} is between 40 and 64:
+										set slot {_randomSlot} of {_chest}'s inventory to 1 of tripwire hook named "&a&lUncommon &7Crate Key"
+							else:
+								set slot {_RandomSlot} of {_chest}'s inventory to {_rngAmount} of {_addItem}
+						stop
+					else:
+						set event-block to {_temp}
+						stop
+			if {Blevel::%{islandName::%player's uuid%}%} is 9:
+				if {Bxp::%{islandName::%player's uuid%}%} is 2499:
+					set {Bxp::%{islandName::%player's uuid%}%} to 0
+					set {Blevel::%{islandName::%player's uuid%}%} to 10
+					set {realLevel::%{islandName::%player's uuid%}%} to 10
+					send title "&d&lLEVELED UP" with subtitle "You have leveled up to Level 11!" to player for 1 second
+					set {_temp} to setblock(8)
+					if {_temp} is chest:
+						set {_temp2} to event-block's location
+						set block at {_temp2} to chest
+						wait 3 ticks
+						set {_chest} to block at {_temp2}
+						set {_loopAmount} to a random integer between 1 and 7
+						loop {_loopAmount} times:
+							set {_addItem} to ItemGeneration(8)
+							set {_rngAmount} to random integer between 1 and 5
+							add {_rngAmount} of {_addItem} to {_chest}'s inventory
+							if {_addItem} is chicken spawn egg or cow spawn egg or sheep spawn egg or zombie spawn egg or skeleton spawn egg or slime spawn egg or tripwire hook:
+								if {_addItem} is chicken spawn egg or cow spawn egg or sheep spawn egg or zombie spawn egg or skeleton spawn egg or slime spawn egg:
+									set slot {_RandomSlot} of {_chest}'s inventory to 1 of {_addItem}
+								else:
+									set {_rng} to a random number between 0 and 89
+									if {_rng} is between 0 and 39:
+										set slot {_randomSlot} of {_chest}'s inventory to 1 of tripwire hook named "&f&lCommon &7Crate Key"
+									if {_rng} is between 40 and 64:
+										set slot {_randomSlot} of {_chest}'s inventory to 1 of tripwire hook named "&a&lUncommon &7Crate Key"
+									if {_rng} is between 65 and 79:
+										set slot {_randomSlot} of {_chest}'s inventory to 1 of tripwire hook named "&b&lRare &7Crate Key"
+									if {_rng} is between 80 and 89:
+										set slot {_randomSlot} of {_chest}'s inventory to 1 of tripwire hook named "&5&lEpic &7Crate Key"
+										broadcast "{@prefix} &f%player% &fhas won a &5&lEpic &fCrate Key!"
+							else:
+								set slot {_RandomSlot} of {_chest}'s inventory to {_rngAmount} of {_addItem}
+					else:
+						set event-block to {_temp}
+					stop
+				else:
+					add 1 to {Bxp::%{islandName::%player's uuid%}%}
+					send action bar "&3Level Up XP: &e%{Bxp::%{islandName::%player's uuid%}%}%&f/&e%{BxpNeed::%{islandName::%player's uuid%}%}%" to player
+					set {BxpNeed::%{islandName::%player's uuid%}%} to 2500
+					set {_temp} to setblock(8)
+					if {_temp} is chest:
+						set {_temp2} to event-block's location
+						set event-block to chest
+						wait 3 ticks
+						set {_chest} to block at {_temp2}
+						set {_loopAmount} to a random integer between 1 and 6
+						loop {_loopAmount} times:
+							set {_addItem} to ItemGeneration(8)
+							set {_RandomSlot} to a random integer between 0 and 26
+							set {_rngAmount} to random integer between 1 and 5
+							if {_addItem} is chicken spawn egg or cow spawn egg or sheep spawn egg or zombie spawn egg or skeleton spawn egg or slime spawn egg or tripwire hook:
+								if {_addItem} is chicken spawn egg or cow spawn egg or sheep spawn egg or zombie spawn egg or skeleton spawn egg or slime spawn egg:
+									set slot {_RandomSlot} of {_chest}'s inventory to 1 of {_addItem}
+								else:
+									set {_rng} to a random integer between 0 and 79
+									if {_rng} is between 0 and 39:
+										set slot {_randomSlot} of {_chest}'s inventory to 1 of tripwire hook named "&f&lCommon &7Crate Key"
+									if {_rng} is between 40 and 64:
+										set slot {_randomSlot} of {_chest}'s inventory to 1 of tripwire hook named "&a&lUncommon &7Crate Key"
+									if {_rng} is between 65 and 79:
+										set slot {randomSlot} of {_chest}'s inventory to 1 of tripwire hook named "&b&lRare &7Crate Key"
+							else:
+								set slot {_RandomSlot} of {_chest}'s inventory to {_rngAmount} of {_addItem}
+						stop
+					else:
+						set event-block to {_temp}
+						stop
+			if {Blevel::%{islandName::%player's uuid%}%} is 10:
+				if {Bxp::%{islandName::%player's uuid%}%} is 2749:
+					set {Bxp::%{islandName::%player's uuid%}%} to 0
+					set {Blevel::%{islandName::%player's uuid%}%} to 11
+					set {realLevel::%{islandName::%player's uuid%}%} to 11
+					send title "&d&lLEVELED UP" with subtitle "You have leveled up to Level 12!" to player for 1 second
+					set {_temp} to setblock(8)
+					if {_temp} is chest:
+						set {_temp2} to event-block's location
+						set block at {_temp2} to chest
+						wait 3 ticks
+						set {_chest} to block at {_temp2}
+						set {_loopAmount} to a random integer between 1 and 7
+						loop {_loopAmount} times:
+							set {_addItem} to ItemGeneration(8)
+							set {_rngAmount} to random integer between 1 and 5
+							add {_rngAmount} of {_addItem} to {_chest}'s inventory
+							if {_addItem} is chicken spawn egg or cow spawn egg or sheep spawn egg or zombie spawn egg or skeleton spawn egg or slime spawn egg or tripwire hook:
+								if {_addItem} is chicken spawn egg or cow spawn egg or sheep spawn egg or zombie spawn egg or skeleton spawn egg or slime spawn egg:
+									set slot {_RandomSlot} of {_chest}'s inventory to 1 of {_addItem}
+								else:
+									set {_rng} to a random number between 0 and 96.5
+									if {_rng} is between 0 and 39:
+										set slot {_randomSlot} of {_chest}'s inventory to 1 of tripwire hook named "&f&lCommon &7Crate Key"
+									if {_rng} is between 40 and 64:
+										set slot {_randomSlot} of {_chest}'s inventory to 1 of tripwire hook named "&a&lUncommon &7Crate Key"
+									if {_rng} is between 65 and 79:
+										set slot {_randomSlot} of {_chest}'s inventory to 1 of tripwire hook named "&b&lRare &7Crate Key"
+									if {_rng} is between 80 and 89:
+										set slot {_randomSlot} of {_chest}'s inventory to 1 of tripwire hook named "&5&lEpic &7Crate Key"
+										broadcast "{@prefix} &f%player% &fhas won a &5&lEpic &fCrate Key!"
+									if {_rng} is between 90 and 96.5:
+										set slot {_randomSlot} of {_chest}'s inventory to 1 of tripwire hook named "&6&lLegendary &7Crate Key"
+										broadcast "{@prefix} &f%player% &fhas won a &6&lLegendary &fCrate Key!"
+							else:
+								set slot {_RandomSlot} of {_chest}'s inventory to {_rngAmount} of {_addItem}
+					else:
+						set event-block to {_temp}
+					stop
+				else:
+					add 1 to {Bxp::%{islandName::%player's uuid%}%}
+					send action bar "&3Level Up XP: &e%{Bxp::%{islandName::%player's uuid%}%}%&f/&e%{BxpNeed::%{islandName::%player's uuid%}%}%" to player
+					set {BxpNeed::%{islandName::%player's uuid%}%} to 2750
+					set {_temp} to setblock(8)
+					if {_temp} is chest:
+						set {_temp2} to event-block's location
+						set event-block to chest
+						wait 3 ticks
+						set {_chest} to block at {_temp2}
+						set {_loopAmount} to a random integer between 1 and 6
+						loop {_loopAmount} times:
+							set {_addItem} to ItemGeneration(8)
+							set {_RandomSlot} to a random integer between 0 and 26
+							set {_rngAmount} to random integer between 1 and 5
+							if {_addItem} is chicken spawn egg or cow spawn egg or sheep spawn egg or zombie spawn egg or skeleton spawn egg or slime spawn egg or tripwire hook:
+								if {_addItem} is chicken spawn egg or cow spawn egg or sheep spawn egg or zombie spawn egg or skeleton spawn egg or slime spawn egg:
+									set slot {_RandomSlot} of {_chest}'s inventory to 1 of {_addItem}
+								else:
+									set {_rng} to a random number between 0 and 89
+									if {_rng} is between 0 and 39:
+										set slot {_randomSlot} of {_chest}'s inventory to 1 of tripwire hook named "&f&lCommon &7Crate Key"
+									if {_rng} is between 40 and 64:
+										set slot {_randomSlot} of {_chest}'s inventory to 1 of tripwire hook named "&a&lUncommon &7Crate Key"
+									if {_rng} is between 65 and 79:
+										set slot {_randomSlot} of {_chest}'s inventory to 1 of tripwire hook named "&b&lRare &7Crate Key"
+									if {_rng} is between 80 and 89:
+										set slot {_randomSlot} of {_chest}'s inventory to 1 of tripwire hook named "&5&lEpic &7Crate Key"
+										broadcast "{@prefix} &f%player% &fhas won a &5&lEpic &fCrate Key!"
+							else:
+								set slot {_RandomSlot} of {_chest}'s inventory to {_rngAmount} of {_addItem}
+						stop
+					else:
+						set event-block to {_temp}
+						stop
+			if {Blevel::%{islandName::%player's uuid%}%} is 11:
+				if {Bxp::%{islandName::%player's uuid%}%} is 2999:
+					set {Bxp::%{islandName::%player's uuid%}%} to 0
+					set {Blevel::%{islandName::%player's uuid%}%} to 12
+					set {realLevel::%{islandName::%player's uuid%}%} to 12
+					send title "&d&lLEVELED UP" with subtitle "You have leveled up to Level &c&lMAX&f!" to player for 1 second
+					broadcast "{@prefix} &fThe island %{islandName::%player's uuid%}% has reached the &c&lMAX &flevel! Congratulations!"
+					set {_temp} to setblock(8)
+					if {_temp} is chest:
+						set {_temp2} to event-block's location
+						set block at {_temp2} to chest
+						wait 3 ticks
+						set {_chest} to block at {_temp2}
+						set {_loopAmount} to a random integer between 1 and 7
+						loop {_loopAmount} times:
+							set {_addItem} to ItemGeneration(8)
+							set {_rngAmount} to random integer between 1 and 5
+							add {_rngAmount} of {_addItem} to {_chest}'s inventory
+							if {_addItem} is chicken spawn egg or cow spawn egg or sheep spawn egg or zombie spawn egg or skeleton spawn egg or slime spawn egg or tripwire hook:
+								if {_addItem} is chicken spawn egg or cow spawn egg or sheep spawn egg or zombie spawn egg or skeleton spawn egg or slime spawn egg:
+									set slot {_RandomSlot} of {_chest}'s inventory to 1 of {_addItem}
+								else:
+									set {_rng} to a random number between 0 and 99.1
+									if {_rng} is between 0 and 39:
+										set slot {_randomSlot} of {_chest}'s inventory to 1 of tripwire hook named "&f&lCommon &7Crate Key"
+									if {_rng} is between 40 and 64:
+										set slot {_randomSlot} of {_chest}'s inventory to 1 of tripwire hook named "&a&lUncommon &7Crate Key"
+									if {_rng} is between 65 and 79:
+										set slot {_randomSlot} of {_chest}'s inventory to 1 of tripwire hook named "&b&lRare &7Crate Key"
+									if {_rng} is between 80 and 89:
+										set slot {_randomSlot} of {_chest}'s inventory to 1 of tripwire hook named "&5&lEpic &7Crate Key"
+										broadcast "{@prefix} &f%player% &fhas won a &5&lEpic &fCrate Key!"
+									if {_rng} is between 90 and 96.5:
+										set slot {_randomSlot} of {_chest}'s inventory to 1 of tripwire hook named "&6&lLegendary &7Crate Key"
+										broadcast "{@prefix} &f%player% &fhas won a &6&lLegendary &fCrate Key!"
+									if {_rng} is between 96.6 and 99.1:
+										set slot {_randomSlot} of {_chest}'s inventory to 1 of tripwire hook named "&f&lM&a&ly&b&lt&5&lh&6&li&f&lc&a&la&b&ll &7Crate Key"
+										broadcast "{@prefix} &f%player% &fhas won a &f&lM&a&ly&b&lt&5&lh&6&li&f&lc&a&la&b&ll &fCrate Key!"
+							else:
+								set slot {_RandomSlot} of {_chest}'s inventory to {_rngAmount} of {_addItem}
+					else:
+						set event-block to {_temp}
+					stop
+				else:
+					add 1 to {Bxp::%{islandName::%player's uuid%}%}
+					send action bar "&3Level Up XP: &e%{Bxp::%{islandName::%player's uuid%}%}%&f/&e%{BxpNeed::%{islandName::%player's uuid%}%}%" to player
+					set {BxpNeed::%{islandName::%player's uuid%}%} to 2750
+					set {_temp} to setblock(8)
+					if {_temp} is chest:
+						set {_temp2} to event-block's location
+						set event-block to chest
+						wait 3 ticks
+						set {_chest} to block at {_temp2}
+						set {_loopAmount} to a random integer between 1 and 6
+						loop {_loopAmount} times:
+							set {_addItem} to ItemGeneration(8)
+							set {_RandomSlot} to a random integer between 0 and 26
+							set {_rngAmount} to random integer between 1 and 5
+							if {_addItem} is chicken spawn egg or cow spawn egg or sheep spawn egg or zombie spawn egg or skeleton spawn egg or slime spawn egg or tripwire hook:
+								if {_addItem} is chicken spawn egg or cow spawn egg or sheep spawn egg or zombie spawn egg or skeleton spawn egg or slime spawn egg:
+									set slot {_RandomSlot} of {_chest}'s inventory to 1 of {_addItem}
+								else:
+									set {_rng} to a random number between 0 and 96.5
+									if {_rng} is between 0 and 39:
+										set slot {_randomSlot} of {_chest}'s inventory to 1 of tripwire hook named "&f&lCommon &7Crate Key"
+									if {_rng} is between 40 and 64:
+										set slot {_randomSlot} of {_chest}'s inventory to 1 of tripwire hook named "&a&lUncommon &7Crate Key"
+									if {_rng} is between 65 and 79:
+										set slot {_randomSlot} of {_chest}'s inventory to 1 of tripwire hook named "&b&lRare &7Crate Key"
+									if {_rng} is between 80 and 89:
+										set slot {_randomSlot} of {_chest}'s inventory to 1 of tripwire hook named "&5&lEpic &7Crate Key"
+										broadcast "{@prefix} &f%player% &fhas won a &5&lEpic &fCrate Key!"
+									if {_rng} is between 90 and 96.5:
+										set slot {_randomSlot} of {_chest}'s inventory to 1 of tripwire hook named "&6&lLegendary &7Crate Key"
+										broadcast "{@prefix} &f%player% &fhas won a &6&lLegendary &fCrate Key!"
+							else:
+								set slot {_RandomSlot} of {_chest}'s inventory to {_rngAmount} of {_addItem}
+						stop
+					else:
+						set event-block to {_temp}
+						stop
+			if {Blevel::%{islandName::%player's uuid%}%} is 12:
+				add 1 to {Bxp::%{islandName::%player's uuid%}%}
+				send action bar "&3Level Up XP: &e%{Bxp::%{islandName::%player's uuid%}%}%&f/&e%{BxpNeed::%{islandName::%player's uuid%}%}%" to player
+				set {BxpNeed::%{islandName::%player's uuid%}%} to "∞"
+				set {_temp} to setblock(8)
+				if {_temp} is chest:
+					set {_temp2} to event-block's location
+					set event-block to chest
+					wait 3 ticks
+					set {_chest} to block at {_temp2}
+					set {_loopAmount} to a random integer between 1 and 6
+					loop {_loopAmount} times:
+						set {_addItem} to ItemGeneration(8)
+						set {_RandomSlot} to a random integer between 0 and 26
+						set {_rngAmount} to random integer between 1 and 5
+						if {_addItem} is chicken spawn egg or cow spawn egg or sheep spawn egg or zombie spawn egg or skeleton spawn egg or slime spawn egg or tripwire hook:
+							if {_addItem} is chicken spawn egg or cow spawn egg or sheep spawn egg or zombie spawn egg or skeleton spawn egg or slime spawn egg:
+								set slot {_RandomSlot} of {_chest}'s inventory to 1 of {_addItem}
+							else:
+								set {_rng} to a random number between 0 and 99.1
+								if {_rng} is between 0 and 39:
+									set slot {_randomSlot} of {_chest}'s inventory to 1 of tripwire hook named "&f&lCommon &7Crate Key"
+								if {_rng} is between 40 and 64:
+									set slot {_randomSlot} of {_chest}'s inventory to 1 of tripwire hook named "&a&lUncommon &7Crate Key"
+								if {_rng} is between 65 and 79:
+									set slot {_randomSlot} of {_chest}'s inventory to 1 of tripwire hook named "&b&lRare &7Crate Key"
+								if {_rng} is between 80 and 89:
+									set slot {_randomSlot} of {_chest}'s inventory to 1 of tripwire hook named "&5&lEpic &7Crate Key"
+									broadcast "{@prefix} &f%player% &fhas won a &5&lEpic &fCrate Key!"
+								if {_rng} is between 90 and 96.5:
+									set slot {_randomSlot} of {_chest}'s inventory to 1 of tripwire hook named "&6&lLegendary &7Crate Key"
+									broadcast "{@prefix} &f%player% &fhas won a &6&lLegendary &fCrate Key!"
+								if {_rng} is between 96.6 and 99.1:
+									set slot {_randomSlot} of {_chest}'s inventory to 1 of tripwire hook named "&f&lM&a&ly&b&lt&5&lh&6&li&f&lc&a&la&b&ll &7Crate Key"
+									broadcast "{@prefix} &f%player% &fhas won a &f&lM&a&ly&b&lt&5&lh&6&li&f&lc&a&la&b&ll &fCrate Key!"
+						else:
+							set slot {_RandomSlot} of {_chest}'s inventory to {_rngAmount} of {_addItem}
+					stop
+				else:
+					set event-block to {_temp}
+					stop
+
+command /resetXP:
+	permission: pog.champ
+	trigger:
+		set {Bxp::%{islandName::%player's uuid%}%} to 99
+
+function ItemGeneration(i: integer) :: Item:
+	if {_i} is 1:
+		set {_t} to a random integer between 0 and 9
+		if {_t} is between 0 and 2:
+			set {_b} to oak sapling
+			return {_b}
+			stop
+		if {_t} is between 3 and 4:
+			set {_b} to gravel
+			return {_b}
+			stop
+		if {_t} is between 5 and 6:
+			set {_b} to sand
+			return {_b}
+			stop
+		if {_t} is 7:
+			set {_b} to iron ore
+			return {_b}
+			stop
+		if {_t} is 8:
+			set {_b} to gold ore
+			return {_b}
+			stop
+		if {_t} is 9:
+			set {_b} to chicken spawn egg
+			return {_b}
+			stop
+	if {_i} is 2:
+		set {_t} to a random integer between 0 and 17
+		if {_t} is between 0 and 3:
+			set {_b} to oak sapling
+			return {_b}
+			stop
+		if {_t} is between 4 and 6:
+			set {_b} to gravel
+			return {_b}
+			stop
+		if {_t} is between 7 and 9:
+			set {_b} to sand
+			return {_b}
+			stop
+		if {_t} is between 9 and 11:
+			set {_b} to iron ore
+			return {_b}
+			stop
+		if {_t} is 12 or 13:
+			set {_b} to gold ore
+			return {_b}
+			stop
+		if {_t} is 14:
+			set {_b} to chicken spawn egg
+			return {_b}
+			stop
+		if {_t} is 15:
+			set {_b} to cow spawn egg
+			return {_b}
+			stop
+		if {_t} is 16 or 17:
+			set {_b} to oak log
+			return {_b}
+			stop
+	if {_i} is 3:
+		set {_t} to a random integer between 0 and 25
+		if {_t} is between 0 and 3:
+			set {_b} to oak sapling
+			return {_b}
+			stop
+		if {_t} is between 4 and 6:
+			set {_b} to gravel
+			return {_b}
+			stop
+		if {_t} is 7 or 8 or 9 or 24:
+			set {_b} to sand
+			return {_b}
+			stop
+		if {_t} is 9 or 10 or 11 or 23:
+			set {_b} to iron ore
+			return {_b}
+			stop
+		if {_t} is 12 or 13:
+			set {_b} to gold ore
+			return {_b}
+			stop
+		if {_t} is 14:
+			set {_b} to chicken spawn egg
+			return {_b}
+			stop
+		if {_t} is 15 or 18:
+			set {_b} to cow spawn egg
+			return {_b}
+			stop
+		if {_t} is 16 or 17:
+			set {_b} to oak log
+			return {_b}
+			stop
+		if {_t} is 19:
+			set {_b} to sheep spawn egg
+			return {_b}
+			stop
+		if {_t} is between 20 and 22:
+			set {_b} to emerald ore
+			return {_b}
+			stop
+		if {_t} is 23:
+			set {_b} to redstone ore
+			return {_b}
+			stop
+		if {_t} is 24 or 25:
+			set {_b} to lapis ore
+			return {_b}
+			stop
+	if {_i} is 4:
+		set {_t} to a random integer between 0 and 38
+		if {_t} is between 0 and 3:
+			set {_b} to oak sapling
+			return {_b}
+			stop
+		if {_t} is between 4 and 6:
+			set {_b} to gravel
+			return {_b}
+			stop
+		if {_t} is 7 or 8 or 9 or 24:
+			set {_b} to sand
+			return {_b}
+			stop
+		if {_t} is 9 or 10 or 11 or 23 or 26:
+			set {_b} to iron ore
+			return {_b}
+			stop
+		if {_t} is 12 or 13 or 27:
+			set {_b} to gold ore
+			return {_b}
+			stop
+		if {_t} is 14 or 28:
+			set {_b} to chicken spawn egg
+			return {_b}
+			stop
+		if {_t} is 15 or 18 or 29:
+			set {_b} to cow spawn egg
+			return {_b}
+			stop
+		if {_t} is 16 or 17 or 30 or 31:
+			set {_b} to oak log
+			return {_b}
+			stop
+		if {_t} is 19 or 32:
+			set {_b} to sheep spawn egg
+			return {_b}
+			stop
+		if {_t} is 20 or 21 or 22 or 33:
+			set {_b} to emerald ore
+			return {_b}
+			stop
+		if {_t} is 23 or 34 or 36:
+			set {_b} to redstone ore
+			return {_b}
+			stop
+		if {_t} is 24 or 25 or 35:
+			set {_b} to lapis ore
+			return {_b}
+			stop
+		if {_t} is 37:
+			set {_b} to zombie spawn egg
+			return {_b}
+			stop
+		if {_t} is 38:
+			set {_b} to golden apple
+			return {_b}
+			stop
+	if {_i} is 5:
+		set {_t} to a random integer between 0 and 41
+		if {_t} is between 0 and 3:
+			set {_b} to oak sapling
+			return {_b}
+			stop
+		if {_t} is between 4 and 6:
+			set {_b} to gravel
+			return {_b}
+			stop
+		if {_t} is 7 or 8 or 9 or 24:
+			set {_b} to sand
+			return {_b}
+			stop
+		if {_t} is 9 or 10 or 11 or 23 or 26:
+			set {_b} to iron ore
+			return {_b}
+			stop
+		if {_t} is 12 or 13 or 27:
+			set {_b} to gold ore
+			return {_b}
+			stop
+		if {_t} is 14 or 28:
+			set {_b} to chicken spawn egg
+			return {_b}
+			stop
+		if {_t} is 15 or 18 or 29:
+			set {_b} to cow spawn egg
+			return {_b}
+			stop
+		if {_t} is 16 or 17 or 30 or 31:
+			set {_b} to oak log
+			return {_b}
+			stop
+		if {_t} is 19 or 32:
+			set {_b} to sheep spawn egg
+			return {_b}
+			stop
+		if {_t} is 20 or 21 or 22 or 33:
+			set {_b} to emerald ore
+			return {_b}
+			stop
+		if {_t} is 23 or 34 or 36:
+			set {_b} to redstone ore
+			return {_b}
+			stop
+		if {_t} is 24 or 25 or 35:
+			set {_b} to lapis ore
+			return {_b}
+			stop
+		if {_t} is 37 or 39:
+			set {_b} to zombie spawn egg
+			return {_b}
+			stop
+		if {_t} is 38 or 41:
+			set {_b} to golden apple
+			return {_b}
+			stop
+		if {_t} is 40:
+			set {_b} to obsidian
+			return {_b}
+			stop
+	if {_i} is 6:
+		set {_t} to a random integer between 0 and 49
+		if {_t} is between 0 and 3:
+			set {_b} to oak sapling
+			return {_b}
+			stop
+		if {_t} is between 4 and 6:
+			set {_b} to gravel
+			return {_b}
+			stop
+		if {_t} is 7 or 8 or 9 or 24:
+			set {_b} to sand
+			return {_b}
+			stop
+		if {_t} is 9 or 10 or 11 or 23 or 26 or 44:
+			set {_b} to iron ore
+			return {_b}
+			stop
+		if {_t} is 12 or 13 or 27 or 45:
+			set {_b} to gold ore
+			return {_b}
+			stop
+		if {_t} is 14 or 28:
+			set {_b} to chicken spawn egg
+			return {_b}
+			stop
+		if {_t} is 15 or 18 or 29:
+			set {_b} to cow spawn egg
+			return {_b}
+			stop
+		if {_t} is 16 or 17 or 30 or 31:
+			set {_b} to oak log
+			return {_b}
+			stop
+		if {_t} is 19 or 32:
+			set {_b} to sheep spawn egg
+			return {_b}
+			stop
+		if {_t} is 20 or 21 or 22 or 33:
+			set {_b} to emerald ore
+			return {_b}
+			stop
+		if {_t} is 23 or 34 or 36 or 48:
+			set {_b} to redstone ore
+			return {_b}
+			stop
+		if {_t} is 24 or 25 or 35 or 47:
+			set {_b} to lapis ore
+			return {_b}
+			stop
+		if {_t} is 37 or 39:
+			set {_b} to zombie spawn egg
+			return {_b}
+			stop
+		if {_t} is 38 or 41:
+			set {_b} to golden apple
+			return {_b}
+			stop
+		if {_t} is 40:
+			set {_b} to obsidian
+			return {_b}
+			stop
+		if {_t} is 42:
+			set {_b} to skeleton spawn egg
+			return {_b}
+			stop
+		if {_t} is 43 or 46:
+			set {_b} to diamond ore
+			return {_b}
+			stop
+		if {_t} is 47:
+			set {_b} to glass
+			return {_b}
+			stop
+		if {_t} is 49:
+			set {_b} to glowstone dust
+			return {_b}
+			stop
+	if {_i} is 7:
+		set {_t} to a random integer between 0 and 53
+		if {_t} is between 0 and 3:
+			set {_b} to oak sapling
+			return {_b}
+			stop
+		if {_t} is between 4 and 6:
+			set {_b} to gravel
+			return {_b}
+			stop
+		if {_t} is 7 or 8 or 9 or 24:
+			set {_b} to sand
+			return {_b}
+			stop
+		if {_t} is 9 or 10 or 11 or 23 or 26 or 44:
+			set {_b} to iron ore
+			return {_b}
+			stop
+		if {_t} is 12 or 13 or 27 or 45:
+			set {_b} to gold ore
+			return {_b}
+			stop
+		if {_t} is 14 or 28:
+			set {_b} to chicken spawn egg
+			return {_b}
+			stop
+		if {_t} is 15 or 18 or 29:
+			set {_b} to cow spawn egg
+			return {_b}
+			stop
+		if {_t} is 16 or 17 or 30 or 31:
+			set {_b} to oak log
+			return {_b}
+			stop
+		if {_t} is 19 or 32:
+			set {_b} to sheep spawn egg
+			return {_b}
+			stop
+		if {_t} is 20 or 21 or 22 or 33:
+			set {_b} to emerald ore
+			return {_b}
+			stop
+		if {_t} is 23 or 34 or 36 or 48:
+			set {_b} to redstone ore
+			return {_b}
+			stop
+		if {_t} is 24 or 25 or 35 or 47:
+			set {_b} to lapis ore
+			return {_b}
+			stop
+		if {_t} is 37 or 39:
+			set {_b} to zombie spawn egg
+			return {_b}
+			stop
+		if {_t} is 38 or 41:
+			set {_b} to golden apple
+			return {_b}
+			stop
+		if {_t} is 40:
+			set {_b} to obsidian
+			return {_b}
+			stop
+		if {_t} is 42:
+			set {_b} to skeleton spawn egg
+			return {_b}
+			stop
+		if {_t} is 43 or 46:
+			set {_b} to diamond ore
+			return {_b}
+			stop
+		if {_t} is 47:
+			set {_b} to glass
+			return {_b}
+			stop
+		if {_t} is 49:
+			set {_b} to glowstone dust
+			return {_b}
+			stop
+		if {_t} is 50:
+			set {_b} to slime spawn egg
+			return {_b}
+			stop
+		if {_t} is 51:
+			set {_b} to iron ingot
+			return {_b}
+			stop
+		if {_t} is 52:
+			set {_b} to diamond
+			return {_b}
+			stop
+		if {_t} is 53:
+			set {_b} to blaze rod
+			return {_b}
+			stop
+	if {_i} is 8:
+		set {_t} to a random integer between 0 and 53
+		if {_t} is between 0 and 3:
+			set {_b} to oak sapling
+			return {_b}
+			stop
+		if {_t} is between 4 and 6:
+			set {_b} to gravel
+			return {_b}
+			stop
+		if {_t} is 7 or 8 or 9 or 24:
+			set {_b} to sand
+			return {_b}
+			stop
+		if {_t} is 9 or 10 or 11 or 23 or 26 or 44:
+			set {_b} to iron ore
+			return {_b}
+			stop
+		if {_t} is 12 or 13 or 27 or 45:
+			set {_b} to gold ore
+			return {_b}
+			stop
+		if {_t} is 14 or 28:
+			set {_b} to chicken spawn egg
+			return {_b}
+			stop
+		if {_t} is 15 or 18 or 29:
+			set {_b} to cow spawn egg
+			return {_b}
+			stop
+		if {_t} is 16 or 17 or 30 or 31:
+			set {_b} to oak log
+			return {_b}
+			stop
+		if {_t} is 19 or 32:
+			set {_b} to sheep spawn egg
+			return {_b}
+			stop
+		if {_t} is 20 or 21 or 22 or 33:
+			set {_b} to emerald ore
+			return {_b}
+			stop
+		if {_t} is 23 or 34 or 36 or 48:
+			set {_b} to redstone ore
+			return {_b}
+			stop
+		if {_t} is 24 or 25 or 35 or 47:
+			set {_b} to lapis ore
+			return {_b}
+			stop
+		if {_t} is 37 or 39:
+			set {_b} to zombie spawn egg
+			return {_b}
+			stop
+		if {_t} is 38 or 41:
+			set {_b} to golden apple
+			return {_b}
+			stop
+		if {_t} is 40:
+			set {_b} to obsidian
+			return {_b}
+			stop
+		if {_t} is 42:
+			set {_b} to skeleton spawn egg
+			return {_b}
+			stop
+		if {_t} is 43 or 46:
+			set {_b} to diamond ore
+			return {_b}
+			stop
+		if {_t} is 47:
+			set {_b} to glass
+			return {_b}
+			stop
+		if {_t} is 49:
+			set {_b} to glowstone dust
+			return {_b}
+			stop
+		if {_t} is 50:
+			set {_b} to slime spawn egg
+			return {_b}
+			stop
+		if {_t} is 51:
+			set {_b} to iron ingot
+			return {_b}
+			stop
+		if {_t} is 52:
+			set {_b} to diamond
+			return {_b}
+			stop
+		if {_t} is 53:
+			set {_b} to blaze rod
+			return {_b}
+			stop
+		if {_t} is 54:
+			set {_b} to tripwire hook
+			return {_b}
+			stop
+
+function setblock(i: integer) :: Item:
+	if {_i} is 0:
+		set {_t} to a random integer between 0 and 26
+		if {_t} is between 0 and 4:
+			set {_b} to dirt
+			return {_b}
+			stop
+		if {_t} is between 5 and 7:
+			set {_b} to stone
+			return {_b}
+			stop
+		if {_t} is between 8 and 12:
+			set {_b} to cobblestone
+			return {_b}
+			stop
+		if {_t} is between 13 and 17:
+			set {_b} to oak log
+			return {_b}
+			stop
+		if {_t} is between 18 and 21:
+			set {_b} to gravel
+			return {_b}
+			stop
+		if {_t} is between 22 and 24:
+			set {_b} to sand
+			return {_b}
+			stop
+		if {_t} is 25:
+			set {_b} to coal ore
+			return {_b}
+			stop
+		if {_t} is 26:
+			set {_b} to iron ore
+			return {_b}
+			stop
+	if {_i} is 1:
+		set {_t} to a random integer between 0 and 24
+		if {_t} is between 0 and 3:
+			set {_b} to dirt
+			return {_b}
+			stop
+		if {_t} is between 4 and 7:
+			set {_b} to stone
+			return {_b}
+			stop
+		if {_t} is between 8 and 11:
+			set {_b} to cobblestone
+			return {_b}
+			stop
+		if {_t} is between 12 and 13:
+			set {_b} to grass block
+			return {_b}
+			stop
+		if {_t} is between 14 and 17:
+			set {_b} to oak log
+			return {_b}
+			stop
+		if {_t} is between 18 and 20:
+			set {_b} to spruce log
+			return {_b}
+			stop
+		if {_t} is 21 or 23:
+			set {_b} to oak sapling
+			return {_b}
+			stop
+		if {_t} is between 18 and 20:
+			set {_b} to coal ore
+			return {_b}
+			stop
+		if {_t} is between 20 and 21:
+			set {_b} to iron ore
+			return {_b}
+			stop
+		if {_t} is 22:
+			set {_b} to gold ore
+			return {_b}
+			stop
+		if {_t} is 23:
+			set {_b} to bookshelf
+			return {_b}
+			stop
+		if {_t} is 24:
+			set {_b} to chest
+			return {_b}
+			stop
+	if {_i} is 2:
+		set {_t} to a random integer between 0 and 35
+		if {_t} is between 0 and 3:
+			set {_b} to dirt
+			return {_b}
+			stop
+		if {_t} is between 4 and 7:
+			set {_b} to stone
+			return {_b}
+			stop
+		if {_t} is between 8 and 11:
+			set {_b} to cobblestone
+			return {_b}
+			stop
+		if {_t} is between 12 and 13:
+			set {_b} to grass block
+			return {_b}
+			stop
+		if {_t} is between 14 and 16:
+			set {_b} to oak log
+			return {_b}
+			stop
+		if {_t} is between 17 and 19:
+			set {_b} to spruce log
+			return {_b}
+			stop
+		if {_t} is between 20 and 22:
+			set {_b} to oak sapling
+			return {_b}
+			stop
+		if {_t} is between 23 and 24:
+			set {_b} to coal ore
+			return {_b}
+			stop
+		if {_t} is between 25 and 26:
+			set {_b} to iron ore
+			return {_b}
+			stop
+		if {_t} is between 27 and 29:
+			set {_b} to gold ore
+			return {_b}
+			stop
+		if {_t} is between 30 and 32:
+			set {_b} to bookshelf
+			return {_b}
+			stop
+		if {_t} is between 33 and 34:
+			set {_b} to chest
+			return {_b}
+			stop
+		if {_t} is 35:
+			set {_b} to lapis ore
+			return {_b}
+			stop
+	if {_i} is 3:
+		set {_t} to a random integer between 0 and 43
+		if {_t} is between 0 and 3:
+			set {_b} to dirt
+			return {_b}
+			stop
+		if {_t} is between 4 and 7:
+			set {_b} to stone
+			return {_b}
+			stop
+		if {_t} is between 8 and 11:
+			set {_b} to cobblestone
+			return {_b}
+			stop
+		if {_t} is between 12 and 13:
+			set {_b} to grass block
+			return {_b}
+			stop
+		if {_t} is between 14 and 16:
+			set {_b} to oak log
+			return {_b}
+			stop
+		if {_t} is between 17 and 19:
+			set {_b} to spruce log
+			return {_b}
+			stop
+		if {_t} is between 20 and 22:
+			set {_b} to oak sapling
+			return {_b}
+			stop
+		if {_t} is between 23 and 24:
+			set {_b} to coal ore
+			return {_b}
+			stop
+		if {_t} is between 25 and 26:
+			set {_b} to iron ore
+			return {_b}
+			stop
+		if {_t} is between 27 and 29:
+			set {_b} to gold ore
+			return {_b}
+			stop
+		if {_t} is between 30 and 32:
+			set {_b} to bookshelf
+			return {_b}
+			stop
+		if {_t} is 33 or 34 or 42:
+			set {_b} to chest
+			return {_b}
+			stop
+		if {_t} is 35 or 36:
+			set {_b} to lapis ore
+			return {_b}
+			stop
+		if {_t} is 37 or 38 or 39:
+			set {_b} to emerald ore
+			return {_b}
+			stop
+		if {_t} is 40 or 41:
+			set {_b} to redstone ore
+			return {_b}
+			stop
+		if {_t} is 43:
+			set {_b} to white shulker box
+			return {_b}
+			stop
+	if {_i} is 4:
+		set {_t} to a random integer between 0 and 58
+		if {_t} is between 0 and 3:
+			set {_b} to dirt
+			return {_b}
+			stop
+		if {_t} is between 4 and 7:
+			set {_b} to stone
+			return {_b}
+			stop
+		if {_t} is between 8 and 11:
+			set {_b} to cobblestone
+			return {_b}
+			stop
+		if {_t} is between 12 and 13:
+			set {_b} to grass block
+			return {_b}
+			stop
+		if {_t} is between 14 and 16:
+			set {_b} to oak log
+			return {_b}
+			stop
+		if {_t} is between 17 and 19:
+			set {_b} to spruce log
+			return {_b}
+			stop
+		if {_t} is between 20 and 22:
+			set {_b} to oak sapling
+			return {_b}
+			stop
+		if {_t} is 23 or 24 or 51 or 52 or 57 or 58:
+			set {_b} to coal ore
+			return {_b}
+			stop
+		if {_t} is 25 or 26 or 53 or 54:
+			set {_b} to iron ore
+			return {_b}
+			stop
+		if {_t} is 27 or 28 or 29 or 55:
+			set {_b} to gold ore
+			return {_b}
+			stop
+		if {_t} is 30 or 31 or 32 or 56:
+			set {_b} to bookshelf
+			return {_b}
+			stop
+		if {_t} is 33 or 34 or 42 or 43:
+			set {_b} to chest
+			return {_b}
+			stop
+		if {_t} is 35 or 36 or 44:
+			set {_b} to lapis ore
+			return {_b}
+			stop
+		if {_t} is 37 or 38 or 39 or 45:
+			set {_b} to emerald ore
+			return {_b}
+			stop
+		if {_t} is 40 or 41 or 46:
+			set {_b} to redstone ore
+			return {_b}
+			stop
+		if {_t} is 47:
+			set {_b} to diamond ore
+			return {_b}
+			stop
+		if {_t} is 48 or 49:
+			set {_b} to tnt
+			return {_b}
+		if {_t} is 50:
+			set {_b} to coal block
+			return {_b}
+			stop
+		if {_t} is 43:
+			set {_b} to white shulker box
+			return {_b}
+			stop
+	if {_i} is 5:
+		set {_t} to a random integer between 0 and 63
+		if {_t} is between 0 and 3:
+			set {_b} to dirt
+			return {_b}
+			stop
+		if {_t} is between 4 and 7:
+			set {_b} to stone
+			return {_b}
+			stop
+		if {_t} is between 8 and 11:
+			set {_b} to cobblestone
+			return {_b}
+			stop
+		if {_t} is between 12 and 13:
+			set {_b} to grass block
+			return {_b}
+			stop
+		if {_t} is between 14 and 16:
+			set {_b} to oak log
+			return {_b}
+			stop
+		if {_t} is between 17 and 19:
+			set {_b} to spruce log
+			return {_b}
+			stop
+		if {_t} is between 20 and 22:
+			set {_b} to oak sapling
+			return {_b}
+			stop
+		if {_t} is 23 or 24 or 51 or 52 or 57 or 58:
+			set {_b} to coal ore
+			return {_b}
+			stop
+		if {_t} is 25 or 26 or 53 or 54:
+			set {_b} to iron ore
+			return {_b}
+			stop
+		if {_t} is 27 or 28 or 29 or 55:
+			set {_b} to gold ore
+			return {_b}
+			stop
+		if {_t} is 30 or 31 or 32 or 56:
+			set {_b} to bookshelf
+			return {_b}
+			stop
+		if {_t} is 33 or 34 or 42 or 43:
+			set {_b} to chest
+			return {_b}
+			stop
+		if {_t} is 35 or 36 or 44:
+			set {_b} to lapis ore
+			return {_b}
+			stop
+		if {_t} is 37 or 38 or 39 or 45:
+			set {_b} to emerald ore
+			return {_b}
+			stop
+		if {_t} is 40 or 41 or 46:
+			set {_b} to redstone ore
+			return {_b}
+			stop
+		if {_t} is 47 or 63:
+			set {_b} to diamond ore
+			return {_b}
+			stop
+		if {_t} is 48 or 49:
+			set {_b} to tnt
+			return {_b}
+		if {_t} is 50 or 57:
+			set {_b} to coal block
+			return {_b}
+			stop
+		if {_t} is 43:
+			set {_b} to white shulker box
+			return {_b}
+			stop
+		if {_t} is 58:
+			set {_b} to ice
+			return {_b}
+			stop
+		if {_t} is 59 or 60:
+			set {_b} to blackstone
+			return {_b}
+			stop
+		if {_t} is 61:
+			set {_b} to obsidian
+			return {_b}
+			stop
+		if {_t} is 62:
+			set {_b} to glowstone
+			return {_b}
+			stop
+		if {_t} is 63:
+			set {_b} to smooth stone
+			return {_b}
+			stop
+	if {_i} is 6:
+		set {_t} to a random integer between 0 and 77
+		if {_t} is between 0 and 3:
+			set {_b} to dirt
+			return {_b}
+			stop
+		if {_t} is between 4 and 7:
+			set {_b} to stone
+			return {_b}
+			stop
+		if {_t} is between 8 and 11:
+			set {_b} to cobblestone
+			return {_b}
+			stop
+		if {_t} is between 12 and 13:
+			set {_b} to grass block
+			return {_b}
+			stop
+		if {_t} is between 14 and 16:
+			set {_b} to oak log
+			return {_b}
+			stop
+		if {_t} is between 17 and 19:
+			set {_b} to spruce log
+			return {_b}
+			stop
+		if {_t} is between 20 and 22:
+			set {_b} to oak sapling
+			return {_b}
+			stop
+		if {_t} is 23 or 24 or 51 or 52 or 57 or 58 or 73:
+			set {_b} to coal ore
+			return {_b}
+			stop
+		if {_t} is 25 or 26 or 53 or 54 or 74:
+			set {_b} to iron ore
+			return {_b}
+			stop
+		if {_t} is 27 or 28 or 29 or 55:
+			set {_b} to gold ore
+			return {_b}
+			stop
+		if {_t} is 30 or 31 or 32 or 56:
+			set {_b} to bookshelf
+			return {_b}
+			stop
+		if {_t} is 33 or 34 or 42 or 43:
+			set {_b} to chest
+			return {_b}
+			stop
+		if {_t} is 35 or 36 or 44 or 72:
+			set {_b} to lapis ore
+			return {_b}
+			stop
+		if {_t} is 37 or 38 or 39 or 45 or 71:
+			set {_b} to emerald ore
+			return {_b}
+			stop
+		if {_t} is 40 or 41 or 46 or 70:
+			set {_b} to redstone ore
+			return {_b}
+			stop
+		if {_t} is 47 or 63 or 69:
+			set {_b} to diamond ore
+			return {_b}
+			stop
+		if {_t} is 48 or 49 or 68:
+			set {_b} to tnt
+			return {_b}
+		if {_t} is 50 or 57 or 67:
+			set {_b} to coal block
+			return {_b}
+			stop
+		if {_t} is 43:
+			set {_b} to white shulker box
+			return {_b}
+			stop
+		if {_t} is 58 or 66:
+			set {_b} to ice
+			return {_b}
+			stop
+		if {_t} is 59 or 60:
+			set {_b} to blackstone
+			return {_b}
+			stop
+		if {_t} is 61 or 65:
+			set {_b} to obsidian
+			return {_b}
+			stop
+		if {_t} is 62 or 64:
+			set {_b} to glowstone
+			return {_b}
+			stop
+		if {_t} is 63:
+			set {_b} to smooth stone
+			return {_b}
+			stop
+		if {_t} is 75:
+			set {_b} to iron block
+			return {_b}
+			stop
+		if {_t} is 76:
+			set {_b} to sponge
+			return {_b}
+			stop
+		if {_t} is 77:
+			set {_b} to sea lantern
+			return {_b}
+			stop
+	if {_i} is 7:
+		set {_t} to a random integer between 0 and 83
+		if {_t} is between 0 and 3:
+			set {_b} to dirt
+			return {_b}
+			stop
+		if {_t} is between 4 and 7:
+			set {_b} to stone
+			return {_b}
+			stop
+		if {_t} is between 8 and 11:
+			set {_b} to cobblestone
+			return {_b}
+			stop
+		if {_t} is between 12 and 13:
+			set {_b} to grass block
+			return {_b}
+			stop
+		if {_t} is between 14 and 16:
+			set {_b} to oak log
+			return {_b}
+			stop
+		if {_t} is between 17 and 19:
+			set {_b} to spruce log
+			return {_b}
+			stop
+		if {_t} is between 20 and 22:
+			set {_b} to oak sapling
+			return {_b}
+			stop
+		if {_t} is 23 or 24 or 51 or 52 or 57 or 58 or 73:
+			set {_b} to coal ore
+			return {_b}
+			stop
+		if {_t} is 25 or 26 or 53 or 54 or 74:
+			set {_b} to iron ore
+			return {_b}
+			stop
+		if {_t} is 27 or 28 or 29 or 55:
+			set {_b} to gold ore
+			return {_b}
+			stop
+		if {_t} is 30 or 31 or 32 or 56:
+			set {_b} to bookshelf
+			return {_b}
+			stop
+		if {_t} is 33 or 34 or 42 or 43:
+			set {_b} to chest
+			return {_b}
+			stop
+		if {_t} is 35 or 36 or 44 or 72:
+			set {_b} to lapis ore
+			return {_b}
+			stop
+		if {_t} is 37 or 38 or 39 or 45 or 71 or 79:
+			set {_b} to emerald ore
+			return {_b}
+			stop
+		if {_t} is 40 or 41 or 46 or 70:
+			set {_b} to redstone ore
+			return {_b}
+			stop
+		if {_t} is 47 or 63 or 69:
+			set {_b} to diamond ore
+			return {_b}
+			stop
+		if {_t} is 48 or 49 or 68:
+			set {_b} to tnt
+			return {_b}
+		if {_t} is 50 or 57 or 67:
+			set {_b} to coal block
+			return {_b}
+			stop
+		if {_t} is 43:
+			set {_b} to white shulker box
+			return {_b}
+			stop
+		if {_t} is 58 or 66:
+			set {_b} to ice
+			return {_b}
+			stop
+		if {_t} is 59 or 60:
+			set {_b} to blackstone
+			return {_b}
+			stop
+		if {_t} is 61 or 65:
+			set {_b} to obsidian
+			return {_b}
+			stop
+		if {_t} is 62 or 64:
+			set {_b} to glowstone
+			return {_b}
+			stop
+		if {_t} is 63:
+			set {_b} to smooth stone
+			return {_b}
+			stop
+		if {_t} is 75:
+			set {_b} to iron block
+			return {_b}
+			stop
+		if {_t} is 76:
+			set {_b} to sponge
+			return {_b}
+			stop
+		if {_t} is 77:
+			set {_b} to sea lantern
+			return {_b}
+			stop
+		if {_t} is 78:
+			set {_b} to ancient debris
+			return {_b}
+			stop
+		if {_t} is 79:
+			set {_b} to brewing stand
+			return {_b}
+			stop
+		if {_t} is 80 or 81:
+			set {_b} to dispenser
+			return {_b}
+			stop
+		if {_t} is 82 or 83:
+			set {_b} to piston
+			return {_b}
+			stop
+	if {_i} is 8:
+		set {_t} to a random integer between 0 and 85
+		if {_t} is between 0 and 3:
+			set {_b} to dirt
+			return {_b}
+			stop
+		if {_t} is between 4 and 7:
+			set {_b} to stone
+			return {_b}
+			stop
+		if {_t} is between 8 and 11:
+			set {_b} to cobblestone
+			return {_b}
+			stop
+		if {_t} is between 12 and 13:
+			set {_b} to grass block
+			return {_b}
+			stop
+		if {_t} is between 14 and 16:
+			set {_b} to oak log
+			return {_b}
+			stop
+		if {_t} is between 17 and 19:
+			set {_b} to spruce log
+			return {_b}
+			stop
+		if {_t} is between 20 and 22:
+			set {_b} to oak sapling
+			return {_b}
+			stop
+		if {_t} is 23 or 24 or 51 or 52 or 57 or 58 or 73:
+			set {_b} to coal ore
+			return {_b}
+			stop
+		if {_t} is 25 or 26 or 53 or 54 or 74:
+			set {_b} to iron ore
+			return {_b}
+			stop
+		if {_t} is 27 or 28 or 29 or 55:
+			set {_b} to gold ore
+			return {_b}
+			stop
+		if {_t} is 30 or 31 or 32 or 56:
+			set {_b} to bookshelf
+			return {_b}
+			stop
+		if {_t} is 33 or 34 or 42 or 43 or 85:
+			set {_b} to chest
+			return {_b}
+			stop
+		if {_t} is 35 or 36 or 44 or 72:
+			set {_b} to lapis ore
+			return {_b}
+			stop
+		if {_t} is 37 or 38 or 39 or 45 or 71 or 79:
+			set {_b} to emerald ore
+			return {_b}
+			stop
+		if {_t} is 40 or 41 or 46 or 70:
+			set {_b} to redstone ore
+			return {_b}
+			stop
+		if {_t} is 47 or 63 or 69:
+			set {_b} to diamond ore
+			return {_b}
+			stop
+		if {_t} is 48 or 49 or 68:
+			set {_b} to tnt
+			return {_b}
+		if {_t} is 50 or 57 or 67:
+			set {_b} to coal block
+			return {_b}
+			stop
+		if {_t} is 43:
+			set {_b} to white shulker box
+			return {_b}
+			stop
+		if {_t} is 58 or 66:
+			set {_b} to ice
+			return {_b}
+			stop
+		if {_t} is 59 or 60:
+			set {_b} to blackstone
+			return {_b}
+			stop
+		if {_t} is 61 or 65:
+			set {_b} to obsidian
+			return {_b}
+			stop
+		if {_t} is 62 or 64:
+			set {_b} to glowstone
+			return {_b}
+			stop
+		if {_t} is 63:
+			set {_b} to smooth stone
+			return {_b}
+			stop
+		if {_t} is 75:
+			set {_b} to iron block
+			return {_b}
+			stop
+		if {_t} is 76:
+			set {_b} to sponge
+			return {_b}
+			stop
+		if {_t} is 77:
+			set {_b} to sea lantern
+			return {_b}
+			stop
+		if {_t} is 78 or 84:
+			set {_b} to ancient debris
+			return {_b}
+			stop
+		if {_t} is 79:
+			set {_b} to brewing stand
+			return {_b}
+			stop
+		if {_t} is 80 or 81:
+			set {_b} to dispenser
+			return {_b}
+			stop
+		if {_t} is 82 or 83:
+			set {_b} to piston
+			return {_b}
+			stop
+
+command /reset <player>:
+	permission: ree.kid
+	trigger:
+		delete {hasIsland::%arg-1's uuid%}
+		delete {owner::%{islandName::%player's uuid%}%}
+		delete {islandName::%arg-1's uuid%}
+
+command /setisland <player> <text>:
+	permission: ree.kid
+	trigger:
+		set {hasIsland::%arg-1's uuid%} to true
+		set {islandName::%player's uuid%} to "%arg-2%"
+		set {owner::%{islandName::%player's uuid%}%} to arg-1

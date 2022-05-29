@@ -1,0 +1,87 @@
+options:
+	prefix: &5Queue -&d
+	closed: &5Queue - &dThe queue is currently closed (/queue stats)
+
+on load:
+	set {queueStats} to "&cCLOSED" if {queueStats} is not set
+
+command /queue [<text>] [<integer>]:
+	trigger:
+		if arg-1 is not set:
+			send "&dQueuing &5System%nl%&5/queue join - &dJoin the queue!%nl%&5/queue leave - &dLeave the queue!%nl%&5/queue stats - &dSee the stats of the queue." if player does not have permission "queue.admin"
+			send "&dQueuing &5System%nl%&5/queue join - &dJoin the queue!%nl%&5/queue leave - &dLeave the queue!%nl%&5/queue stats - &dSee the stats of the queue.%nl%%nl%&5Admin Section%nl%&5/queue open - &dOpens the queue!%nl%&5/queue close - &dCloses the queue!%nl%&5/queue setlimit - &dSet the queue limit%nl%&5/queue erase - &dRemoves all people from the queue%nl%&5/queue teleport - &dTeleport the queue to your location." if player has permission "queue.admin"
+			stop
+		if arg-1 is "join":
+			if "%size of {queue::*}%" = "%{queueLimit}%":
+				send "{@prefix} The queue is full!"
+				stop
+			else:
+				if {queueStatus} is true:
+					add "%player%" to {queue::*}
+					send "{@prefix} Joined the queue successfully."
+					stop
+				else:
+					send "{@closed}"
+					stop
+		if arg-1 is "leave":
+			if {queueStatus} is true:
+				if "%{queue::*}%" contains "%player%":
+					remove "%player%" from {queue::*}
+					send "{@prefix} Left the queue successfully."
+					stop
+				else:
+					send "{@prefix} You are not in the queue!"
+					stop
+			else:
+				send "{@closed}"
+				stop
+		if arg-1 is "stats":
+			send "&dQueuing &5System%nl%%nl%&dQueue is: %{queueStats}%%nl%&dQueue Length: %size of {queue::*}%&d/%{queueLimit}%"
+			stop
+		if arg-1 is "open":
+			if {queueStatus} is true:
+				send "{@prefix} The queue is already open!"
+				stop
+			else:
+				set {queueStatus} to true
+				set {queueStats} to "&aOPEN"
+				broadcast "{@prefix} The queue has been opened!"
+				stop
+		if arg-1 is "close":
+			if {queueStatus} is true:
+				delete {queueStatus}
+				set {queueStats} to "&cCLOSED"
+				broadcast "{@prefix} The queue has been closed!"
+				stop
+			else:
+				send "{@prefix} The queue is already closed!"
+				stop
+		if arg-1 is "setlimit":
+			if arg-2 is not set:
+				send "{@prefix} Usage: /queue setlimit 5"
+				stop
+			else:
+				set {queueLimit} to arg-2
+				send "{@prefix} Set queue limit to %{queueLimit}%"
+				stop
+		if arg-1 is "erase":
+			if {queueStatus} is true:
+				send "{@prefix} The queue must be closed for you to execute this command!"
+				stop
+			else:
+				delete {queue::*}
+				send "{@prefix} Erased the queue successfully!"
+				stop
+		if arg-1 is "teleport":
+			if {queueStatus} is true:
+				send "{@prefix} The queue must be closed for you to execute this command!"
+				stop
+			else:
+				loop {queue::*}:
+					teleport (loop-value parsed as a player) to player
+				wait 5 ticks
+				delete {queue::*}
+				send "{@prefix} Teleported all queue players to you and erased the queue!"
+
+on disconnect:
+	remove "%player%" from {queue::*} if "%{queue::*}%" contains "%player%"

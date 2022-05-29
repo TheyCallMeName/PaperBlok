@@ -1,0 +1,202 @@
+options:
+	prefix: &8[&3SINGLED&8] &3-&f
+
+on rightclick with a chest:
+	if name of player's tool is "&6&lLegendary &7Lootbox":
+		remove 1 chest named "&6&lLegendary &7Lootbox" with lore "&8| &e&lOpen me to see what", "&8| &e&lprize you'll win", "" and "&8| &e&lLeft click me to see my rewards!" from player's inventory
+		set {_rng} to a random integer between 0 and 13
+		if {_rng} is between 0 and 3:
+			set {_amount} to a random integer between 1 and 3
+			add {_amount} of netherite ingot named "&fNetherite Ingot" with lore "&8| &eWon from a Legendary Lootbox" to player's inventory
+			send "{@prefix} You have won %{_amount}%x Netherite Ingot from a Legendary Lootbox"
+		if {_rng} is between 4 and 6:
+			set {_amount} to a random integer between 3 and 9
+			add {_amount} of diamond named "&bDiamond" with lore "&8| &eWon from a Legendary Lootbox" to player's inventory
+			send "{@prefix} You have won %{_amount}%x Diamond from a Legendary Lootbox"
+		if {_rng} is between 7 and 10:
+			set {_rng2} to a random number between 0 and 99.1
+			if {_rng2} is between 0 and 39:
+				add 1 tripwire hook named "&f&lCommon &7Crate Key" to player's inventory
+				send "{@prefix} You have won a Common Crate Key from a Legendary Lootbox"
+			if {_rng2} is between 40 and 64:
+				add 1 tripwire hook named "&a&lUncommon &7Crate Key" to player's inventory
+				send "{@prefix} You have won an Uncommon Crate Key from a Legendary Lootbox"
+			if {_rng2} is between 65 and 79:
+				add 1 tripwire hook named "&b&lRare &7Crate Key" to player's inventory
+				send "{@prefix} You have won a Rare Crate Key from a Legendary Lootbox"
+			if {_rng2} is between 80 and 89:
+				add 1 tripwire hook named "&5&lEpic &7Crate Key" to player's inventory
+				broadcast "{@prefix} &f%player% &fhas won a &5&lEpic &fCrate Key!"
+			if {_rng2} is between 90 and 96.5:
+				add 1 tripwire hook named "&6&lLegendary &7Crate Key" to player's inventory
+				broadcast "{@prefix} &f%player% &fhas won a &6&lLegendary &fCrate Key!"
+			if {_rng2} is between 96.6 and 99.1:
+				add 1 tripwire hook named "&f&lM&a&ly&b&lt&5&lh&6&li&f&lc&a&la&b&ll &7Crate Key" to player's inventory
+				broadcast "{@prefix} &f%player% &fhas won a &f&lM&a&ly&b&lt&5&lh&6&li&f&lc&a&la&b&ll &fCrate Key!"
+		if {_rng} is 11:
+			set {_rng2} to a random integer between 0 and 3
+			if {_rng2} is 0:
+				add 1 diamond helmet of protection 5 and unbreaking 5 named "&6&lLegendary &6Helmet" with lore "&8| &eWon from a Legendary Lootbox" to player's inventory
+				send "{@prefix} You have won a Legendary Helmet from a Legendary Lootbox"
+			if {_rng2} is 1:
+				add 1 diamond chestplate of protection 5 and unbreaking 5 named "&6&lLegendary &6Chestplate" with lore "&8| &eWon from a Legendary Lootbox" to player's inventory
+				send "{@prefix} You have won a Legendary Chestplate from a Legendary Lootbox"
+			if {_rng2} is 2:
+				add 1 diamond leggings of protection 5 and unbreaking 5 named "&6&lLegendary &6Leggings" with lore "&8| &eWon from a Legendary Lootbox" to player's inventory
+				send "{@prefix} You have won Legendary Leggings from a Legendary Lootbox"
+			if {_rng2} is 3:
+				add 1 diamond boots of protection 5 and unbreaking 5 named "&6&lLegendary &6Boots" with lore "&8| &eWon from a Legendary Lootbox" to player's inventory
+				send "{@prefix} You have won Legendary Boots from a Legendary Lootbox"
+		if {_rng} is 12:
+			set {_rng2} to a random integer between 0 and 2
+			if {_rng2} is 0:
+				add 1 diamond pickaxe of efficiency 5 and fortune 3 and unbreaking 5 named "&6&lLegendary &6Pickaxe" with lore "&8| &eWon from a Legendary Lootbox" to player's inventory
+				send "{@prefix} You have won a Legendary Pickaxe from a Legendary Lootbox"
+			if {_rng2} is 1:
+				add 1 diamond axe of efficiency 5 and fortune 3 and unbreaking 5 named "&6&lLegendary &6Axe" with lore "&8| &eWon from a Legendary Lootbox" to player's inventory
+				send "{@prefix} You have won a Legendary Axe from a Legendary Lootbox"
+			if {_rng2} is 2:
+				add 1 diamond shovel of efficiency 5 and fortune 3 and unbreaking 5 named "&6&lLegendary &6Shovel" with lore "&8| &eWon from a Legendary Lootbox" to player's inventory
+				send "{@prefix} You have won a Legendary Shovel from a Legendary Lootbox"
+		if {_rng} is 13:
+			set {_rng2} to a random integer between 0 and 1
+			if {_rng2} is 0:
+				add 1 diamond sword of sharpness 5 and unbreaking 5 named "&6&lLegendary &6Sword" with lore "&8| &eWon from a Legendary Lootbox" to player's inventory
+				send "{@prefix} You have won a Legendary Sword from a Legendary Lootbox"
+			if {_rng2} is 1:
+				add 1 diamond axe of sharpness 5 and unbreaking 5 named "&6&lLegendary &6Axe" with lore "&8| &eWon from a Legendary Lootbox" to player's inventory
+				send "{@prefix} You have won a Legendary Axe from a Legendary Lootbox"
+	if name of player's tool is "&c&lSniper Lootbox":
+		remove 1 chest named "&c&lSniper Lootbox" with lore "&8| &e&lOpen me to see what", "&8| &e&lprize you'll win", "" and "&8| &e&lLeft click me to see my rewards!" from player's inventory
+		set {_rng} to a random integer between 0 and 4
+		if {_rng} is 0:
+			add 1 netherite helmet of protection 10 and unbreaking 10 named "&c&lSniper &cHelmet" with lore "&8| &eWon from a Sniper Lootbox" to player's inventory
+			send "{@prefix} You have won a Sniper Helmet from a Sniper Lootbox"
+		if {_rng} is 1:
+			add 1 netherite chestplate of protection 10 and unbreaking 10 named "&c&lSniper &cChestplate" with lore "&8| &eWon from a Sniper Lootbox" to player's inventory
+			send "{@prefix} You have won a Sniper Chestplate from a Sniper Lootbox"
+		if {_rng} is 2:
+			add 1 netherite leggings of protection 10 and unbreaking 10 named "&c&lSniper &cLeggings" with lore "&8| &eWon from a Sniper Lootbox" to player's inventory
+			send "{@prefix} You have won Sniper Leggings from a Sniper Lootbox"
+		if {_rng} is 3:
+			add 1 netherite boots of protection 10 and unbreaking 10 named "&c&lSniper &cBoots" with lore "&8| &eWon from a Sniper Lootbox" to player's inventory
+			send "{@prefix} You have won Sniper Boots from a Sniper Lootbox"
+		if {_rng} is 4:
+			add 1 netherite sword of sharpness 10 and unbreaking 10 named "&c&lSniper &cSword" with lore "&8| &eWon from a Sniper Lootbox" to player's inventory
+			send "{@prefix} You have won a Sniper Sword from a Sniper Lootbox"
+	if name of player's tool is "&5&lEpic &7Lootbox":
+		remove 1 chest named "&5&lEpic &7Lootbox" with lore "&8| &e&lOpen me to see what", "&8| &e&lprize you'll win", "" and "&8| &e&lLeft click me to see my rewards!" from player's inventory
+		set {_rng} to a random integer between 0 and 13
+		if {_rng} is between 0 and 3:
+			set {_amount} to a random integer between 1 and 2
+			add {_amount} of ancient debris named "&fAncient Debris" with lore "&8| &eWon from a Epic Lootbox" to player's inventory
+			send "{@prefix} You have won %{_amount}%x Ancient Debris from a Epic Lootbox"
+		if {_rng} is between 4 and 6:
+			set {_amount} to a random integer between 1 and 4
+			add {_amount} of diamond named "&bDiamond" with lore "&8| &eWon from a Epic Lootbox" to player's inventory
+			send "{@prefix} You have won %{_amount}%x Diamond from a Epic Lootbox"
+		if {_rng} is between 7 and 10:
+			set {_rng2} to a random number between 0 and 96.5
+			if {_rng} is between 0 and 39:
+				add 1 tripwire hook named "&f&lCommon &7Crate Key" to player's inventory
+			if {_rng} is between 40 and 64:
+				add 1 tripwire hook named "&a&lUncommon &7Crate Key" to player's inventory
+			if {_rng} is between 65 and 79:
+				add 1 tripwire hook named "&b&lRare &7Crate Key" to player's inventory
+			if {_rng} is between 80 and 89:
+				add 1 tripwire hook named "&5&lEpic &7Crate Key" to player's inventory
+				broadcast "{@prefix} &f%player% &fhas won a &5&lEpic &fCrate Key!"
+			if {_rng} is between 90 and 96.5:
+				add 1 tripwire hook named "&6&lLegendary &7Crate Key" to player's inventory
+				broadcast "{@prefix} &f%player% &fhas won a &6&lLegendary &fCrate Key!"
+		if {_rng} is 11:
+			set {_rng2} to a random integer between 0 and 3
+			if {_rng2} is 0:
+				add 1 diamond helmet of protection 3 and unbreaking 3 named "&5&lEpic &5Helmet" with lore "&8| &eWon from a Epic Lootbox" to player's inventory
+				send "{@prefix} You have won a Epic Helmet from a Epic Lootbox"
+			if {_rng2} is 1:
+				add 1 diamond chestplate of protection 3 and unbreaking 3 named "&5&lEpic &5Chestplate" with lore "&8| &eWon from a Epic Lootbox" to player's inventory
+				send "{@prefix} You have won a Epic Chestplate from a Epic Lootbox"
+			if {_rng2} is 2:
+				add 1 diamond leggings of protection 3 and unbreaking 3 named "&5&lEpic &5Leggings" with lore "&8| &eWon from a Epic Lootbox" to player's inventory
+				send "{@prefix} You have won Epic Leggings from a Epic Lootbox"
+			if {_rng2} is 3:
+				add 1 diamond boots of protection 3 and unbreaking 3 named "&5&lEpic &5Boots" with lore "&8| &eWon from a Epic Lootbox" to player's inventory
+				send "{@prefix} You have won Epic Boots from a Epic Lootbox"
+		if {_rng} is 12:
+			set {_rng2} to a random integer between 0 and 2
+			if {_rng2} is 0:
+				add 1 diamond pickaxe of efficiency 3 and fortune 2 and unbreaking 3 named "&5&lEpic &5Pickaxe" with lore "&8| &eWon from a Epic Lootbox" to player's inventory
+				send "{@prefix} You have won a Epic Pickaxe from a Epic Lootbox"
+			if {_rng2} is 1:
+				add 1 diamond axe of efficiency 3 and fortune 2 and unbreaking 3 named "&5&lEpic &5Axe" with lore "&8| &eWon from a Epic Lootbox" to player's inventory
+				send "{@prefix} You have won a Epic Axe from a Epic Lootbox"
+			if {_rng2} is 2:
+				add 1 diamond shovel of efficiency 3 and fortune 2 and unbreaking 3 named "&5&lEpic &5Shovel" with lore "&8| &eWon from a Epic Lootbox" to player's inventory
+				send "{@prefix} You have won a Epic Shovel from a Epic Lootbox"
+		if {_rng} is 13:
+			set {_rng2} to a random integer between 0 and 1
+			if {_rng2} is 0:
+				add 1 diamond sword of sharpness 3 and unbreaking 3 named "&5&lEpic &5Sword" with lore "&8| &eWon from a Epic Lootbox" to player's inventory
+				send "{@prefix} You have won a Epic Sword from a Epic Lootbox"
+			if {_rng2} is 1:
+				add 1 diamond axe of sharpness 3 and unbreaking 3 named "&5&lEpic &5Axe" with lore "&8| &eWon from a Epic Lootbox" to player's inventory
+				send "{@prefix} You have won a Epic Axe from a Epic Lootbox"
+	if name of player's tool is "&b&lRare &7Lootbox":
+		remove 1 chest named "&b&lRare &7Lootbox" with lore "&8| &e&lOpen me to see what", "&8| &e&lprize you'll win", "" and "&8| &e&lLeft click me to see my rewards!" from player's inventory
+		set {_rng} to a random integer between 0 and 13
+		if {_rng} is between 0 and 3:
+			set {_amount} to a random integer between 1 and 2
+			add {_amount} of ancient debris named "&fAncient Debris" with lore "&8| &eWon from a Rare Lootbox" to player's inventory
+			send "{@prefix} You have won %{_amount}%x Ancient Debris from a Rare Lootbox"
+		if {_rng} is between 4 and 6:
+			set {_amount} to a random integer between 1 and 4
+			add {_amount} of diamond named "&bDiamond" with lore "&8| &eWon from a Rare Lootbox" to player's inventory
+			send "{@prefix} You have won %{_amount}%x Diamond from a Rare Lootbox"
+		if {_rng} is between 7 and 10:
+			set {_rng2} to a random number between 0 and 96.5
+			if {_rng} is between 0 and 39:
+				add 1 tripwire hook named "&f&lCommon &7Crate Key" to player's inventory
+			if {_rng} is between 40 and 64:
+				add 1 tripwire hook named "&a&lUncommon &7Crate Key" to player's inventory
+			if {_rng} is between 65 and 79:
+				add 1 tripwire hook named "&b&lRare &7Crate Key" to player's inventory
+			if {_rng} is between 80 and 89:
+				add 1 tripwire hook named "&5&lEpic &7Crate Key" to player's inventory
+				broadcast "{@prefix} &f%player% &fhas won a &b&lEpic &fCrate Key!"
+			if {_rng} is between 90 and 96.5:
+				add 1 tripwire hook named "&6&lLegendary &7Crate Key" to player's inventory
+				broadcast "{@prefix} &f%player% &fhas won a &6&lLegendary &fCrate Key!"
+		if {_rng} is 11:
+			set {_rng2} to a random integer between 0 and 3
+			if {_rng2} is 0:
+				add 1 diamond helmet of protection 2 and unbreaking 2 named "&b&lRare &bHelmet" with lore "&8| &eWon from a Rare Lootbox" to player's inventory
+				send "{@prefix} You have won a Rare Helmet from a Rare Lootbox"
+			if {_rng2} is 1:
+				add 1 diamond chestplate of protection 2 and unbreaking 2 named "&b&lRare &bChestplate" with lore "&8| &eWon from a Rare Lootbox" to player's inventory
+				send "{@prefix} You have won a Rare Chestplate from a Rare Lootbox"
+			if {_rng2} is 2:
+				add 1 diamond leggings of protection 2 and unbreaking 2 named "&b&lRare &bLeggings" with lore "&8| &eWon from a Rare Lootbox" to player's inventory
+				send "{@prefix} You have won Rare Leggings from a Rare Lootbox"
+			if {_rng2} is 3:
+				add 1 diamond boots of protection 2 and unbreaking 2 named "&b&lRare &bBoots" with lore "&8| &eWon from a Rare Lootbox" to player's inventory
+				send "{@prefix} You have won Rare Boots from a Rare Lootbox"
+		if {_rng} is 12:
+			set {_rng2} to a random integer between 0 and 2
+			if {_rng2} is 0:
+				add 1 diamond pickaxe of efficiency 2 and fortune 1 and unbreaking 2 named "&b&lRare &bPickaxe" with lore "&8| &eWon from a Rare Lootbox" to player's inventory
+				send "{@prefix} You have won a Rare Pickaxe from a Rare Lootbox"
+			if {_rng2} is 1:
+				add 1 diamond axe of efficiency 2 and fortune 1 and unbreaking 2 named "&b&lRare &bAxe" with lore "&8| &eWon from a Rare Lootbox" to player's inventory
+				send "{@prefix} You have won a Rare Axe from a Rare Lootbox"
+			if {_rng2} is 2:
+				add 1 diamond shovel of efficiency 2 and fortune 1 and unbreaking 2 named "&b&lRare &bShovel" with lore "&8| &eWon from a Rare Lootbox" to player's inventory
+				send "{@prefix} You have won a Rare Shovel from a Rare Lootbox"
+		if {_rng} is 13:
+			set {_rng2} to a random integer between 0 and 1
+			if {_rng2} is 0:
+				add 1 diamond sword of sharpness 2 and unbreaking 2 named "&b&lRare &bSword" with lore "&8| &eWon from a Rare Lootbox" to player's inventory
+				send "{@prefix} You have won a Rare Sword from a Rare Lootbox"
+			if {_rng2} is 1:
+				add 1 diamond axe of sharpness 2 and unbreaking 2 named "&b&lRare &bAxe" with lore "&8| &eWon from a Rare Lootbox" to player's inventory
+				send "{@prefix} You have won a Rare Axe from a Rare Lootbox"

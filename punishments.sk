@@ -1,0 +1,80 @@
+#punishments.sk
+
+options:
+	accessID: 605330853303812098, 186955492352851969, 873230952820781096, 321156696980455425
+
+discord command *punishments:
+	trigger:
+		if "{@accessID}" does not contain "%discord id of event-user%":
+			make embed:
+				set color of embed to red
+				set title of embed to "Error"
+				set description of embed to "You do not have the correct permissions to execute this command.%nl%%nl%If you think this is an error, contact an admin."
+			send last made embed to event-channel
+			stop
+		else:
+			if {looped::%discord id of event-user%} is set:
+				reply with "**You already have a punishments embed somewhere. To terminate this embed, use *pend**"
+				stop
+			if {punishments::*} is not set:
+				reply with "**There is no punish data!**"
+				stop
+			else:
+				make embed:
+					set color of embed to green
+					set title of embed to "Punishments"
+					set description of embed to "PaperBlok Punishments"
+				loop {punishments::*}:
+					add 1 to {_looped}
+					add 1 to {looped::%discord id of event-user%} if {looped::%discord id of event-user%} is not set
+					if {looped::%discord id of event-message%} = {_looped}:
+						add inline field named "Punisher:" with value "%{punisher::%loop-value%}%" to fields of embed
+						add inline field named "Punished:" with value "%{punished::%loop-value%}%" to fields of embed
+						add inline field named "Reason/Time:" with value "%{otherArg::%loop-value%}%" to fields of embed
+						add 1 to {looped::%discord id of event-user%}
+						stop loop
+				send last made embed to event-channel and store it in {message::%discord id of event-user%}
+				wait 1 second
+				set {owner::%discord id of {message::%discord id of event-user%}%} to discord id of event-user
+				stop
+
+discord command *pend:
+	trigger:
+		delete {looped::%discord id of event-user%}
+		delete {message::%discord id of event-user%}
+		reply with "Sorted."
+
+on reaction add:
+	if {owner::%discord id of event-message%} is set:
+		if {owner::%discord id of event-message%} is discord id of event-user:
+			make embed:
+					set color of embed to green
+					set title of embed to "Punishments"
+					set description of embed to "PaperBlok Punishments"
+				loop {punishments::*}:
+					add 1 to {_looped}
+					add 1 to {looped::%discord id of event-user%} if {looped::%discord id of event-user%} is not set
+					if {looped::%discord id of event-message%} = {_looped}:
+						add inline field named "Punisher:" with value "%{punisher::%loop-value%}%" to fields of embed
+						add inline field named "Punished:" with value "%{punished::%loop-value%}%" to fields of embed
+						add inline field named "Reason/Time:" with value "%{otherArg::%loop-value%}%" to fields of embed
+						add 1 to {looped::%discord id of event-user%}
+						stop loop
+			edit {message::%discord id of event-user%} to show last made embed
+
+on command:
+	if "%full command%" contains "mute" or "kick" or "jail" or "tempban":
+		if executor has permission "staffchat.use":
+			set {_command} to "%full command%"
+			replace all "/mute " with "" in {_command}
+			replace all "/kick " with "" in {_command}
+			replace all "/jail " with "" in {_command}
+			replace all "/tempban " with "" in {_command}
+			set {_commandArgs::*} to {_command} split at " "
+			set {_var} to now
+			add {_var} to {punishments::*}
+			set {punisher::%{_var}%} to "%executor%"
+			set {punished::%{_var}%} to "%{_commandArgs::1}%"
+			set {otherArg::%{_var}%} to "%{_commandArgs::2}%" if {_commandArgs::3} is not set
+			set {otherArg::%{_var}%} to "Timespan: %{_commandArgs::2}% - Reason: %{_commandArgs::3}%" if {_commandArgs::3} is set
+			set {otherArg::%{_var}%} to "%{_commandArgs::3}%" if "%full command%" contains "jail"

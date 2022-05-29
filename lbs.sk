@@ -1,0 +1,819 @@
+on load:
+  broadcast "&eLuckyBlock &7» &7has been successfully reloaded."
+on load:
+  broadcast "&bVouchers &7» &7has been successfully reloaded."
+
+on join:
+  if {luckyblock.level::%player's uuid%} is not set:
+    set {luckyblock.level::%player's uuid%} to 0
+  if {luckyblock.level.amount::%player's uuid%} is not set:
+    set {luckyblock.level.amount::%player's uuid%} to 0
+  
+
+on break of sponge:
+  if {luckyblock.level::%player's uuid%} = 0:
+    play sound "ENTITY_EXPERIENCE_ORB_PICKUP" with volume 25 and pitch 50 to player at player
+    clear drops
+    add 1 to {luckyblock.level.amount::%player's uuid%}
+    set {_chance} to a random integer between 1 and 27
+    if {_chance} = 1:
+      message "&e&lLucky&6&lBlocks &a- &7You opened a LuckyBlock and got &a$50 &7!"
+      add 50 to player's balance
+      stop
+    if {_chance} = 2:
+      message "&e&lLucky&6&lBlocks &a- &7You opened a LuckyBlock and got &a$100 &7!"
+      add 100 to player's balance
+      stop
+    if {_chance} = 3:
+      message "&e&lLucky&6&lBlocks &a- &7You opened a LuckyBlock and got &a$500 &7!" 
+      add 500 to player's balance
+      stop
+    if {_chance} = 4:
+      message "&e&lLucky&6&lBlocks &a- &7You opened a LuckyBlock and got &a1 Lucky Block &7!" 
+      add 1 of sponge named "&e&lNormal &6Lucky Block" to player's inventory
+      stop
+    if {_chance} = 5:
+      message "&e&lLucky&6&lBlocks &a- &7You opened a LuckyBlock and got &a1 Lucky Block &7!" 
+      drop 1 of sponge named "&e&lNormal &6Lucky Block" above event-block
+      stop
+    if {_chance} = 6:
+      message "&e&lLucky&6&lBlocks &a- &7You opened a LuckyBlock and got &a16 Oak Planks &7!" 
+      drop 16 oak planks above event-block
+      stop
+    if {_chance} = 7:
+      message "&e&lLucky&6&lBlocks &a- &7You opened a LuckyBlock and got &aLeather Chestplate &7!" 
+      drop 1 leather Chestplate above event-block
+      stop
+    if {_chance} = 8:
+      message "&e&lLucky&6&lBlocks &a- &7You opened a LuckyBlock and got &aLeather Leggings &7!" 
+      drop 1 leather Leggings above event-block
+      stop
+    if {_chance} = 9:
+      message "&e&lLucky&6&lBlocks &a- &7You opened a LuckyBlock and got &aLeather Helmet &7!" 
+      drop 1 leather helmet above event-block
+      stop
+    if {_chance} = 10:
+      message "&e&lLucky&6&lBlocks &a- &7You opened a LuckyBlock and got &aLeather Boots &7!" 
+      drop 1 leather boots above event-block
+      stop
+    if {_chance} = 11:
+      message "&e&lLucky&6&lBlocks &a- &7You opened a LuckyBlock and got &aWooden Pickaxe &7!" 
+      drop 1 Wooden Pickaxe above event-block
+      stop
+    if {_chance} = 12:
+      message "&e&lLucky&6&lBlocks &a- &7You opened a LuckyBlock and got &aWooden Axe &7!" 
+      drop 1 Wooden axe above event-block
+      stop
+    if {_chance} = 13:
+      message "&e&lLucky&6&lBlocks &a- &7You opened a LuckyBlock and got &aWooden Shovel &7!" 
+      drop 1 Wooden shovel above event-block
+      stop
+    if {_chance} = 14:
+      message "&e&lLucky&6&lBlocks &a- &7You opened a LuckyBlock and got &aWooden Sword &7!" 
+      drop 1 Wooden sword above event-block
+      stop
+    if {_chance} = 15:
+      message "&e&lLucky&6&lBlocks &a- &7You opened a LuckyBlock and got &aUpwards &7!" 
+      push player up at speed 5
+      stop
+    if {_chance} = 16:
+      message "&e&lLucky&6&lBlocks &a- &7You opened a LuckyBlock and got &aFloor Is Lava &7!" 
+      set block at event-player to lava
+      stop
+    if {_chance} = 17:
+      message "&e&lLucky&6&lBlocks &a- &7You opened a LuckyBlock and got &a1 XP &7!" 
+      execute console command "/xp give %event-player% 1"
+      stop
+    if {_chance} = 18:
+      message "&e&lLucky&6&lBlocks &a- &7You opened a LuckyBlock and got &a16 Dirt &7!" 
+      drop 16 dirt above event-block
+      stop
+    if {_chance} = 19:
+      message "&e&lLucky&6&lBlocks &a- &7You opened a LuckyBlock and got &a25 Creepers &7!" 
+      summon 25 creeper at event-block
+      stop
+    if {_chance} = 20:
+      message "&e&lLucky&6&lBlocks &a- &7You opened a LuckyBlock and got &a10 Creepers &7!" 
+      summon 10 creeper at event-block
+      stop
+    if {_chance} = 21:
+      message "&e&lLucky&6&lBlocks &a- &7You opened a LuckyBlock and got &a5 Creepers &7!" 
+      summon 5 creeper at event-block
+      stop
+    if {_chance} = 22:
+      message "&e&lLucky&6&lBlocks &a- &7You opened a LuckyBlock and got &a5 Creepers &7!" 
+      summon 5 creeper at event-block
+      stop
+    if {_chance} = 23:
+      message "&e&lLucky&6&lBlocks &a- &7You opened a LuckyBlock and got &a5 Creepers &7!" 
+      summon 5 creeper at event-block
+      stop
+    if {_chance} = 24:
+      message "&e&lLucky&6&lBlocks &a- &7You opened a LuckyBlock and got &a1 End Crystal &7!" 
+      summon 1 end crystal at player
+      stop
+    if {_chance} = 25:
+      message "&e&lLucky&6&lBlocks &a- &7You opened a LuckyBlock and got &a1 Primed TNT &7!" 
+      summon 1 tnt above event-block
+      stop
+    if {_chance} = 26:
+      message "&e&lLucky&6&lBlocks &a- &7You opened a LuckyBlock and got &a5 Primed TNT &7!" 
+      summon 5 tnt above event-block
+      stop
+    if {_chance} = 27:
+      message "&e&lLucky&6&lBlocks &a- &7You opened a LuckyBlock and got &a25 Primed TNT &7!" 
+      summon 25 tnt above event-block
+      stop
+  if {luckyblock.level::%player's uuid%} = 1:
+    play sound "ENTITY_EXPERIENCE_ORB_PICKUP" with volume 25 and pitch 50 to player at player
+    clear drops
+    add 1 to {luckyblock.level.amount::%player's uuid%}
+    set {_chance} to a random integer between 1 and 27
+    if {_chance} = 1:
+      message "&e&lLucky&6&lBlocks &a- &7You opened a LuckyBlock and got &a$100 &7!"
+      add 100 to player's balance
+      stop
+    if {_chance} = 2:
+      message "&e&lLucky&6&lBlocks &a- &7You opened a LuckyBlock and got &a$500 &7!"
+      add 500 to player's balance
+      stop
+    if {_chance} = 3:
+      message "&e&lLucky&6&lBlocks &a- &7You opened a LuckyBlock and got &a$750 &7!" 
+      add 750 to player's balance
+      stop
+    if {_chance} = 4:
+      message "&e&lLucky&6&lBlocks &a- &7You opened a LuckyBlock and got &a2 Lucky Blocks &7!" 
+      drop 2 of sponge named "&e&lNormal &6Lucky Block" above event-block
+      stop
+    if {_chance} = 5:
+      message "&e&lLucky&6&lBlocks &a- &7You opened a LuckyBlock and got &a3 Lucky Blocks &7!" 
+      drop 3 of sponge named "&e&lNormal &6Lucky Block" above event-block
+      stop
+    if {_chance} = 6:
+      message "&e&lLucky&6&lBlocks &a- &7You opened a LuckyBlock and got &a32 Oak Planks &7!" 
+      drop 32 oak planks above event-block
+      stop
+    if {_chance} = 7:
+      message "&e&lLucky&6&lBlocks &a- &7You opened a LuckyBlock and got &aChainmail Chestplate &7!" 
+      drop 1 chainmail Chestplate above event-block
+      stop
+    if {_chance} = 8:
+      message "&e&lLucky&6&lBlocks &a- &7You opened a LuckyBlock and got &aChainmail Leggings &7!" 
+      drop 1 Chainmail Leggings above event-block
+      stop
+    if {_chance} = 9:
+      message "&e&lLucky&6&lBlocks &a- &7You opened a LuckyBlock and got &aChainmail Helmet &7!" 
+      drop 1 Chainmail helmet above event-block
+      stop
+    if {_chance} = 10:
+      message "&e&lLucky&6&lBlocks &a- &7You opened a LuckyBlock and got &aChainmail Boots &7!" 
+      drop 1 Chainmail boots above event-block
+      stop
+    if {_chance} = 11:
+      message "&e&lLucky&6&lBlocks &a- &7You opened a LuckyBlock and got &aStone Pickaxe &7!" 
+      drop 1 Stone Pickaxe above event-block
+      stop
+    if {_chance} = 12:
+      message "&e&lLucky&6&lBlocks &a- &7You opened a LuckyBlock and got &aStone Axe &7!" 
+      drop 1 Stone axe above event-block
+      stop
+    if {_chance} = 13:
+      message "&e&lLucky&6&lBlocks &a- &7You opened a LuckyBlock and got &aStone Shovel &7!" 
+      drop 1 Stone shovel above event-block
+      stop
+    if {_chance} = 14:
+      message "&e&lLucky&6&lBlocks &a- &7You opened a LuckyBlock and got &aStone Sword &7!" 
+      drop 1 Stone sword above event-block
+      stop
+    if {_chance} = 15:
+      message "&e&lLucky&6&lBlocks &a- &7You opened a LuckyBlock and got &aUpwards &7!" 
+      push player up at speed 5
+      stop
+    if {_chance} = 16:
+      message "&e&lLucky&6&lBlocks &a- &7You opened a LuckyBlock and got &aFloor Is Lava &7!" 
+      set block at event-player to lava
+      stop
+    if {_chance} = 17:
+      message "&e&lLucky&6&lBlocks &a- &7You opened a LuckyBlock and got &a5 XP &7!" 
+      execute console command "/xp give %event-player% 5"
+      stop
+    if {_chance} = 18:
+      message "&e&lLucky&6&lBlocks &a- &7You opened a LuckyBlock and got &a16 Dirt &7!" 
+      drop 16 dirt above event-block
+      stop
+    if {_chance} = 19:
+      message "&e&lLucky&6&lBlocks &a- &7You opened a LuckyBlock and got &a25 Creepers &7!" 
+      summon 25 creeper at event-block
+      stop
+    if {_chance} = 20:
+      message "&e&lLucky&6&lBlocks &a- &7You opened a LuckyBlock and got &a10 Creepers &7!" 
+      summon 10 creeper at event-block
+      stop
+    if {_chance} = 21:
+      message "&e&lLucky&6&lBlocks &a- &7You opened a LuckyBlock and got &a5 Creepers &7!" 
+      summon 5 creeper at event-block
+      stop
+    if {_chance} = 22:
+      message "&e&lLucky&6&lBlocks &a- &7You opened a LuckyBlock and got &a5 Creepers &7!" 
+      summon 5 creeper at event-block
+      stop
+    if {_chance} = 23:
+      message "&e&lLucky&6&lBlocks &a- &7You opened a LuckyBlock and got &a5 Creepers &7!" 
+      summon 5 creeper at event-block
+      stop
+    if {_chance} = 24:
+      message "&e&lLucky&6&lBlocks &a- &7You opened a LuckyBlock and got &a1 End Crystal &7!" 
+      summon 1 end crystal at player
+      stop
+    if {_chance} = 25:
+      message "&e&lLucky&6&lBlocks &a- &7You opened a LuckyBlock and got &a1 Primed TNT &7!" 
+      summon 1 tnt above event-block
+      stop
+    if {_chance} = 26:
+      message "&e&lLucky&6&lBlocks &a- &7You opened a LuckyBlock and got &a5 Primed TNT &7!" 
+      summon 5 tnt above event-block
+      stop
+    if {_chance} = 27:
+      message "&e&lLucky&6&lBlocks &a- &7You opened a LuckyBlock and got &a25 Primed TNT &7!" 
+      summon 25 tnt above event-block
+      stop
+  if {luckyblock.level::%player's uuid%} = 2:
+    play sound "ENTITY_EXPERIENCE_ORB_PICKUP" with volume 25 and pitch 50 to player at player
+    clear drops
+    add 1 to {luckyblock.level.amount::%player's uuid%}
+    set {_chance} to a random integer between 1 and 26
+    if {_chance} = 1:
+      message "&e&lLucky&6&lBlocks &a- &7You opened a LuckyBlock and got &a$500 &7!"
+      add 500 to player's balance
+      stop
+    if {_chance} = 2:
+      message "&e&lLucky&6&lBlocks &a- &7You opened a LuckyBlock and got &a$750 &7!"
+      add 750 to player's balance
+      stop
+    if {_chance} = 3:
+      message "&e&lLucky&6&lBlocks &a- &7You opened a LuckyBlock and got &a$1000 &7!" 
+      add 1000 to player's balance
+      stop
+    if {_chance} = 4:
+      message "&e&lLucky&6&lBlocks &a- &7You opened a LuckyBlock and got &a4 Lucky Blocks &7!" 
+      drop 4 of sponge named "&e&lNormal &6Lucky Block" above event-block
+      stop
+    if {_chance} = 5:
+      message "&e&lLucky&6&lBlocks &a- &7You opened a LuckyBlock and got &a5 Lucky Blocks &7!" 
+      drop 5 of sponge named "&e&lNormal &6Lucky Block" above event-block
+      stop
+    if {_chance} = 6:
+      message "&e&lLucky&6&lBlocks &a- &7You opened a LuckyBlock and got &a1 Iron Block &7!" 
+      drop 1 Iron Block above event-block
+      stop
+    if {_chance} = 7:
+      message "&e&lLucky&6&lBlocks &a- &7You opened a LuckyBlock and got &aIron Chestplate &7!" 
+      drop 1 Iron Chestplate above event-block
+      stop
+    if {_chance} = 8:
+      message "&e&lLucky&6&lBlocks &a- &7You opened a LuckyBlock and got &aIron Leggings &7!" 
+      drop 1 Iron Leggings above event-block
+      stop
+    if {_chance} = 9:
+      message "&e&lLucky&6&lBlocks &a- &7You opened a LuckyBlock and got &aIron Helmet &7!" 
+      drop 1 Iron helmet above event-block
+      stop
+    if {_chance} = 10:
+      message "&e&lLucky&6&lBlocks &a- &7You opened a LuckyBlock and got &aIron Boots &7!" 
+      drop 1 Iron boots above event-block
+      stop
+    if {_chance} = 11:
+      message "&e&lLucky&6&lBlocks &a- &7You opened a LuckyBlock and got &aUpwards &7!" 
+      push player up at speed 5
+      stop
+    if {_chance} = 12:
+      message "&e&lLucky&6&lBlocks &a- &7You opened a LuckyBlock and got &aFloor Is Lava &7!" 
+      set block at event-player to lava
+      stop
+    if {_chance} = 13:
+      message "&e&lLucky&6&lBlocks &a- &7You opened a LuckyBlock and got &a15 XP &7!" 
+      execute console command "/xp give %event-player% 15"
+      stop
+    if {_chance} = 14:
+      message "&e&lLucky&6&lBlocks &a- &7You opened a LuckyBlock and got &a16 Dirt &7!" 
+      drop 16 dirt above event-block
+      stop
+    if {_chance} = 15:
+      message "&e&lLucky&6&lBlocks &a- &7You opened a LuckyBlock and got &a25 Creepers &7!" 
+      summon 25 creeper at event-block
+      stop
+    if {_chance} = 16:
+      message "&e&lLucky&6&lBlocks &a- &7You opened a LuckyBlock and got &a10 Creepers &7!" 
+      summon 10 creeper at event-block
+      stop
+    if {_chance} = 17:
+      message "&e&lLucky&6&lBlocks &a- &7You opened a LuckyBlock and got &a5 Creepers &7!" 
+      summon 5 creeper at event-block
+      stop
+    if {_chance} = 18:
+      message "&e&lLucky&6&lBlocks &a- &7You opened a LuckyBlock and got &a5 Creepers &7!" 
+      summon 5 creeper at event-block
+      stop
+    if {_chance} = 19:
+      message "&e&lLucky&6&lBlocks &a- &7You opened a LuckyBlock and got &a5 Creepers &7!" 
+      summon 5 creeper at event-block
+      stop
+    if {_chance} = 20:
+      message "&e&lLucky&6&lBlocks &a- &7You opened a LuckyBlock and got &a1 End Crystal &7!" 
+      summon 1 end crystal at player
+      stop
+    if {_chance} = 21:
+      message "&e&lLucky&6&lBlocks &a- &7You opened a LuckyBlock and got &a1 Primed TNT &7!" 
+      summon 1 tnt above event-block
+      stop
+    if {_chance} = 22:
+      message "&e&lLucky&6&lBlocks &a- &7You opened a LuckyBlock and got &a5 Primed TNT &7!" 
+      summon 5 tnt above event-block
+      stop
+    if {_chance} = 23:
+      message "&e&lLucky&6&lBlocks &a- &7You opened a LuckyBlock and got &a25 Primed TNT &7!" 
+      summon 25 tnt above event-block
+      stop
+    if {_chance} = 24:
+      message "&e&lLucky&6&lBlocks &a- &7You opened a LuckyBlock and got &a1 Iron Ingot &7!" 
+      drop 1 Iron Ingot above event-block
+      stop
+    if {_chance} = 25:
+      message "&e&lLucky&6&lBlocks &a- &7You opened a LuckyBlock and got &a16 Prismarine &7!" 
+      drop 16 Prismarine above event-block
+      stop
+    if {_chance} = 26:
+      message "&e&lLucky&6&lBlocks &a- &7You opened a LuckyBlock and got &a1 Common Crate Key &7!" 
+      drop 1 tripwire hook named "&7Common Crate Key" above event-block
+      stop
+  if {luckyblock.level::%player's uuid%} = 3:
+    play sound "ENTITY_EXPERIENCE_ORB_PICKUP" with volume 25 and pitch 50 to player at player
+    clear drops
+    add 1 to {luckyblock.level.amount::%player's uuid%}
+    set {_chance} to a random integer between 1 and 26
+    if {_chance} = 1:
+      message "&e&lLucky&6&lBlocks &a- &7You opened a LuckyBlock and got &a$1000 &7!"
+      add 1000 to player's balance
+      stop
+    if {_chance} = 2:
+      message "&e&lLucky&6&lBlocks &a- &7You opened a LuckyBlock and got &a$2500 &7!"
+      add 2500 to player's balance
+      stop
+    if {_chance} = 3:
+      message "&e&lLucky&6&lBlocks &a- &7You opened a LuckyBlock and got &a$5000 &7!" 
+      add 5000 to player's balance
+      stop
+    if {_chance} = 4:
+      message "&e&lLucky&6&lBlocks &a- &7You opened a LuckyBlock and got &a10 Lucky Blocks &7!" 
+      drop 10 of sponge named "&e&lNormal &6Lucky Block" above event-block
+      stop
+    if {_chance} = 5:
+      message "&e&lLucky&6&lBlocks &a- &7You opened a LuckyBlock and got &a15 Lucky Blocks &7!" 
+      drop 15 of sponge named "&e&lNormal &6Lucky Block" above event-block
+      stop
+    if {_chance} = 6:
+      message "&e&lLucky&6&lBlocks &a- &7You opened a LuckyBlock and got &a16 Iron Blocks &7!" 
+      drop 16 Diamond Block above event-block
+      stop
+    if {_chance} = 7:
+      message "&e&lLucky&6&lBlocks &a- &7You opened a LuckyBlock and got &aDiamond Chestplate &7!" 
+      drop 1 Diamond Chestplate above event-block
+      stop
+    if {_chance} = 8:
+      message "&e&lLucky&6&lBlocks &a- &7You opened a LuckyBlock and got &aDiamond Leggings &7!" 
+      drop 1 Diamond Leggings above event-block
+      stop
+    if {_chance} = 9:
+      message "&e&lLucky&6&lBlocks &a- &7You opened a LuckyBlock and got &aDiamond Helmet &7!" 
+      drop 1 Diamond helmet above event-block
+      stop
+    if {_chance} = 10:
+      message "&e&lLucky&6&lBlocks &a- &7You opened a LuckyBlock and got &aDiamond Boots &7!" 
+      drop 1 Diamond boots above event-block
+      stop
+    if {_chance} = 11:
+      message "&e&lLucky&6&lBlocks &a- &7You opened a LuckyBlock and got &aUpwards &7!" 
+      push player up at speed 5
+      stop
+    if {_chance} = 12:
+      message "&e&lLucky&6&lBlocks &a- &7You opened a LuckyBlock and got &aFloor Is Lava &7!" 
+      set block at event-player to lava
+      stop
+    if {_chance} = 13:
+      message "&e&lLucky&6&lBlocks &a- &7You opened a LuckyBlock and got &a5 XP Levels &7!" 
+      execute console command "/xp give %event-player% 5L"
+      stop
+    if {_chance} = 14:
+      message "&e&lLucky&6&lBlocks &a- &7You opened a LuckyBlock and got &a16 Dirt &7!" 
+      drop 16 dirt above event-block
+      stop
+    if {_chance} = 15:
+      message "&e&lLucky&6&lBlocks &a- &7You opened a LuckyBlock and got &a25 Creepers &7!" 
+      summon 25 creeper at event-block
+      stop
+    if {_chance} = 16:
+      message "&e&lLucky&6&lBlocks &a- &7You opened a LuckyBlock and got &a10 Creepers &7!" 
+      summon 10 creeper at event-block
+      stop
+    if {_chance} = 17:
+      message "&e&lLucky&6&lBlocks &a- &7You opened a LuckyBlock and got &a5 Creepers &7!" 
+      summon 5 creeper at event-block
+      stop
+    if {_chance} = 18:
+      message "&e&lLucky&6&lBlocks &a- &7You opened a LuckyBlock and got &a5 Creepers &7!" 
+      summon 5 creeper at event-block
+      stop
+    if {_chance} = 19:
+      message "&e&lLucky&6&lBlocks &a- &7You opened a LuckyBlock and got &a5 Creepers &7!" 
+      summon 5 creeper at event-block
+      stop
+    if {_chance} = 20:
+      message "&e&lLucky&6&lBlocks &a- &7You opened a LuckyBlock and got &a1 End Crystal &7!" 
+      summon 1 end crystal at player
+      stop
+    if {_chance} = 21:
+      message "&e&lLucky&6&lBlocks &a- &7You opened a LuckyBlock and got &a1 Primed TNT &7!" 
+      summon 1 tnt above event-block
+      stop
+    if {_chance} = 22:
+      message "&e&lLucky&6&lBlocks &a- &7You opened a LuckyBlock and got &a5 Primed TNT &7!" 
+      summon 5 tnt above event-block
+      stop
+    if {_chance} = 23:
+      message "&e&lLucky&6&lBlocks &a- &7You opened a LuckyBlock and got &a25 Primed TNT &7!" 
+      summon 25 tnt above event-block
+      stop
+    if {_chance} = 24:
+      message "&e&lLucky&6&lBlocks &a- &7You opened a LuckyBlock and got &a1 Diamond &7!" 
+      drop 1 Iron Ingot above event-block
+      stop
+    if {_chance} = 25:
+      message "&e&lLucky&6&lBlocks &a- &7You opened a LuckyBlock and got &a16 Dark Prismarine &7!" 
+      drop 16 Dark Prismarine above event-block
+      stop
+    if {_chance} = 26:
+      message "&e&lLucky&6&lBlocks &a- &7You opened a LuckyBlock and got &a1 Common Crate Keys &7!" 
+      drop 1 tripwire hook named "&7Common Crate Key" above event-block
+      stop
+  if {luckyblock.level::%player's uuid%} = 4:
+    play sound "ENTITY_EXPERIENCE_ORB_PICKUP" with volume 25 and pitch 50 to player at player
+    clear drops
+    add 1 to {luckyblock.level.amount::%player's uuid%}
+    set {_chance} to a random integer between 1 and 27
+    if {_chance} = 1:
+      message "&e&lLucky&6&lBlocks &a- &7You opened a LuckyBlock and got &a$5000 &7!"
+      add 5000 to player's balance
+      stop
+    if {_chance} = 2:
+      message "&e&lLucky&6&lBlocks &a- &7You opened a LuckyBlock and got &a$7500 &7!"
+      add 7500 to player's balance
+      stop
+    if {_chance} = 3:
+      message "&e&lLucky&6&lBlocks &a- &7You opened a LuckyBlock and got &a$10000 &7!" 
+      add 10000 to player's balance
+      stop
+    if {_chance} = 4:
+      message "&e&lLucky&6&lBlocks &a- &7You opened a LuckyBlock and got &a20 Lucky Blocks &7!" 
+      drop 20 of sponge named "&e&lNormal &6Lucky Block" above event-block
+      stop
+    if {_chance} = 5:
+      message "&e&lLucky&6&lBlocks &a- &7You opened a LuckyBlock and got &a25 Lucky Blocks &7!" 
+      drop 25 of sponge named "&e&lNormal &6Lucky Block" above event-block
+      stop
+    if {_chance} = 6:
+      message "&e&lLucky&6&lBlocks &a- &7You opened a LuckyBlock and got &a5 Diamond Blocks &7!" 
+      drop 15 Diamond Block above event-block
+      stop
+    if {_chance} = 7:
+      message "&e&lLucky&6&lBlocks &a- &7You opened a LuckyBlock and got &aDiamond Chestplate &7!" 
+      drop 1 Diamond Chestplate of protection 2 above event-block
+      stop
+    if {_chance} = 8:
+      message "&e&lLucky&6&lBlocks &a- &7You opened a LuckyBlock and got &aDiamond Leggings &7!" 
+      drop 1 Diamond Leggings of protection 2 above event-block
+      stop
+    if {_chance} = 9:
+      message "&e&lLucky&6&lBlocks &a- &7You opened a LuckyBlock and got &aDiamond Helmet &7!" 
+      drop 1 Diamond helmet of protection 2 above event-block
+      stop
+    if {_chance} = 10:
+      message "&e&lLucky&6&lBlocks &a- &7You opened a LuckyBlock and got &aDiamond Boots &7!" 
+      drop 1 Diamond boots of protection 2 above event-block
+      stop
+    if {_chance} = 11:
+      message "&e&lLucky&6&lBlocks &a- &7You opened a LuckyBlock and got &aUpwards &7!" 
+      push player up at speed 5
+      stop
+    if {_chance} = 12:
+      message "&e&lLucky&6&lBlocks &a- &7You opened a LuckyBlock and got &aFloor Is Lava &7!" 
+      set block at event-player to lava
+      stop
+    if {_chance} = 13:
+      message "&e&lLucky&6&lBlocks &a- &7You opened a LuckyBlock and got &a10 XP Levels &7!" 
+      execute console command "/xp give %event-player% 10L"
+      stop
+    if {_chance} = 14:
+      message "&e&lLucky&6&lBlocks &a- &7You opened a LuckyBlock and got &a32 White Wool &7!" 
+      drop 32 white wool above event-block
+      stop
+    if {_chance} = 15:
+      message "&e&lLucky&6&lBlocks &a- &7You opened a LuckyBlock and got &a25 Creepers &7!" 
+      summon 25 creeper at event-block
+      stop
+    if {_chance} = 16:
+      message "&e&lLucky&6&lBlocks &a- &7You opened a LuckyBlock and got &a10 Creepers &7!" 
+      summon 10 creeper at event-block
+      stop
+    if {_chance} = 17:
+      message "&e&lLucky&6&lBlocks &a- &7You opened a LuckyBlock and got &a5 Creepers &7!" 
+      summon 5 creeper at event-block
+      stop
+    if {_chance} = 18:
+      message "&e&lLucky&6&lBlocks &a- &7You opened a LuckyBlock and got &a5 Creepers &7!" 
+      summon 5 creeper at event-block
+      stop
+    if {_chance} = 19:
+      message "&e&lLucky&6&lBlocks &a- &7You opened a LuckyBlock and got &a5 Creepers &7!" 
+      summon 5 creeper at event-block
+      stop
+    if {_chance} = 20:
+      message "&e&lLucky&6&lBlocks &a- &7You opened a LuckyBlock and got &a1 End Crystal &7!" 
+      summon 1 end crystal at player
+      stop
+    if {_chance} = 21:
+      message "&e&lLucky&6&lBlocks &a- &7You opened a LuckyBlock and got &a1 Primed TNT &7!" 
+      summon 1 tnt above event-block
+      stop
+    if {_chance} = 22:
+      message "&e&lLucky&6&lBlocks &a- &7You opened a LuckyBlock and got &a5 Primed TNT &7!" 
+      summon 5 tnt above event-block
+      stop
+    if {_chance} = 23:
+      message "&e&lLucky&6&lBlocks &a- &7You opened a LuckyBlock and got &a25 Primed TNT &7!" 
+      summon 25 tnt above event-block
+      stop
+    if {_chance} = 24:
+      message "&e&lLucky&6&lBlocks &a- &7You opened a LuckyBlock and got &a1 Netherite Scrap &7!" 
+      drop 1 Netherite Scrap above event-block
+      stop
+    if {_chance} = 25:
+      message "&e&lLucky&6&lBlocks &a- &7You opened a LuckyBlock and got &a1 Epic Crate Key &7!" 
+      drop 1 tripwire hook named "&5Epic Crate Key" above event-block
+      stop
+    if {_chance} = 26:
+      message "&e&lLucky&6&lBlocks &a- &7You opened a LuckyBlock and got &a1 Common Crate Keys &7!" 
+      drop 1 tripwire hook named "&7Common Crate Key" above event-block
+      stop
+    if {_chance} = 27:
+      message "&e&lLucky&6&lBlocks &a- &7You opened a LuckyBlock and got &a1 Gold Ingot &7!" 
+      drop 5 Gold Ingot above event-block
+      stop
+    if {_chance} = 27:
+      message "&e&lLucky&6&lBlocks &a- &7You opened a LuckyBlock and got &a1 Golden Apply &7!" 
+      drop 1 Golden Apple above event-block
+      stop
+  if {luckyblock.level::%player's uuid%} = "&c&lMAX":
+    play sound "ENTITY_EXPERIENCE_ORB_PICKUP" with volume 25 and pitch 50 to player at player
+    clear drops
+    add 1 to {luckyblock.level.amount::%player's uuid%}
+    set {_chance} to a random integer between 1 and 35
+    if {_chance} = 1:
+      message "&e&lLucky&6&lBlocks &a- &7You opened a LuckyBlock and got &a$10000 &7!"
+      add 10000 to player's balance
+      stop
+    if {_chance} = 2:
+      message "&e&lLucky&6&lBlocks &a- &7You opened a LuckyBlock and got &a$12500 &7!"
+      add 12500 to player's balance
+      stop
+    if {_chance} = 3:
+      message "&e&lLucky&6&lBlocks &a- &7You opened a LuckyBlock and got &a$50000 &7!" 
+      add 50000 to player's balance
+      stop
+    if {_chance} = 4:
+      message "&e&lLucky&6&lBlocks &a- &7You opened a LuckyBlock and got &a25 Lucky Blocks &7!" 
+      drop 20 of sponge named "&e&lNormal &6Lucky Block" above event-block
+      stop
+    if {_chance} = 5:
+      message "&e&lLucky&6&lBlocks &a- &7You opened a LuckyBlock and got &a32 Lucky Blocks &7!" 
+      drop 25 of sponge named "&e&lNormal &6Lucky Block" above event-block
+      stop
+    if {_chance} = 6:
+      message "&e&lLucky&6&lBlocks &a- &7You opened a LuckyBlock and got &a16 Diamond Blocks &7!" 
+      drop 15 Diamond Block above event-block
+      stop
+    if {_chance} = 7:
+      message "&e&lLucky&6&lBlocks &a- &7You opened a LuckyBlock and got &aDiamond Chestplate &7!" 
+      drop 1 Diamond Chestplate of protection 4 above event-block
+      stop
+    if {_chance} = 8:
+      message "&e&lLucky&6&lBlocks &a- &7You opened a LuckyBlock and got &aDiamond Leggings &7!" 
+      drop 1 Diamond Leggings of protection 4 above event-block
+      stop
+    if {_chance} = 9:
+      message "&e&lLucky&6&lBlocks &a- &7You opened a LuckyBlock and got &aDiamond Helmet &7!" 
+      drop 1 Diamond helmet of protection 4 above event-block
+      stop
+    if {_chance} = 10:
+      message "&e&lLucky&6&lBlocks &a- &7You opened a LuckyBlock and got &aDiamond Boots &7!" 
+      drop 1 Diamond boots of protection 4 above event-block
+      stop
+    if {_chance} = 11:
+      message "&e&lLucky&6&lBlocks &a- &7You opened a LuckyBlock and got &aUpwards &7!" 
+      push player up at speed 5
+      stop
+    if {_chance} = 12:
+      message "&e&lLucky&6&lBlocks &a- &7You opened a LuckyBlock and got &aFloor Is Lava &7!" 
+      set block at event-player to lava
+      stop
+    if {_chance} = 13:
+      message "&e&lLucky&6&lBlocks &a- &7You opened a LuckyBlock and got &a10 XP Levels &7!" 
+      execute console command "/xp give %event-player% 10L"
+      stop
+    if {_chance} = 14:
+      message "&e&lLucky&6&lBlocks &a- &7You opened a LuckyBlock and got &a32 White Wool &7!" 
+      drop 32 white wool above event-block
+      stop
+    if {_chance} = 15:
+      message "&e&lLucky&6&lBlocks &a- &7You opened a LuckyBlock and got &a25 Creepers &7!" 
+      summon 25 creeper at event-block
+      stop
+    if {_chance} = 16:
+      message "&e&lLucky&6&lBlocks &a- &7You opened a LuckyBlock and got &a10 Creepers &7!" 
+      summon 10 creeper at event-block
+      stop
+    if {_chance} = 17:
+      message "&e&lLucky&6&lBlocks &a- &7You opened a LuckyBlock and got &a5 Creepers &7!" 
+      summon 5 creeper at event-block
+      stop
+    if {_chance} = 18:
+      message "&e&lLucky&6&lBlocks &a- &7You opened a LuckyBlock and got &a5 Creepers &7!" 
+      summon 5 creeper at event-block
+      stop
+    if {_chance} = 19:
+      message "&e&lLucky&6&lBlocks &a- &7You opened a LuckyBlock and got &a5 Creepers &7!" 
+      summon 5 creeper at event-block
+      stop
+    if {_chance} = 20:
+      message "&e&lLucky&6&lBlocks &a- &7You opened a LuckyBlock and got &a1 End Crystal &7!" 
+      summon 1 end crystal at player
+      stop
+    if {_chance} = 21:
+      message "&e&lLucky&6&lBlocks &a- &7You opened a LuckyBlock and got &a1 Primed TNT &7!" 
+      summon 1 tnt above event-block
+      stop
+    if {_chance} = 22:
+      message "&e&lLucky&6&lBlocks &a- &7You opened a LuckyBlock and got &a5 Primed TNT &7!" 
+      summon 5 tnt above event-block
+      stop
+    if {_chance} = 23:
+      message "&e&lLucky&6&lBlocks &a- &7You opened a LuckyBlock and got &a25 Primed TNT &7!" 
+      summon 25 tnt above event-block
+      stop
+    if {_chance} = 24:
+      message "&e&lLucky&6&lBlocks &a- &7You opened a LuckyBlock and got &a1 Netherite Ingot &7!" 
+      drop 1 Netherite Ingot above event-block
+      stop
+    if {_chance} = 25:
+      message "&e&lLucky&6&lBlocks &a- &7You opened a LuckyBlock and got &a1 Epic Crate Key &7!" 
+      drop 1 tripwire hook named "&5Epic Crate Key" above event-block
+      stop
+    if {_chance} = 26:
+      message "&e&lLucky&6&lBlocks &a- &7You opened a LuckyBlock and got &a1 Common Crate Keys &7!" 
+      drop 1 tripwire hook named "&7Common Crate Key" above event-block
+      stop
+    if {_chance} = 27:
+      message "&e&lLucky&6&lBlocks &a- &7You opened a LuckyBlock and got &a1 Gold Ingot &7!" 
+      drop 5 Gold Ingot above event-block
+      stop
+    if {_chance} = 28:
+      message "&e&lLucky&6&lBlocks &a- &7You opened a LuckyBlock and got &a1 Enchanted Golden Apple &7!" 
+      drop 1 enchanted golden apple above event-block
+      stop
+    if {_chance} = 29:
+      message "&6&lLucky&e&lBlock &a- &7You opened a luckyblock and got &aLord's Sword &7!"
+      drop 1 diamond sword of sharpness 3, fire aspect 1, sweeping edge 2, mending and unbreaking 3 named "&e&lLord's Sword" above event-block
+      stop
+    if {_chance} = 30:
+      message "&6&lLucky&e&lBlock &a- &7You opened a luckyblock and got &aLord's Helmet &7!"
+      drop 1 diamond helmet of mending, protection 2, thorns 1 and unbreaking 3 named "&e&lLord's Helmet" above event-block
+      stop
+    if {_chance} = 31:
+      message "&6&lLucky&e&lBlock &a- &7You opened a luckyblock and got &aLord's Chestplate &7!"
+      drop 1 diamond chestplate of mending, protection 2, thorns 1 and unbreaking 3 named "&e&lLord's Chestplate" above event-block
+      stop
+    if {_chance} = 32:
+      message "&6&lLucky&e&lBlock &a- &7You opened a luckyblock and got &aLord's Leggings &7!"
+      drop 1 diamond Leggings of mending, protection 2, thorns 1 and unbreaking 3 named "&e&lLord's Leggings" above event-block
+      stop
+    if {_chance} = 33:
+      message "&6&lLucky&e&lBlock &a- &7You opened a luckyblock and got &aLord's Boots &7!"
+      drop 1 diamond Boots of mending, protection 2, thorns 1 and unbreaking 3 named "&e&lLord's Boots" above event-block
+      stop
+    if {_chance} = 34:
+      message "&6&lLucky&e&lBlock &a- &7You opened a luckyblock and got &a1 Totem Of Undying &7!"
+      drop 1 totem of undying above event-block
+      stop
+    if {_chance} = 35:
+      message "&6&lLucky&e&lBlock &a- &7You opened a luckyblock and got &a1 Money Gen &7!"
+      drop 1 gold block named "&a&lMoney &aGenerator" above event-block
+      stop
+      
+
+
+
+every 1 second in "ul_server":
+  loop all players:
+    if {luckyblock.level::%loop-player's uuid%} = 0:
+      set {luckyblock.levelup.scoreboard::%loop-player's uuid%} to "50"
+    if {luckyblock.level::%loop-player's uuid%} = 1:
+      set {luckyblock.levelup.scoreboard::%loop-player's uuid%} to "200"
+    if {luckyblock.level::%loop-player's uuid%} = 2:
+      set {luckyblock.levelup.scoreboard::%loop-player's uuid%} to "300"
+    if {luckyblock.level::%loop-player's uuid%} = 3:
+      set {luckyblock.levelup.scoreboard::%loop-player's uuid%} to "500"
+    if {luckyblock.level::%loop-player's uuid%} = 4:
+      set {luckyblock.levelup.scoreboard::%loop-player's uuid%} to "750"
+    if {luckyblock.level::%loop-player's uuid%} = 5:
+      set {luckyblock.levelup.scoreboard::%loop-player's uuid%} to "∞"
+      set {luckyblock.level::%loop-player's uuid%} to "&c&lMAX"
+
+  
+
+
+every 0.1 seconds in "ul_server":
+  loop all players:
+    if {luckyblock.level::%loop-player's uuid%} = 0:
+      if {luckyblock.level.amount::%loop-player's uuid%} >= 50:
+        loop 1 time:
+          add 1 to {luckyblock.level::%loop-player's uuid%}
+          set {luckyblock.levelup.scoreboard::%loop-player's uuid%} to "200"
+          message "&c&lLucky&4&lLava &8» &aLeveled Up To &2%{luckyblock.level::%loop-player's uuid%}%" to loop-player
+          set {luckyblock.level.amount::%loop-player's uuid%} to 0
+    if {luckyblock.level::%loop-player's uuid%} = 1:
+      if {luckyblock.level.amount::%loop-player's uuid%} >= 200:
+        loop 1 time:
+          add 1 to {luckyblock.level::%loop-player's uuid%}
+          set {luckyblock.levelup.scoreboard::%loop-player's uuid%} to "300"
+          message "&c&lLucky&4&lLava &8» &aLeveled Up To &2%{luckyblock.level::%loop-player's uuid%}%" to loop-player
+          set {luckyblock.level.amount::%loop-player's uuid%} to 0
+    if {luckyblock.level::%loop-player's uuid%} = 2:
+      if {luckyblock.level.amount::%loop-player's uuid%} >= 300:
+        loop 1 time:
+          add 1 to {luckyblock.level::%loop-player's uuid%}
+          set {luckyblock.levelup.scoreboard::%loop-player's uuid%} to "500"
+          message "&c&lLucky&4&lLava &8» &aLeveled Up To &2%{luckyblock.level::%loop-player's uuid%}%" to loop-player
+          set {luckyblock.level.amount::%loop-player's uuid%} to 0
+    if {luckyblock.level::%loop-player's uuid%} = 3:
+      if {luckyblock.level.amount::%loop-player's uuid%} >= 500:
+        loop 1 time:
+          add 1 to {luckyblock.level::%loop-player's uuid%}
+          set {luckyblock.levelup.scoreboard::%loop-player's uuid%} to "750"
+          message "&aLeveled Up To &2%{luckyblock.level::%loop-player's uuid%}%" to loop-player
+          set {luckyblock.level.amount::%loop-player's uuid%} to 0
+    if {luckyblock.level::%loop-player's uuid%} = 4:
+      if {luckyblock.level.amount::%loop-player's uuid%} >= 750:
+        loop 1 time:
+          add 1 to {luckyblock.level::%loop-player's uuid%}
+          set {luckyblock.levelup.scoreboard::%loop-player's uuid%} to "1000"
+          message "&c&lLucky&4&lLava &8» &aLeveled Up To &2%{luckyblock.level::%loop-player's uuid%}%" to loop-player
+          set {luckyblock.level.amount::%loop-player's uuid%} to 0
+    if {luckyblock.level::%loop-player's uuid%} = 5:
+      if {luckyblock.level.amount::%loop-player's uuid%} >= 1000:
+        loop 1 time:
+          set {luckyblock.levelup.scoreboard::%loop-player's uuid%} to "∞"
+          message "&c&lLucky&4&lLava &8» &aLeveled Up To &2%{luckyblock.level::%loop-player's uuid%}%" to loop-player
+          set {luckyblock.level.amount::%loop-player's uuid%} to 0
+          set {luckyblock.level::%loop-player's uuid%} to "&c&lMAX"
+
+
+
+on join:
+  if {luckyblock.levelup.scoreboard::%player's uuid%} is not set:
+    set {luckyblock.levelup.scoreboard::%player's uuid%} to "50"
+  if {luckyblock.level.amount::%player's uuid%} is not set:
+    set {luckyblock.level.amount::%player's uuid%} to 0
+  if {luckyblock.level::%player's uuid%} is not set:
+    set {luckyblock.level::%player's uuid%} to 0
+
+
+command /resetlevelsall:
+  permission: reset.levelsall
+  trigger:
+    set {luckyblock.level::*} to 0
+    set {luckyblock.level.amount::*} to 0
+    set {luckyblock.levelup.scoreboard::*} to "50"
+    message "&cReset!"
+
+command /resetlevel:
+  permission: reset.level
+  trigger:
+    set {luckyblock.level::%player's uuid%} to 0
+    set {luckyblock.level.amount::%player's uuid%} to 0
+    set {luckyblock.levelup.scoreboard::%player's uuid%} to "50"
+    message "&cReset!"
+
+
+command /setlevel [<number>]:
+  permission: set.level
+  trigger:
+    set {luckyblock.level.amount::%player's uuid%} to arg-1

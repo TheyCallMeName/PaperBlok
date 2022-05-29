@@ -1,0 +1,24 @@
+command /report <player> <text>:
+	usage: &c /report (player) (reason)
+	cooldown: 1 minute
+	cooldown bypass: staffchat.use
+	cooldown message: §cYou are on a cooldown of §e%remaining time% §cleft!
+	trigger:
+		if arg-1 is set:
+			if "%arg-1%" is "%player%":
+				send "&cYour a bozo! you are literally reporting yourself."
+				stop
+			else:
+				send "&7[&6Reports&7] &7Checking players logs, please wait..."
+				wait 5 seconds
+				send "&7[&6Reports&7] &7Your report has been filed and any online staff has received an alert!%nl%&7Date: &6%now% &7(GMT)%nl%&7Reported Players name: (&6%arg-1%&7)%nl%&7Reason: (&6%arg-2%&7)"
+				make embed:
+					set color of embed to red
+					set title of embed to "Report Received"
+					set description of embed to "A report has been received from **__%player%__**."
+					add inline field named "Reported User:" with value "%arg-1%" to fields of embed
+					add inline field named "Reported For:" with value "%arg-2%" to fields of embed
+					set footer of embed to "PaperBlok.minehut.gg"
+				send last made embed to text channel with id "745308764114124910"
+				wait 20 ticks
+				send "&7[&6Reports&7] &6%player% &7reported &6%arg-1%&7 for &6%arg-2%&7!" to all players where [input has permission "staffchat.use"]

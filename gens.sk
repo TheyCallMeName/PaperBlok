@@ -1,0 +1,176 @@
+# Player Commands
+command /gens:
+	trigger:
+		create a gui with virtual chest inventory with 6 rows named "&dGenerators":
+			make gui 11 with white stained glass named "&dWheat Generators" with lore "&d%{wheatGen::%player's uuid%} ? 0% &dGenerators"
+			make gui 13 with purple stained glass named "&dFast Wheat Generators" with lore "&d%{fastWheatGen::%player's uuid%} ? 0% &dGenerators"
+			make gui 15 with tinted glass named "&dSuper Fast Wheat Generators" with lore "&d%{superFastWheatGen::%player's uuid%} ? 0% &dGenerators"
+			make gui 30 with wheat named "&dWheat" with lore "&dYou have %{wheat::%player's uuid%} ? 0% wheat.%nl%%nl%&dClick me to claim your wheat!":
+				loop 37 times:
+					if {wheat::%player's uuid%} is more than 63:
+						if player doesn't have enough space for 64 of wheat:
+							close player's inventory
+							send "&aCollected all wheat that your inventory can hold!"
+							stop loop
+						else:
+							give player 64 wheat
+							remove 64 from {wheat::%player's uuid%}
+					else:
+						set {_num} to {wheat::%player's uuid%}
+						if player doesn't have enough space for {_num} of wheat:
+							close player's inventory
+							send "&aCollected all wheat that your inventory can hold!"
+							stop loop
+						else:
+							give player {_num} of wheat
+							set {_wheat} to 0
+							send "&aCollected all wheat that your inventory can hold!"
+							stop loop
+			make gui 32 with {bread} named "&6Bread" with lore "&6Claim your wheat as bread!":
+				if {wheat::%player's uuid%} is more than 63:
+					set {_int} to {wheat::%player's uuid%}
+					set {_bread} to rounded down ({_int} / 64)
+					set {_wheatUsed} to {_bread} * 64
+					remove {_wheatUsed} from {wheat::%player's uuid%}
+					give player {_bread} of {bread}
+					send "&aClaimed %{_bread}% bread with %{wheat::%player's uuid%}% wheat left over!"
+					stop
+				else:
+					send "&cYou do not have enough wheat!"
+			make gui 39 with {uBread} named "&cUltimate Bread" with lore "&cClaim your wheat as ultimate bread!":
+				if {wheat::%player's uuid%} is more than 1023:
+					set {_int} to {wheat::%player's uuid%}
+					set {_uBread} to rounded down ({_int} / 1024)
+					set {_wheatUsed} to {_uBread} * 1024
+					remove {_wheatUsed} from {wheat::%player's uuid%}
+					give player {_uBread} of {uBread}
+					send "&aClaimed %{_uBread}% ultimate bread with %{wheat::%player's uuid%}% wheat left over!"
+					stop
+				else:
+					send "&cYou do not have enough wheat!"
+			make gui 41 with {donut} named "&9Ultimate Donut" with lore "&9Claim your wheat as ultimate donuts!":
+				if {wheat::%player's uuid%} is more than 8191:
+					set {_int} to {wheat::%player's uuid%}
+					set {_donut} to rounded down ({_int} / 8192)
+					set {_wheatUsed} to {_donut} * 8192
+					remove {_wheatUsed} from {wheat::%player's uuid%}
+					give player {_donut} of {donut}
+					send "&aClaimed %{_donut}% ultimate donuts with %{wheat::%player's uuid%}% wheat left over!"
+					stop
+				else:
+					send "&cYou do not have enough wheat!"
+		open last gui for player
+
+command /reset:
+	trigger:
+		if player is "JacobSB0410":
+			delete {wheatGen::*}
+			delete {wheat::*}
+			delete {fastWheatGen::*}
+			delete {superFastWheatGen::*}
+
+command /setitem [<text>]:
+	trigger:
+		if player is not "JacobSB0410":
+			send "no perms"
+			stop
+		else:
+			if arg-1 is "breadSkin":
+				set {bread} to player's tool
+				send "breadSkin"
+				stop
+			if arg-1 is "ultimateBreadSkin":
+				set {uBread} to player's tool
+				send "uBread"
+				stop
+			if arg-1 is "donutSkin":
+				send "donut"
+				set {donut} to player's tool
+				stop
+			if arg-1 contains "mask":
+				send "%arg-1%"
+				set {%arg-1%} to player's tool
+				stop
+			if arg-1 contains "key":
+				send "%arg-1%"
+				set {%arg-1%} to player's tool
+				stop
+
+# Admin Commands
+
+command /gen [<player>] [<text>]:
+	trigger:
+		if player has permission "gen.admin":
+			if arg-2 is "wheat":
+				give arg-1 purple stained glass named "&dFast Wheat Gen"
+
+command /superfastgens [<player>] [<text>]:
+	trigger:
+		if player has permission "gen.admin":
+			if arg-2 is "wheat":
+				give arg-1 tinted glass named "&dSuper Fast Wheat Gen"
+
+command /fastgens [<player>] [<text>]:
+	trigger:
+		if player has permission "gen.admin":
+			if arg-2 is "wheat":
+				give arg-1 white stained glass named "&dWheat Gen"
+
+# Placing the gen and adding to count
+
+on place:
+	if name of player's held item contains "&dFast Wheat Gen":
+		set event-block to air
+		add 1 to {fastWheatGen::%player's uuid%}
+		send "&aYou placed your Fast Wheat Gen (/gens)!"
+		stop
+	if name of player's held item contains "&dSuper Fast Wheat Gen":
+		set event-block to air
+		add 1 to {superFastWheatGen::%player's uuid%}
+		send "&aYou placed your Super Fast Wheat Gen (/gens)!"
+		stop
+	if name of player's held item contains "&dWheat Gen":
+		set event-block to air
+		add 1 to {wheatGen::%player's uuid%}
+		send "&aYou placed your Wheat Gen (/gens)!"
+
+on left click:
+	if {placed::gens::%player's uuid%::*} contains location of event-block:
+		send "&aPicked up your generator! These generators are now ""old generators"" and are not physical items anymore to help with lag."
+		if event-block is purple stained glass:
+			cancel event
+			set event-block to air
+			remove location of event-block from {placed::gens::%player's uuid%::*}
+			give player purple stained glass named "&dFast Wheat Gen"
+			stop
+		if event-block is tinted glass:
+			cancel event
+			set event-block to air
+			remove location of event-block from {placed::gens::%player's uuid%::*}
+			give player tinted glass named "&dSuper Fast Wheat Gen"
+			stop
+		if event-block is white stained glass:
+			cancel event
+			set event-block to air
+			remove location of event-block from {placed::gens::%player's uuid%::*}
+			give player white stained glass named "&dWheat Gen"
+
+# Adding Resources
+
+every 12 seconds:
+	loop all players:
+		if {fastWheatGen::%loop-player's uuid%} is more than 0:
+			set {_toGive} to {fastWheatGen::%loop-player's uuid%}
+			add {_toGive} to {wheat::%loop-player's uuid%}
+
+every 8 seconds:
+	loop all players:
+		if {superFastWheatGen::%loop-player's uuid%} is more than 0:
+			set {_toGive} to {superFastWheatGen::%loop-player's uuid%}
+			add {_toGive} to {wheat::%loop-player's uuid%}
+
+every 15 seconds:
+	loop all players:
+		if {wheatGen::%loop-player's uuid%} is more than 0:
+			set {_toGive} to {wheatGen::%loop-player's uuid%}
+			add {_toGive} to {wheat::%loop-player's uuid%}

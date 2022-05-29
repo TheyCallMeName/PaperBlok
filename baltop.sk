@@ -1,0 +1,14 @@
+command /baltop:
+	trigger:
+		set {_list::*} to sorted {Coins::*} from highest to lowest with format "@index"
+		set {_i} to 0
+		send "&f[&eMhTreasure&f] &7Balance Top"
+		send "&7&m---------------------------"
+		loop {_list::*}:
+			add 1 to {_timesRan}
+			set {_player} to "%loop-value%" parsed as offlineplayer
+			set {_uuid} to uuid of {_player}
+			send "&fNo %{_timesRan}%: &7(&e%level of {_player}%&7) &e%{_player}% &8» &7%format({Coins::%{_uuid}%})% Coins"
+			add 1 to {_i}
+			if {_timesRan} > 9:
+				stop

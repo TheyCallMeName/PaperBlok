@@ -1,0 +1,139 @@
+options:
+	prefix: &8[&3SINGLED CRATES&8] &3-&f
+
+on right click:
+	if targeted block is a black shulker box:
+		if {MythicCrateLoc::*} contains targeted block's location:
+			cancel event
+			if player is holding a tripwire hook named "&f&lM&a&ly&b&lt&5&lh&6&li&f&lc&a&la&b&ll &7Crate Key":
+				remove 1 tripwire hook named "&f&lM&a&ly&b&lt&5&lh&6&li&f&lc&a&la&b&ll &7Crate Key" from player's inventory
+				set {_item} to a random integer between 0 and 100
+				if {_item} is between 0 and 19:
+					send "{@prefix} You have won the Enchanting Set."
+					add 32 bookshelf to player's inventory
+					add 64 lapis lazuli to player's inventory
+					add 2 enchanting table to player's inventory
+					stop
+				if {_item} is between 20 and 34:
+					set {_kitChoose} to a random integer between 0 and 1
+					if {_kitChoose} is 0:
+						send "{@prefix} You have won a Tool Kit."
+						add 1 diamond pickaxe of efficiency 10 and fortune 5 and unbreaking 5 named "&f&lM&a&ly&b&lt&5&lh&6&li&f&lc&a&la&b&ll &f&lPickaxe" with lore "&8| &eWon from a &f&lM&a&ly&b&lt&5&lh&6&li&f&lc&a&la&b&ll Crate Key." to player's inventory
+						add 1 diamond axe of efficiency 10 and unbreaking 5 named "&f&lM&a&ly&b&lt&5&lh&6&li&f&lc&a&la&b&ll &f&lAxe" with lore "&8| &eWon from a &f&lM&a&ly&b&lt&5&lh&6&li&f&lc&a&la&b&ll Crate Key." to player's inventory
+						add 1 diamond shovel of efficiency 10 and unbreaking 5 named "&f&lM&a&ly&b&lt&5&lh&6&li&f&lc&a&la&b&ll &f&lShovel" with lore "&8| &eWon from a &f&lM&a&ly&b&lt&5&lh&6&li&f&lc&a&la&b&ll Crate Key." to player's inventory
+						stop
+					if {_kitChoose} is 1:
+						send "{@prefix} You have won a Armor Kit."
+						add 1 diamond helmet of protection 10 and unbreaking 5 named "&f&lM&a&ly&b&lt&5&lh&6&li&f&lc&a&la&b&ll &f&lHelmet" with lore "&8| &eWon from a &f&lM&a&ly&b&lt&5&lh&6&li&f&lc&a&la&b&ll Crate Key." to player's inventory
+						add 1 diamond chestplate of protection 10 and unbreaking 5 named "&f&lM&a&ly&b&lt&5&lh&6&li&f&lc&a&la&b&ll &f&lChestplate" with lore "&8| &eWon from a &f&lM&a&ly&b&lt&5&lh&6&li&f&lc&a&la&b&ll Crate Key." to player's inventory
+						add 1 diamond leggings of protection 10 and unbreaking 5 named "&f&lM&a&ly&b&lt&5&lh&6&li&f&lc&a&la&b&ll &f&lLeggings" with lore "&8| &eWon from a &f&lM&a&ly&b&lt&5&lh&6&li&f&lc&a&la&b&ll Crate Key." to player's inventory
+						add 1 diamond boots of protection 10 and unbreaking 5 named "&f&lM&a&ly&b&lt&5&lh&6&li&f&lc&a&la&b&ll &f&lBoots" with lore "&8| &eWon from a &f&lM&a&ly&b&lt&5&lh&6&li&f&lc&a&la&b&ll Crate Key." to player's inventory
+						stop
+				if {_item} is between 35 and 44:
+					send "{@prefix} You have won a Valuables set."
+					add 16 diamond block to player's inventory
+					add 16 gold block to player's inventory
+					add 16 iron block to player's inventory
+					add 16 emerald block to player's inventory
+					add 16 coal block to player's inventory
+				if {_item} is between 45 and 54:
+					broadcast "{@prefix} %player% has won Fly for 1 week!"
+					add 1 feather named "&3&lFly Voucher" with lore "&8| &3&oRight-click to redeem." to player's inventory
+					stop
+				if {_item} is between 55 and 69:
+					set {_xp} to a random integer between 5000 and 10000
+					send "{@prefix} You have won %{_xp}% experience."
+					add {_xp} to xp of player
+				if {_item} is between 70 and 74:
+					add 2 tripwire hook named "&f&lM&a&ly&b&lt&5&lh&6&li&f&lc&a&la&b&ll &7Crate Key" to player's inventory
+					send "{@prefix} You have won 2 Mythical Crate Keys."
+					stop
+				if {_item} is between 75 and 82:
+					set {_xp} to a random integer between 200 and 500
+					send "{@prefix} You have won %{_xp}% Island XP. &o(mine to level up)"
+					add {_xp} to {Bxp::%{islandName::%player's uuid%}%}
+					stop
+				if {_item} is between 83 and 90:
+					add 1 chest named "&6&lLegendary &7Lootbox" with lore "&8| &e&lOpen me to see what", "&8| &e&lprize you'll win", "" and "&8| &e&lLeft click me to see my rewards!" to player's inventory
+					send "{@prefix} You have won a Legendary Lootbox."
+					stop
+				if {_item} is between 91 and 97:
+					add 1 chest named "&c&lSniper Lootbox" with lore "&8| &e&lOpen me to see what", "&8| &e&lprize you'll win", "" and "&8| &e&lLeft click me to see my rewards!" to player's inventory
+					send "{@prefix} You have won a Sniper Lootbox."
+					stop
+				if {_item} is between 98 and 100:
+					broadcast "{@prefix} %player% has won 4x Legendary Keys!"
+					add 4 tripwire hook named "&6&lLegendary &7Crate Key" to player's inventory
+			else:
+				send "{@prefix} You do not have a &f&lM&a&ly&b&lt&5&lh&6&li&f&lc&a&la&b&ll &7Crate Key"
+
+on block damage:
+	if targeted block is a black shulker box:
+		if {MythicCrateLoc::*} contains targeted block's location:
+			cancel event
+			open virtual chest inventory named "&f&lM&a&ly&b&lt&5&lh&6&li&f&lc&a&la&b&ll &7Rewards" with size 4 to player
+			format gui slot integers between 0 and 100 of player with gray stained glass pane named " "
+			formatWin(10, player, enchanting table, "Enchanting Set", 20)
+			formatWin(11, player, shulker box, "Random Set", 15)
+			formatWin(12, player, diamond block, "Valuables Set", 10)
+			formatWin(13, player, feather, "Fly Voucher (1 week)", 10)
+			formatWin(14, player, bottle o' enchanting, "EXP Pack", 15)
+			formatWin(15, player, tripwire hook, "&f&lM&a&ly&b&lt&5&lh&6&li&f&lc&a&la&b&ll &7Crate Key", 5)
+			formatWin(16, player, bottle o' enchanting, "Island XP", 8)
+			formatWin(19, player, chest, "&6&lLegendary &7Lootbox", 8)
+			formatWin(20, player, chest, "&c&lSniper Lootbox", 8)
+			formatWin(21, player, tripwire hook, "&6&lLegendary &7Crate Key", 3)
+
+function formatWin(slot: integer, p: player, i: item, name: text, chance: integer):
+	set {_i} to ({_i} parsed as an item)
+	format gui slot {_slot} of {_p} with {_i} named "&3&l%{_name}%" with lore "&3%{_chance}%%%&3 chance"
+
+on rightclick with feather:
+	if name of player's tool is "&3&lFly Voucher":
+		send "&8[&3SINGLED FLIGHT&8] &3-&f Redeemed your flight voucher!"
+		remove 1 feather named "&3&lFly Voucher" with lore "&8| &3&oRight-click to redeem." from player's inventory
+		set {FlyStart::%player's uuid%} to now
+		add player's uuid to {FlyPerm::*}
+		add player to {FlyPermP::*}
+
+command /fly [<text>]:
+	trigger:
+		if {FlyPerm::*} does not contain player's uuid:
+			send "&8[&3SINGLED FLIGHT&8] &3-&f You do not have the fly permission."
+			stop
+		else:
+			if player's flight mode is false:
+				set player's flight mode to true
+				send "&8[&3SINGLED FLIGHT&8] &3-&f Enabled fly mode"
+				stop
+			if player's flight mode is true:
+				set player's flight mode to false
+				send "&8[&3SINGLED FLIGHT&8] &3-&f Disabled fly mode."
+				stop
+
+every 20 minutes:
+	loop {FlyPermP::*}:
+		set {_loopValue} to (loop-value parsed as a player)
+		set {_u} to uuid of {_loopValue}
+		if difference between now and {FlyStart::%{_u}%} is greater than 7 days:
+			remove {_loopValue} from {FlyPermP::*}
+			remove {_u} from {FlyPerm::*}
+
+command /cratemode <text>:
+	permission: crate.setup
+	trigger:
+		if arg-1 is not "Mythic":
+			send "&cUse: Mythic"
+			stop
+		else:
+			if arg-1 is "Mythic":
+				set {crateMode::%player's uuid%} to "Mythic"
+				send "Set crate mode to mythic"
+
+on break:
+	if {crateMode::%player's uuid%} is set:
+		cancel event
+		set {_type} to {crateMode::%player's uuid%}
+		add event-block's location to {%{_type}%CrateLoc::*}
+		delete {crateMode::%player's uuid%}
+		send "Set."

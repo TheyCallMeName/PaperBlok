@@ -1,0 +1,38 @@
+options:
+	prefix: &8[&3SINGLED&8] &3-&f
+
+command /gmc [<player>]:
+	permission: gm.c
+	trigger:
+		if arg-1 is not set:
+			set player's gamemode to creative
+			send "{@prefix} Set your gamemode to creative!"
+			stop
+		if arg-1 is set:
+			set arg-1's gamemode to creative
+			send "{@prefix} Set %arg-1%'s gamemode to creative!"
+			stop
+
+command /gms [<player>]:
+	permission: gm.s
+	trigger:
+		if arg-1 is not set:
+			set player's gamemode to survival
+			send "{@prefix} Set your gamemode to survival!"
+			stop
+		if arg-1 is set:
+			set arg-1's gamemode to survival
+			send "{@prefix} Set %arg-1%'s gamemode to survival!"
+			stop
+
+command /gmsp [<player>]:
+	permission: gm.sp
+	trigger:
+		if arg-1 is not set:
+			set player's gamemode to spectator
+			send "{@prefix} Set your gamemode to spectator!"
+			stop
+		if arg-1 is set:
+			set arg-1's gamemode to spectator
+			send "{@prefix} Set %arg-1%'s gamemode to spectator!"
+			stop

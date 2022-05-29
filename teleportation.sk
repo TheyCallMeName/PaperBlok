@@ -1,0 +1,43 @@
+command /setspawn:
+	permission: set.spawn
+	trigger:
+		set {spawn} to player's location
+		send "Set spawn"
+
+command /spawn:
+	trigger:
+		send title "&d&lTeleporting..." with subtitle "in 3 seconds" to player for 0.99 seconds
+		play sound "block.note_block.pling" with volume 0.1 to the player
+		wait 1 second
+		send title "&d&lTeleporting..." with subtitle "in 2 seconds" to player for 0.99 seconds
+		play sound "block.note_block.pling" with volume 0.25 to the player
+		wait 1 second
+		send title "&d&lTeleporting..." with subtitle "in 1 second" to player for 0.99 seconds
+		play sound "block.note_block.pling" with volume 0.35 to the player
+		wait 1 second
+		send title "&d&lTeleported" with subtitle "to spawn!" to player for 1 second
+		teleport player to {spawn}
+		wait 3 ticks
+		play sound "entity.experience_orb.pickup" with volume 0.5 to the player
+
+command /setarena:
+	permission: set.spawn
+	trigger:
+		set {arena} to player's location
+		send "Set arena"
+
+command /arena:
+	trigger:
+		send title "&d&lTeleporting..." with subtitle "in 3 seconds" to player for 0.99 seconds
+		play sound "block.note_block.pling" with volume 0.1 to the player
+		wait 1 second
+		send title "&d&lTeleporting..." with subtitle "in 2 seconds" to player for 0.99 seconds
+		play sound "block.note_block.pling" with volume 0.25 to the player
+		wait 1 second
+		send title "&d&lTeleporting..." with subtitle "in 1 second" to player for 0.99 seconds
+		play sound "block.note_block.pling" with volume 0.35 to the player
+		wait 1 second
+		send title "&d&lTeleported" with subtitle "to arena!" to player for 1 second
+		teleport player to {arena}
+		wait 3 ticks
+		play sound "entity.experience_orb.pickup" with volume 0.5 to the player

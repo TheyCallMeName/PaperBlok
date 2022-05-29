@@ -1,0 +1,9 @@
+options:
+	permnode: staffchat.use
+
+on chat:
+	if player has permission "{@permnode}":
+		if first character in message is "$":
+			set {_msg} to "%message%"
+			replace first "$" in {_msg} with ""
+			send "&9[SC] %player's prefix%&e%player%&8: &b%{_msg}%" to all players where [input has permission "{@permnode}"]

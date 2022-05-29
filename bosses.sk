@@ -1,0 +1,218 @@
+command /setspawnboss [<text>]:
+	permission: set.spawn.boss
+	trigger:
+		if arg-1 is "sniper":
+			set {sniperSpawn} to player's location
+			send "Set sniper spawn to your location (%player's location%)"
+		if arg-1 is "sniper1":
+			set {sniperSpawn1} to player's location
+			send "Set sniper spawn 1 to your location (%player's location%)"
+		if arg-1 is "sniper2":
+			set {sniperSpawn2} to player's location
+			send "Set sniper spawn 2 to your location (%player's location%)"
+		if arg-1 is "sniper3":
+			set {sniperSpawn3} to player's location
+			send "Set sniper spawn 3 to your location (%player's location%)"
+		if arg-1 is "sniper4":
+			set {sniperSpawn4} to player's location
+			send "Set sniper spawn 4 to your location (%player's location%)"
+
+every 30 minutes:
+	if {SkeleBossAlive} is set:
+		stop
+	else:
+		set {SkeleBossAlive} to true
+		SummonBoss("sniper")
+		wait 5 ticks
+		SummonServants("sniper")
+		wait 2 seconds
+		delete {tempServant}
+
+on command:
+	if command contains "stop":
+		cancel event
+
+options:
+	prefix: &8[&3&lSINGLED BOSS&8] &3-&f
+
+on death of skeleton:
+	if name of skeleton is "&6&lThe Sniper God":
+		execute console command "damagetop"
+		delete {SkeleBoss}
+		clear drops
+	if name of skeleton is "&6&lSniper's Servant":
+		clear drops
+
+on damage of skeleton:
+	if name of victim is "&6&lThe Sniper God":
+		if {skeleton::%attacker's uuid%} is not set:
+			add damage to {skeleton::%attacker's uuid%}
+			add 1 to {totalDmgersSkele}
+		else:
+			add damage to {skeleton::%attacker's uuid%}
+
+command /damagetop:
+	permission: console
+	executable by: console
+	trigger:
+		if {skeleton::*} is not set:
+			send "&fNo one has dealt damage to the skeleton boss!"
+			stop
+		else:
+			set {SkeleBossRewards} to true
+			set {_sortedList::*} to sorted {skeleton::*}
+			loop {skeleton::*}:
+				add 1 to {_count}
+				set {_indexes::%loop-value%} to loop-index
+			set {_n} to 0
+			loop {_sortedList::*}:
+				add 1 to {_n}
+				set {_current} to {_indexes::%loop-value%} parsed as offline player
+				set {_current2} to "%{_current}%"
+				replace all "<none>" in {_current2} with "Unknown"
+				set {_msg::%{_n}%} to "&3%{_current2}% &f- &3%loop-value% damage."
+				set {_dmger::%{_n}%} to {_current2}
+				{_n} is {totalDmgersSkele}
+				exit 1 loop
+			broadcast ""
+			loop {_msg::*}:
+				set {_current} to loop-index parsed as int - 1
+				set {_c} to size of {_msg::*} - {_current}
+				add {_msg::%{_c}%} to {_invertedList::*}
+			set {_n} to 0
+			broadcast "&8| &7&m----&r &6&lThe Sniper God &6Damage Top &7&m---- &8|"
+			broadcast ""
+			loop {_invertedList::*}:
+				if {_n} is 3:
+					exit 1 loop
+				else:
+					wait 1 second
+					add 1 to {_n}
+					broadcast "&f##%{_n}% %loop-value%"
+			set {n2} to ({_n} + 1)
+			set {placementSkele} to 0
+			loop {_n} times:
+				remove 1 from {n2}
+				add 1 to {placementSkele}
+				set {Reward::Skeleton::%{placementSkele}%} to {_dmger::%{n2}%} 
+				set {_dmger::%{n2}%} to ({_dmger::%{n2}%} parsed as a player)
+			bossDrops("sniper", 3)
+			wait 1 tick
+			delete {skeleton::*}
+			delete {n2}
+			delete {totalDmgersSkele}
+			broadcast ""
+
+function bossDrops(boss: text, i: integer):
+	if {_boss} is "sniper":
+		set {placementHelp} to 0
+		loop {_i} times:
+			wait 0.75 seconds
+			set {_rng} to random integer between 0 and 99
+			add 1 to {placementHelp}
+			set {_rewardPerson} to ({Reward::Skeleton::%{placementHelp}%} parsed as a player)
+			if "%{Reward::Skeleton::%{placementHelp}%}%" is not "Unknown" or "<none>":
+				if {placementHelp} is 1:
+					set {_rng} to a random integer between 0 and 100
+					if {_rng} is between 0 and 4:
+						add 1 chest named "&6&lLegendary &7Lootbox" with lore "&8| &e&lOpen me to see what", "&8| &e&lprize you'll win", "" and "&8| &e&lLeft click me to see my rewards!" to {_rewardPerson}'s inventory
+						broadcast "{@prefix} %{Reward::Skeleton::%{placementHelp}%}% has just recieved a &6&lLegendary &7Lootbox &ffrom the 'Sniper' boss!"
+					if {_rng} is between 5 and 24:
+						add 1 chest named "&5&lEpic &7Lootbox" with lore "&8| &e&lOpen me to see what", "&8| &e&lprize you'll win", "" and "&8| &e&lLeft click me to see my rewards!" to {_rewardPerson}'s inventory
+						broadcast "{@prefix} %{Reward::Skeleton::%{placementHelp}%}% has just recieved a &5&lEpic &7Lootbox &ffrom the 'Sniper' boss!"
+					if {_rng} is between 25 and 74:
+						add 1 chest named "&b&lRare &7Lootbox" with lore "&8| &e&lOpen me to see what", "&8| &e&lprize you'll win", "" and "&8| &e&lLeft click me to see my rewards!" to {_rewardPerson}'s inventory
+					if {_rng} is between 75 and 99:
+						add 1 tripwire hook named "&b&lRare Crate Key" to {_rewardPerson}'s inventory
+					if {_rng} is 100:
+						broadcast "{@prefix} %{Reward::Skeleton::%{placementHelp}%}% was SUPER LUCKY and recieved a &c&lSniper &7Lootbox &ffrom the 'Sniper' boss!"
+						add 1 chest named "&c&lSniper Lootbox" with lore "&8| &e&lOpen me to see what", "&8| &e&lprize you'll win", "" and "&8| &e&lLeft click me to see my rewards!" to {_rewardPerson}'s inventory
+				if {placementHelp} is 2:
+					if {_rng} is between 0 and 2:
+						add 1 chest named "&6&lLegendary &7Lootbox" with lore "&8| &e&lOpen me to see what", "&8| &e&lprize you'll win", "" and "&8| &e&lLeft click me to see my rewards!" to {_rewardPerson}'s inventory
+						broadcast "{@prefix} %{Reward::Skeleton::%{placementHelp}%}% has just recieved a &6&lLegendary &7Lootbox &ffrom the 'Sniper' boss!"
+					if {_rng} is between 3 and 9:
+						add 1 chest named "&5&lEpic &7Lootbox" with lore "&8| &e&lOpen me to see what", "&8| &e&lprize you'll win", "" and "&8| &e&lLeft click me to see my rewards!" to {_rewardPerson}'s inventory
+						broadcast "{@prefix} %{Reward::Skeleton::%{placementHelp}%}% has just recieved a &5&lEpic &7Lootbox &ffrom the 'Sniper' boss!"
+					if {_rng} is between 10 and 49:
+						add 1 chest named "&b&lRare &7Lootbox" with lore "&8| &e&lOpen me to see what", "&8| &e&lprize you'll win", "" and "&8| &e&lLeft click me to see my rewards!" to {_rewardPerson}'s inventory
+					if {_rng} is between 50 and 74:
+						add 1 tripwire hook named "&b&lRare Crate Key" to {_rewardPerson}'s inventory
+					if {_rng} is between 75 and 99:
+						add 1 tripwire hook named "&a&lUncommon &7Crate Key" to {_rewardPerson}'s inventory
+				if {placementHelp} is 3:
+					if {_rng} is between 0 and 1:
+						add 1 chest named "&6&lLegendary &7Lootbox" with lore "&8| &e&lOpen me to see what", "&8| &e&lprize you'll win", "" and "&8| &e&lLeft click me to see my rewards!" to {_rewardPerson}'s inventory
+						broadcast "{@prefix} %{Reward::Skeleton::%{placementHelp}%}% has just recieved a &6&lLegendary &7Lootbox &ffrom the 'Sniper' boss!"
+					if {_rng} is between 2 and 4:
+						add 1 chest named "&5&lEpic &7Lootbox" with lore "&8| &e&lOpen me to see what", "&8| &e&lprize you'll win", "" and "&8| &e&lLeft click me to see my rewards!" to {_rewardPerson}'s inventory
+						broadcast "{@prefix} %{Reward::Skeleton::%{placementHelp}%}% has just recieved a &5&lEpic &7Lootbox &ffrom the 'Sniper' boss!"
+					if {_rng} is between 5 and 29:
+						add 1 chest named "&b&lRare &7Lootbox" with lore "&8| &e&lOpen me to see what", "&8| &e&lprize you'll win", "" and "&8| &e&lLeft click me to see my rewards!" to {_rewardPerson}'s inventory
+					if {_rng} is between 30 and 49:
+						add 1 tripwire hook named "&b&lRare Crate Key" to {_rewardPerson}'s inventory
+					if {_rng} is between 50 and 74:
+						add 1 tripwire hook named "&a&lUncommon &7Crate Key" to {_rewardPerson}'s inventory
+					if {_rng} is above 75:
+						add 1 tripwire hook named "&f&lCommon &7Crate Key" to {_rewardPerson}'s inventory
+		wait 0.3 seconds
+		delete {placementHelp}
+		delete {Reward::Skeleton::*}
+		delete {SkeleBossAlive}
+		delete {SkeleBossRewards}
+
+command /summonBoss [<text>]:
+	permission: spawn.boss
+	trigger:
+		if arg-1 is "sniper":
+			SummonBoss("sniper")
+			wait 5 ticks
+			SummonServants("sniper")
+			wait 2 seconds
+			delete {tempServant}
+
+function SummonBoss(boss: text):
+	if {_boss} is "sniper":
+		spawn a skeleton at {sniperSpawn}
+		set {SkeleBoss} to the last spawned skeleton
+		set display name of {SkeleBoss} to "&6&lThe Sniper God"
+		set max health of {SkeleBoss} to 750
+		set health of {SkeleBoss} to 750
+		apply speed 1 without particles to {SkeleBoss} for 9999 minutes
+		apply strength 2 without particles to {SkeleBoss} for 9999 minutes
+		set the helmet of {SkeleBoss} to diamond helmet of protection 1 and unbreaking 100
+		set the chestplate of {SkeleBoss} to diamond chestplate of protection 3 and unbreaking 20
+		set the leggings of {SkeleBoss} to diamond leggings of protection 3 and unbreaking 20
+		set the weapon of {SkeleBoss} to bow of power 15, unbreaking 50, flame 1 and punch 1
+		broadcast "{@prefix} &6&lThe Sniper God &fhas appeared at the arena &7&o(/arena)&f."
+
+function SummonServants(servant: text):
+	if {_servant} is "sniper":
+		loop 4 times:
+			add 1 to {tempServant}
+			spawn a skeleton at {sniperSpawn%{tempServant}%}
+			set {_SkeleSlave} to the last spawned skeleton
+			set display name of {_SkeleSlave} to "&6&lSniper's Servant"
+			set max health of {_SkeleSlave} to 150
+			set health of {_SkeleSlave} to 150
+			set the helmet of {_SkeleSlave} to diamond helmet of unbreaking 100
+			set the chestplate of {_SkeleSlave} to diamond chestplate of protection 1 and unbreaking 15
+			set the weapon of {_SkeleSlave} to bow of power 1 and unbreaking 5
+
+every 1 second:
+	if {SkeleBoss} is set:
+		loop all players:
+			remove bossbar "boss.sniper"
+			set {_hp} to (health of {SkeleBoss} / 7.5)
+			set {_realHP} to health of {SkeleBoss}
+			if {_hp} is above 50:
+				create bossbar titled "&6&lThe Sniper God &6(%{_realHP}%&6/750)" and id "boss.sniper" for loop-player with progress {_hp} with colors green
+				stop
+			if {_hp} is above 25:
+				create bossbar titled "&6&lThe Sniper God &6(%{_realHP}%&6/750)" and id "boss.sniper" for loop-player with progress {_hp} with colors yellow
+				stop
+			if {_hp} is below 25:
+				create bossbar titled "&6&lThe Sniper God &6(%{_realHP}%&6/750)" and id "boss.sniper" for loop-player with progress {_hp} with colors red
+				stop
+	else:
+		remove bossbar "boss.sniper"

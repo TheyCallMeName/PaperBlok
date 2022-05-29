@@ -1,0 +1,25 @@
+on chat:
+	if {SkeleBossRewards} is set:
+		cancel event
+		send "&8[&3&lSINGLED BOSS&8] &3-&f The chat is currently muted as we are displaying the rewards for the Singled Boss."
+		stop
+	else:
+		if {muted::%player's uuid%} is true:
+			cancel event
+			send "&cYou are muted due to %{muteReason::%player's uuid%}% &cfor %{mutedTime::%player's uuid%}% &cminutes!"
+			stop
+		else:
+			if {Blevel::%{islandName::%player's uuid%}%} is not set:
+				set {_temp} to 0
+			else:
+				set {_temp} to ({Blevel::%{islandName::%player's uuid%}%} + 1)
+			if {islandName::%player's uuid%} is set:
+				if player has permission "white.chat":
+					set chat format to "&8[&3%{_temp}%&8] %player's prefix%%player% &f» &f%message%"
+				else:
+					set chat format to "&8[&3%{_temp}%&8] %player's prefix%%player% &f» &7%message%"
+			else:
+				if player has permission "white.chat":
+					set chat format to "%player's prefix%%player% &f» &f%message%"
+				else:
+					set chat format to "%player's prefix%%player% &f» &7%message%"

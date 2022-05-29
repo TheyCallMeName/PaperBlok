@@ -1,0 +1,19 @@
+on join:
+	if {Joined::*} contains player:
+		set join message to "&8[&a+&8] %player's prefix%%player%"
+		stop
+	if {Joined::*} does not contain player:
+		add player to {Joined::*}
+		teleport player to {spawn}
+		set join message to "&8[&a+&8] &7&lMEMBER &7%player% &3| &d&lNEW PLAYER! &f[&e##%size of {Joined::*}%&f]"
+
+on any movement:
+	if player is in world "template":
+		if player does not have permission "op":
+			teleport player to {spawn}
+
+on quit:
+	set leave message to "&8[&c-&8] %player's prefix%%player%"
+
+on skript load:
+	set {Joined::*} to all offline players

@@ -1,0 +1,31 @@
+on join:
+	if {scoreboardToggle::%player's uuid%} is true:
+		while player is online:
+			wipe player's sidebar
+			set name of sidebar of player to "&e&lPaperBlok"
+			set score "&e" in sidebar of player to 12
+			set score "&d➤ Player" in sidebar of player to 11
+			set score "&e  ● Username: %player%" in sidebar of player to 10
+			set score "&e  ● Rank: %player's group%" in sidebar of player to 9
+			set score "&d" in sidebar of player to 8
+			set score "&d➤ Stats" in sidebar of player to 7
+			set score "&e  ● Kills: &3%{kills::%player's uuid%}%" in sidebar of player to 6
+			set score "&e  ● Deaths: &3%{death::%player's uuid%}%" in sidebar of player to 5
+			set score "&e  ● KDR: &3%{kills::%player's uuid%}/{death::%player's uuid%}%" in sidebar of player to 4
+			set score "&e  ● Killstreak: &3%{killstreak::%player's uuid%}%" in sidebar of player to 3
+			set {_playtime} to "&6%{ptd::%player's uuid%}%D, %{pth::%player's uuid%}%H, %{ptm::%player's uuid%}%M"
+			set score "&e  ● Playtime: %{_playtime}%" in sidebar of player to 2
+			set score "&e" in sidebar of player to 1
+			set score "&e&oPaperBlok.minehut.gg" in sidebar of player to 0
+			wait 5 seconds
+
+command /togglesb:
+	trigger:
+		if {scoreboardToggle::%player's uuid%} is not set:
+			set {scoreboardToggle::%player's uuid%} to true
+			send "<##38f837>Successfully turned on scoreboard. For this effect to take place, please relog."
+			stop
+		if {scoreboardToggle::%player's uuid%} is true:
+			delete {scoreboardToggle::%player's uuid%}
+			send "<##ff0000>Successfully turned off scoreboard. For this effect to take place, please relog."
+			stop

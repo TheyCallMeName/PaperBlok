@@ -1,0 +1,63 @@
+on player armor change:
+	wait 10 ticks
+	if name of player's helmet contains "&b&lScuba Helmet":
+		if name of player's chestplate contains "&b&lScuba Chestplate":
+			if {wearingTopSwim::%player%} is not set:
+				send "&6Site-45 > &fYou can now breathe underwater using air tanks! Right click an air tank to use one!" to player
+				set {wearingTopSwim::%player%} to true
+	if name of player's leggings contains "&b&lScuba Pants":
+		if name of player's boots contains "&b&lScuba Flippers":
+			if {wearingBottomSwim::%player%} is not set:
+				send "&6Site-45 > &fYou can now swim faster!" to player
+				set {wearingBottomSwim::%player%} to true
+				execute console command "effect give %player% minecraft:dolphins_grace 10 0 true"
+ 
+every 11 seconds:
+	loop all players:
+		if {wearingBottomSwim::%loop-player%} is true:
+			execute console command "effect give %loop-player% minecraft:dolphins_grace 10 0 true"
+
+on damage:
+	if victim is a player:
+		if "%damage cause%" is "drowning":
+			if {airTankSwim::%victim's uuid%} is more than 0:
+				if {wearingTopSwim::%victim%} is true:
+					cancel event
+					remove 10 from {airTankSwim::%victim's uuid%}
+					set bossbar "oxygen.%victim%" value to {airTankSwim::%victim's uuid%}
+					set bossbar "oxygen.%victim%" name to "Oxygen: %{airTankSwim::%victim's uuid%}%/100"
+					if {airTankSwim::%victim's uuid%} is 50:
+						set bossbar "oxygen.%victim%" color to yellow
+					if {airTankSwim::%victim's uuid%} is 30:
+						send "&6Site-45 > &fYour air tank is running low! Use another one!" to victim
+						set bossbar "oxygen.%victim%" color to red
+			else:
+				set bossbar "oxygen.%victim%" value to 0
+
+on join:
+	if {airTankSwim::%player's uuid%} is not set:
+		set {airTankSwim::%player's uuid%} to 0
+
+on rightclick with a hopper:
+	if name of player's tool is "&b&lOxygen Tank":
+		if {delay12::%player%} is not set:
+			set {airTankSwim::%player's uuid%} to 100
+			remove 1 of player's tool from player
+			create bossbar titled "Oxygen: %{airTankSwim::%player's uuid%}%/100" and id "oxygen.%player%" for player with progress 100 with colors green
+			send "&6Site-45 > &fRefilled your Air Tank!%nl%&7Tip: Using an air tank multiple times is useless!"
+			set {delay12::%player%} to true
+			wait 10 ticks
+			delete {delay12::%player%}
+
+on player armor change:
+	wait 10 ticks
+	if {wearingTopSwim::%player%} is true:
+		if name of player's helmet does not contain "&b&lScuba Helmet":
+			delete {wearingTopSwim::%player%}
+		if name of player's chestplate does not contain "&b&lScuba Chestplate":
+			delete {wearingTopSwim::%player%}
+	if {wearingBottomSwim::%player%} is true:
+		if name of player's leggings does not contain "&b&lScuba Pants":
+			delete {wearingBottomSwim::%player%}
+		if name of player's boots does not contain "&b&lScuba Flippers":
+			delete {wearingBottomSwim::%player%}
